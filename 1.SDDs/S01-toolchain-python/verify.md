@@ -1,31 +1,32 @@
-# S01 — Projeto e toolchain Python · Verificação
+# S01 — Project Setup & Python Toolchain · Verification
 
-## Critérios de aceite (Definition of Done deste item)
+## Acceptance criteria (Definition of Done for this item)
 
-- [ ] Estrutura `src/{api,agent,rag,mcp,providers,data}` existe e está
-      alinhada ao `architecture.md` de S00.
-- [ ] `pyproject.toml` (ou equivalente) versionado, com lockfile de
-      dependências commitado.
-- [ ] Rodar o lint localmente (`ruff check .`) retorna sem erros no esqueleto
-      inicial do projeto.
-- [ ] Rodar o type check localmente (`mypy src/`) retorna sem erros no
-      esqueleto inicial.
-- [ ] `pre-commit run --all-files` passa sem falhas.
-- [ ] `pytest --cov` executa com sucesso, com pelo menos 1 teste passando e um
-      relatório de cobertura sendo gerado.
-- [ ] `docker build .` completa com sucesso a partir do `Dockerfile` base.
-- [ ] O workflow de CI roda automaticamente em um push/PR de teste e todos os
-      steps (lint, type check, testes) terminam em verde.
-- [ ] `README.md` documenta o passo a passo de setup local e uma pessoa nova
-      no projeto consegue reproduzir o ambiente só seguindo essas instruções.
+- [ ] The `src/{api,agent,rag,mcp,providers,data}` structure exists and is
+      aligned with S00's `architecture.md`.
+- [ ] `pyproject.toml` (or equivalent) is versioned, with a committed
+      dependency lockfile.
+- [ ] Running lint locally (`ruff check .`) returns no errors on the project's
+      initial skeleton.
+- [ ] Running type check locally (`mypy src/`) returns no errors on the
+      initial skeleton.
+- [ ] `pre-commit run --all-files` passes with no failures.
+- [ ] `pytest --cov` runs successfully, with at least 1 passing test and a
+      coverage report being generated.
+- [ ] `docker build .` completes successfully from the base `Dockerfile`.
+- [ ] The CI workflow runs automatically on a test push/PR and all steps
+      (lint, type check, tests) finish green.
+- [ ] `README.md` documents the local setup step by step, and someone new to
+      the project can reproduce the environment by following only those
+      instructions.
 
-## Como verificar
+## How to verify
 
-1. Clonar o repositório em uma pasta limpa e seguir apenas o `README.md` para
-   montar o ambiente — sem conhecimento prévio do projeto.
-2. Rodar, nesta ordem: `ruff check .`, `mypy src/`, `pytest --cov`,
+1. Clone the repository into a clean folder and follow only the `README.md`
+   to set up the environment — with no prior knowledge of the project.
+2. Run, in this order: `ruff check .`, `mypy src/`, `pytest --cov`,
    `docker build .`.
-3. Abrir um PR de teste (ex.: alterar um comentário) e confirmar que o CI
-   dispara e conclui com sucesso.
-4. Marcar este item como concluído no checklist do PDI (seção 14) somente após
-   os 3 passos acima serem confirmados.
+3. Open a test PR (e.g., changing a comment) and confirm CI triggers and
+   completes successfully.
+4. Mark this item as complete in the IDP checklist (section 14) only after
+   the 3 steps above are confirmed.

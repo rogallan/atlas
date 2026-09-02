@@ -71,4 +71,5 @@ backend).
 - Repository: https://github.com/rogallan/atlas
 - Blog: https://rogerallantex.blogspot.com/
 - YouTube: https://www.youtube.com/@rogallany
+- Linkedin: https://www.linkedin.com/in/roger-allan-silva-teixeira-b2629852/
 - Companion document: `architecture.md` (technical boundaries and solution design)

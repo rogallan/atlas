@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IDP — Software Engineer GenAI | ATLAS</title>
+<style>
+:root{--bg:#f5f7fa;--card:#fff;--text:#202124;--muted:#6b7280;--line:#e5e7eb;--blue:#1a73e8;--blue2:#e8f0fe;--green:#188038;--orange:#b06000;--red:#b3261e;--shadow:0 2px 8px rgba(0,0,0,.08)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px Arial,Helvetica,sans-serif}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);box-shadow:0 1px 5px #0001}
+.topinner,.container{max-width:1200px;margin:auto}.topinner{padding:11px 22px}.toprow{display:flex;align-items:center;gap:16px}.title{font-weight:700;min-width:165px}.progresswrap{flex:1}.progressline{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}.progressbar{height:8px;background:#e8eaed;border-radius:10px;overflow:hidden}.progressfill{height:100%;width:0;background:var(--blue);transition:.25s}.actions{display:flex;gap:7px;flex-wrap:wrap}
+button,.filebtn{border:1px solid #dadce0;background:#fff;border-radius:8px;padding:8px 10px;cursor:pointer;font-weight:600;font-size:12px}.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+.container{padding:22px 22px 70px}.hero,.section{background:var(--card);border-radius:14px;box-shadow:var(--shadow);margin-bottom:16px}.hero{padding:24px}.kicker{color:var(--blue);font-weight:700;font-size:12px;letter-spacing:.6px;text-transform:uppercase}h1{font-size:27px;margin:7px 0}h2{font-size:20px;margin:0 0 5px}h3{font-size:15px;margin:0 0 6px}p{line-height:1.55;margin:7px 0}.small,.taskmeta{font-size:12px;color:var(--muted);line-height:1.45}.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.tag{background:var(--blue2);color:#185abc;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:700}
+.person{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}.field label{display:block;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px}.field input{width:100%;padding:10px;border:1px solid #dadce0;border-radius:8px;font-size:14px}
+.section{overflow:hidden}.sectionhead{padding:17px 20px;border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:flex-start}.num{width:32px;height:32px;border-radius:9px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex:none}.sectiontitle{flex:1}.sectioncount{font-size:12px;color:var(--muted);font-weight:700}.sectionbody{padding:8px 20px 18px}
+.task{display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:start;padding:11px 2px;border-bottom:1px solid #f0f1f2}.task:last-child{border-bottom:0}.task input[type=checkbox]{width:18px;height:18px;accent-color:var(--blue);cursor:pointer}.task.done .tasktext{color:#777;text-decoration:line-through}.tasktitle{font-weight:700;margin-bottom:3px}.badge{font-size:10px;font-weight:700;border-radius:999px;padding:4px 7px;white-space:nowrap}.high{background:#fce8e6;color:var(--red)}.med{background:#fef7e0;color:var(--orange)}.low{background:#e6f4ea;color:var(--green)}
+.phase{margin:13px 0 6px;padding:9px 12px;border-left:4px solid var(--blue);background:#f8faff;border-radius:5px;font-weight:700;color:#174ea6}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.mini{border:1px solid var(--line);border-radius:10px;padding:14px}.code{font-family:Consolas,monospace;background:#f8f9fa;padding:2px 5px;border-radius:4px}
+.diag{width:100%;border-collapse:collapse;font-size:12px}.diag th{background:#f8f9fa;text-align:left;padding:9px;border-bottom:1px solid var(--line)}.diag td{padding:8px;border-bottom:1px solid var(--line)}.diag input{width:58px;padding:6px;border:1px solid #dadce0;border-radius:6px}
+.sdd{border:1px solid var(--line);border-radius:10px;padding:14px;margin:10px 0}.sdd h3{color:#174ea6}.sdd pre{white-space:pre-wrap;background:#f8f9fa;border-radius:8px;padding:11px;font:12px Consolas,monospace;line-height:1.5;overflow:auto}.callout{background:#f1f3f4;border-radius:9px;padding:12px;margin:10px 0}.footer{text-align:center;color:var(--muted);font-size:11px;padding:20px}.toast{position:fixed;right:20px;bottom:20px;background:#202124;color:#fff;padding:10px 14px;border-radius:8px;opacity:0;transform:translateY(10px);transition:.2s;z-index:100}.toast.show{opacity:1;transform:none}
+@media(max-width:800px){.toprow{flex-wrap:wrap}.progresswrap{order:3;flex-basis:100%}.person,.grid{grid-template-columns:1fr}.task{grid-template-columns:24px 1fr}.badge{grid-column:2}h1{font-size:23px}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topinner"><div class="toprow">
+<div class="title">IDP Progress</div><div class="progresswrap"><div class="progressline"><span id="progressText">0 / 0 items · 0%</span><span>saved locally</span></div><div class="progressbar"><div id="progressFill" class="progressfill"></div></div></div>
+<div class="actions"><button class="primary" onclick="exportJSON()">Export JSON</button><label class="filebtn">Import JSON<input id="importFile" type="file" accept=".json" hidden></label><button onclick="clearProgress()">Clear progress</button></div>
+</div></div></div>
+
+<main class="container">
+<section class="hero">
+<div class="kicker">IDP · Software Engineer GenAI · 4 quarters</div>
+<h1>ATLAS — Banking GenAI Copilot</h1>
+<p><b>Anchor project:</b> build a conversational copilot for a bank relationship manager, able to consult public knowledge from the Central Bank, query a fictitious customer/financial-history database, and execute <b>simple simulated operations</b> through controlled tools. The project is developed locally, with the LLM served via <b>Ollama</b>, and has a path to cloud publishing/infrastructure.</p>
+<div class="tags"><span class="tag">React Chat</span><span class="tag">FastAPI</span><span class="tag">Ollama</span><span class="tag">LLMs</span><span class="tag">RAG</span><span class="tag">Vector DB</span><span class="tag">Vector Store</span><span class="tag">MCP</span><span class="tag">Harness / Evals</span><span class="tag">Docker</span><span class="tag">ngrok</span><span class="tag">Terraform</span><span class="tag">AWS</span></div>
+<p style="margin-top:10px;font-size:13px"><b>Repository:</b> <a href="https://github.com/rogallan/atlas" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;text-decoration:none">github.com/rogallan/atlas</a></p>
+<p style="margin-top:4px;font-size:13px"><b>Blog:</b> <a href="https://rogerallantex.blogspot.com/" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;text-decoration:none">rogerallantex.blogspot.com</a></p>
+<p style="margin-top:4px;font-size:13px"><b>YouTube:</b> <a href="https://www.youtube.com/@rogallany" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;text-decoration:none">youtube.com/@rogallany</a></p>
+<div class="person">
+<div class="field"><label>IDP OWNER</label><input id="owner" placeholder="Enter your name"></div>
+<div class="field"><label>MENTOR / SUPPORT</label><input id="mentor" placeholder="Enter the name of the person mentoring this IDP"></div>
+</div>
+<div class="callout"><b>Target lab environment:</b> React Chat is published externally on <b>Vercel</b>; the application reaches the local infrastructure through <span class="code">ngrok</span>. Backend, MCP, Vector Store/DB, and Ollama remain local during development. The architecture has a Terraform alternative for AWS.</div>
+</section>
+
+<section class="section"><div class="sectionhead"><div class="num">1</div><div class="sectiontitle"><h2>IDP Objective</h2><div class="small">Expected outcome by the end of the four quarters. Drag the slider to record the gradual progress of each objective (0% to 100%).</div></div><div class="sectioncount" id="c1">0%</div></div><div class="sectionbody" id="objectives"></div></section>
+
+<div id="atlas-solution-widget" style="max-width: 820px; margin: 20px auto; background: #0f172a; color: #f8fafc; border-radius: 20px; padding: 24px; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1);">
+
+  <div style="text-align: center; margin-bottom: 24px;">
+    <span style="background: linear-gradient(135deg, #1a73e8, #6366f1); color: #ffffff; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 8px;">Solution Design</span>
+    <h2 style="margin: 4px 0 8px 0; font-size: 24px; color: #ffffff; font-weight: 800;">ATLAS Agent Flow (React Chat → FastAPI → Agent → RAG/MCP → Ollama)</h2>
+    <p style="margin: 0; color: #94a3b8; font-size: 14px;">Follow the flow of a request from the bank relationship manager, step by step, to the copilot's response.</p>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; justify-content: center;">
+    <button id="atlas-btn-next" style="flex: 1; min-width: 160px; background: linear-gradient(135deg, #1a73e8, #3b82f6); color: #ffffff; border: none; padding: 12px 18px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 14px; transition: 0.2s; box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);">
+      ⏩ Next Flow Step
+    </button>
+    <button id="atlas-btn-all" style="flex: 1; min-width: 160px; background: linear-gradient(135deg, #6366f1, #a855f7); color: #ffffff; border: none; padding: 12px 18px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 14px; transition: 0.2s; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);">
+      ✨ Show Full Architecture
+    </button>
+    <button id="atlas-btn-block" style="background: #ef4444; color: #ffffff; border: none; padding: 12px 16px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 14px; transition: 0.2s; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);">
+      ⚠️ Simulate Guardrail (Action without Confirmation)
+    </button>
+    <button id="atlas-btn-reset" style="background: #334155; color: #cbd5e1; border: none; padding: 12px 16px; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 14px; transition: 0.2s;">
+      🔄 Reset
+    </button>
+  </div>
+
+  <div style="background: #020617; border-radius: 16px; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.05); margin-bottom: 20px; overflow-x: auto; position: relative;">
+    <svg id="atlas-svg" viewBox="0 0 760 380" style="width: 100%; height: auto; display: block;">
+      <defs>
+        <linearGradient id="atlas-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#1a73e8" />
+          <stop offset="100%" stop-color="#6366f1" />
+        </linearGradient>
+      </defs>
+
+      <g stroke="#334155" stroke-width="2" stroke-dasharray="6,6" fill="none">
+        <path id="atlas-flow-1" d="M 90 190 L 160 190" />
+        <path id="atlas-flow-2" d="M 240 190 L 310 190" />
+        <path id="atlas-flow-3" d="M 390 190 L 460 110" />
+        <path id="atlas-flow-4" d="M 390 190 L 460 270" />
+        <path id="atlas-flow-ollama" d="M 350 150 L 350 75" />
+        <path id="atlas-flow-know" d="M 540 110 L 630 110" />
+        <path id="atlas-flow-data" d="M 540 270 L 630 270" />
+      </g>
+
+      <g stroke="#ef4444" stroke-width="2" stroke-dasharray="4,4" fill="none" opacity="0" id="atlas-block-lines">
+        <path d="M 460 110 L 390 190" />
+        <path d="M 460 270 L 390 190" />
+        <path d="M 310 190 L 240 190" />
+      </g>
+
+      <g id="atlas-node-client" transform="translate(20, 150)">
+        <rect width="70" height="80" rx="10" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+        <text x="35" y="38" text-anchor="middle" fill="#ffffff" font-size="20">👤</text>
+        <text x="35" y="60" text-anchor="middle" fill="#cbd5e1" font-size="11" font-weight="bold">Manager</text>
+      </g>
+
+      <g id="atlas-node-frontend" transform="translate(160, 150)">
+        <rect width="80" height="80" rx="10" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+        <rect width="80" height="80" rx="10" fill="url(#atlas-grad)" opacity="0.1"/>
+        <text x="40" y="33" text-anchor="middle" fill="#1a73e8" font-size="18">💬</text>
+        <text x="40" y="53" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">React Chat</text>
+        <text x="40" y="68" text-anchor="middle" fill="#94a3b8" font-size="9">Vercel + ngrok</text>
+      </g>
+
+      <g id="atlas-node-orchestrator" transform="translate(310, 150)">
+        <rect width="80" height="80" rx="12" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
+        <text x="40" y="35" text-anchor="middle" fill="#a855f7" font-size="22">⚡</text>
+        <text x="40" y="53" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">Agent</text>
+        <text x="40" y="66" text-anchor="middle" fill="#a855f7" font-size="9" font-weight="bold">Orchestrator</text>
+      </g>
+
+      <g id="atlas-node-ollama" transform="translate(310, 15)">
+        <rect width="80" height="60" rx="10" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+        <text x="40" y="28" text-anchor="middle" fill="#34d399" font-size="16">🧠</text>
+        <text x="40" y="46" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold">Ollama (LLM)</text>
+      </g>
+
+      <g id="atlas-node-rag" transform="translate(460, 70)">
+        <rect width="80" height="80" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+        <text x="40" y="35" text-anchor="middle" fill="#60a5fa" font-size="20">📚</text>
+        <text x="40" y="55" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">RAG</text>
+        <text x="40" y="68" text-anchor="middle" fill="#94a3b8" font-size="9">Vector Store/DB</text>
+      </g>
+
+      <g id="atlas-node-knowledge" transform="translate(630, 70)">
+        <rect width="80" height="80" rx="10" fill="#1e293b" stroke="#2563eb" stroke-width="2"/>
+        <text x="40" y="35" text-anchor="middle" fill="#3b82f6" font-size="20">🏛️</text>
+        <text x="40" y="55" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold">BC Docs</text>
+        <text x="40" y="68" text-anchor="middle" fill="#60a5fa" font-size="9">Public knowledge</text>
+      </g>
+
+      <g id="atlas-node-mcp" transform="translate(460, 230)">
+        <rect width="80" height="80" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+        <text x="40" y="35" text-anchor="middle" fill="#fbbf24" font-size="20">🛠️</text>
+        <text x="40" y="55" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold">MCP Servers</text>
+        <text x="40" y="68" text-anchor="middle" fill="#94a3b8" font-size="9">Simulated operations</text>
+      </g>
+
+      <g id="atlas-node-fixtures" transform="translate(630, 230)">
+        <rect width="80" height="80" rx="10" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+        <text x="40" y="35" text-anchor="middle" fill="#cbd5e1" font-size="20">🗂️</text>
+        <text x="40" y="55" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold">Synthetic base</text>
+        <text x="40" y="68" text-anchor="middle" fill="#94a3b8" font-size="9">Customers/history</text>
+      </g>
+    </svg>
+  </div>
+
+  <div id="atlas-info-box" style="background: #1e293b; border-left: 4px solid #1a73e8; border-radius: 12px; padding: 18px; margin-bottom: 10px;">
+    <h3 id="atlas-step-title" style="margin: 0 0 6px 0; color: #1a73e8; font-size: 16px; font-weight: bold;">Step 0: Start of the ATLAS Flow</h3>
+    <p id="atlas-step-desc" style="margin: 0; color: #cbd5e1; font-size: 14px; line-height: 1.6;">Click <strong>"Next Flow Step"</strong> to follow the bank manager's request all the way to the copilot's response.</p>
+  </div>
+
+</div>
+
+<script>
+//<![CDATA[
+(function() {
+  var atlasSteps = [
+    {
+      title: "Step 1: Request via React Chat (Vercel + ngrok)",
+      desc: "The bank relationship manager interacts with <strong>React Chat</strong>, published externally on <strong>Vercel</strong>. The request travels through the <strong>ngrok</strong> tunnel to the local <strong>FastAPI Gateway</strong>, which validates the payload and the simulated authentication.",
+      nodes: ["atlas-node-client", "atlas-node-frontend"],
+      flows: ["atlas-flow-1"]
+    },
+    {
+      title: "Step 2: Intent Routing with Ollama's Support",
+      desc: "The <strong>FastAPI Gateway</strong> forwards the message to the <strong>Agent Orchestrator</strong>, which calls <strong>Ollama (local LLM)</strong> to classify the intent — knowledge, query, simulation, action, or clarification — with a validated, structured output.",
+      nodes: ["atlas-node-frontend", "atlas-node-orchestrator", "atlas-node-ollama"],
+      flows: ["atlas-flow-2", "atlas-flow-ollama"]
+    },
+    {
+      title: "Step 3: RAG (knowledge) or MCP (simulated operation)",
+      desc: "Depending on the intent, the Orchestrator either queries the <strong>RAG</strong> pipeline over the Central Bank's public document base, or calls an <strong>MCP Server</strong> that queries the synthetic customer/history database and executes simulated operations (loan, insurance, consortium, tariffs, ticket).",
+      nodes: ["atlas-node-orchestrator", "atlas-node-rag", "atlas-node-knowledge", "atlas-node-mcp", "atlas-node-fixtures"],
+      flows: ["atlas-flow-3", "atlas-flow-4", "atlas-flow-know", "atlas-flow-data"]
+    },
+    {
+      title: "Step 4: Validation, response, and return",
+      desc: "The agent's <strong>Validator/Critic</strong> node checks grounding, schema, and policy before returning the response, which flows back through the <strong>FastAPI Gateway</strong> → <strong>ngrok</strong> → <strong>React Chat (Vercel)</strong> to the manager, already streamed and with citations.",
+      nodes: ["atlas-node-orchestrator", "atlas-node-frontend", "atlas-node-client"],
+      flows: ["atlas-flow-2", "atlas-flow-1"]
+    }
+  ];
+
+  var atlasCurrentStep = 0;
+  var atlasIsBlocked = false;
+
+  function atlasResetStyles() {
+    var allNodes = ["atlas-node-client", "atlas-node-frontend", "atlas-node-orchestrator", "atlas-node-ollama", "atlas-node-rag", "atlas-node-knowledge", "atlas-node-mcp", "atlas-node-fixtures"];
+    allNodes.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.style.opacity = "0.4";
+        el.style.filter = "none";
+      }
+    });
+
+    var allFlows = ["atlas-flow-1", "atlas-flow-2", "atlas-flow-3", "atlas-flow-4", "atlas-flow-ollama", "atlas-flow-know", "atlas-flow-data"];
+    allFlows.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.setAttribute("stroke", "#334155");
+        el.setAttribute("stroke-width", "2");
+      }
+    });
+
+    var blockLines = document.getElementById("atlas-block-lines");
+    if (blockLines) blockLines.style.opacity = "0";
+  }
+
+  function atlasRenderStep(idx) {
+    atlasResetStyles();
+    atlasIsBlocked = false;
+    var step = atlasSteps[idx];
+
+    document.getElementById("atlas-step-title").innerText = step.title;
+    document.getElementById("atlas-step-title").style.color = "#1a73e8";
+    document.getElementById("atlas-step-desc").innerHTML = step.desc;
+    document.getElementById("atlas-info-box").style.borderLeftColor = "#1a73e8";
+
+    step.nodes.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.style.opacity = "1";
+        el.style.filter = "drop-shadow(0px 0px 8px rgba(26, 115, 232, 0.6))";
+      }
+    });
+
+    step.flows.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.setAttribute("stroke", "#1a73e8");
+        el.setAttribute("stroke-width", "3");
+      }
+    });
+  }
+
+  function atlasShowAll() {
+    atlasResetStyles();
+    atlasIsBlocked = false;
+    document.getElementById("atlas-step-title").innerText = "Full ATLAS Architecture (Overview)";
+    document.getElementById("atlas-step-title").style.color = "#6366f1";
+    document.getElementById("atlas-step-desc").innerHTML = "Final view of the flow: <strong>React Chat</strong> (Vercel) talks to the <strong>FastAPI Gateway</strong> via <strong>ngrok</strong>; the <strong>Agent Orchestrator</strong> uses <strong>Ollama</strong> for routing and generation; depending on the intent, it queries <strong>RAG</strong> (Central Bank documents) or an <strong>MCP Server</strong> (synthetic base + simulated operations) before validating and responding.";
+    document.getElementById("atlas-info-box").style.borderLeftColor = "#6366f1";
+
+    var allNodes = ["atlas-node-client", "atlas-node-frontend", "atlas-node-orchestrator", "atlas-node-ollama", "atlas-node-rag", "atlas-node-knowledge", "atlas-node-mcp", "atlas-node-fixtures"];
+    allNodes.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.style.opacity = "1";
+        el.style.filter = "drop-shadow(0px 0px 6px rgba(99, 102, 241, 0.5))";
+      }
+    });
+
+    var allFlows = ["atlas-flow-1", "atlas-flow-2", "atlas-flow-3", "atlas-flow-4", "atlas-flow-ollama", "atlas-flow-know", "atlas-flow-data"];
+    allFlows.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.setAttribute("stroke", "#6366f1");
+        el.setAttribute("stroke-width", "3");
+      }
+    });
+  }
+
+  function atlasTriggerBlock() {
+    atlasResetStyles();
+    atlasIsBlocked = true;
+    document.getElementById("atlas-step-title").innerText = "⚠️ Guardrail: Action Blocked without Confirmation";
+    document.getElementById("atlas-step-title").style.color = "#ef4444";
+    document.getElementById("atlas-step-desc").innerHTML = "<strong>Guardrail scenario:</strong> an action reaches the <strong>MCP Server</strong> (e.g., opening a ticket) without explicit human confirmation. The Orchestrator's <strong>Validator/Critic</strong> rejects the execution, logs the attempt for audit, and returns the block to the user — no action is executed without approval.";
+    document.getElementById("atlas-info-box").style.borderLeftColor = "#ef4444";
+
+    var blockNodes = ["atlas-node-orchestrator", "atlas-node-mcp", "atlas-node-frontend", "atlas-node-client"];
+    blockNodes.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.style.opacity = "1";
+        el.style.filter = "drop-shadow(0px 0px 10px rgba(239, 68, 68, 0.7))";
+      }
+    });
+
+    var blockLines = document.getElementById("atlas-block-lines");
+    if (blockLines) blockLines.style.opacity = "1";
+  }
+
+  var btnNext = document.getElementById("atlas-btn-next");
+  if (btnNext) btnNext.addEventListener("click", function() {
+    if (atlasIsBlocked || atlasCurrentStep >= atlasSteps.length - 1) {
+      atlasCurrentStep = 0;
+    } else {
+      atlasCurrentStep++;
+    }
+    atlasRenderStep(atlasCurrentStep);
+  });
+
+  var btnAll = document.getElementById("atlas-btn-all");
+  if (btnAll) btnAll.addEventListener("click", atlasShowAll);
+
+  var btnBlock = document.getElementById("atlas-btn-block");
+  if (btnBlock) btnBlock.addEventListener("click", atlasTriggerBlock);
+
+  var btnReset = document.getElementById("atlas-btn-reset");
+  if (btnReset) btnReset.addEventListener("click", function() {
+    atlasCurrentStep = 0;
+    atlasRenderStep(0);
+  });
+
+  atlasRenderStep(0);
+})();
+//]]>
+</script>
+
+<section class="section"><div class="sectionhead"><div class="num">2</div><div class="sectiontitle"><h2>Skills Diagnostic</h2><div class="small">1 no exposure · 2 theoretical · 3 supported practice · 4 autonomous · 5 reference/mentor level. Target fixed at 5 for every skill; drag only the Current slider.</div></div><div class="sectioncount">Current / Target / Gap</div></div><div class="sectionbody"><table class="diag"><thead><tr><th>Skill</th><th>Expected evidence at target level</th><th>Current</th><th>Target</th><th>Gap</th><th>Priority</th></tr></thead><tbody id="diag"></tbody></table></div></section>
+
+<section class="section"><div class="sectionhead"><div class="num">3</div><div class="sectiontitle"><h2>Technical Map & Target Architecture</h2><div class="small">Architecture contract that guides the four quarters.</div></div></div><div class="sectionbody grid">
+<div class="mini"><h3>FrontEnd</h3><p>React Chat with streaming, sources, simulation cards, action confirmation, and error handling.</p></div>
+<div class="mini"><h3>API</h3><p>FastAPI as the product boundary: simulated authentication, session, streaming, contracts, validation, observability, and security.</p></div>
+<div class="mini"><h3>Agent</h3><p>Router → Knowledge/RAG or Query/Action → Validation → Response. Multi-agent only where there's a measurable benefit.</p></div>
+<div class="mini"><h3>MCP</h3><p>Decoupled business capabilities: profile, loan, insurance, consortium, tariffs, and ticket.</p></div>
+<div class="mini"><h3>Knowledge</h3><p>Public documents → ingestion → chunking → metadata → embeddings → Vector DB/Store → retrieval → citations.</p></div>
+<div class="mini"><h3>Infra</h3><p>Local-first: Ollama + containers + Vector DB/Store + MCP. Controlled backend exposure via ngrok. Terraform represents the AWS path.</p></div>
+</div>
+<div class="mini" style="margin:13px 20px 4px"><h3>Proposed project structure</h3><p class="small">Repository layout that supports the SDD pattern: the root folder <b>SDDs/</b> holds one subdirectory per catalog item (section 14, S00 → S22), each with spec/plan/tasks/verify.</p>
+<pre style="white-space:pre-wrap;background:#f8f9fa;border-radius:8px;padding:11px;font:12px Consolas,monospace;line-height:1.5;overflow:auto">atlas/
+├── SDDs/                   # One subdirectory per SDD catalog item (S00 → S22)
+│   ├── S00-constitution/
+│   │   ├── spec.md
+│   │   ├── plan.md
+│   │   ├── tasks.md
+│   │   └── verify.md
+│   ├── S01-toolchain-python/
+│   ├── S02-synthetic-customer-base/
+│   ├── S03-fastapi-gateway/
+│   ├── ...
+│   └── S22-release-portfolio/    # each folder follows the same spec/plan/tasks/verify pattern
+├── docs/
+│   ├── adr/               # Architecture Decision Records
+│   └── runbooks/
+├── src/
+│   ├── api/                # FastAPI: routes, contracts, streaming, simulated auth
+│   ├── agent/               # Router, Validator/Critic, agent graph
+│   ├── rag/                 # Ingestion, chunking, embeddings, retrieval
+│   ├── mcp/                  # MCP Servers: profile, loan, insurance, consortium, tariffs, ticket
+│   ├── providers/             # Ollama adapter (local LLM)
+│   └── data/                  # Synthetic customer/history models + seed
+├── frontend/                  # React Chat (published on Vercel)
+├── infra/
+│   ├── docker/                # docker-compose (API, MCP, Vector, Ollama)
+│   └── terraform/             # AWS modules (network, compute, data, observability)
+├── evals/                     # Harness, golden dataset, golden conversations, scorecards
+├── tests/                     # Unit, integration, contract, and security
+└── ops/                       # Observability: logs, traces, correlation ID</pre>
+</div>
+</section>
+
+<div id="dynamic"></div>
+
+<section class="section"><div class="sectionhead"><div class="num">13</div><div class="sectiontitle"><h2>ATLAS Operations Map</h2><div class="small">Product features that will be covered by the SDD specifications.</div></div></div><div class="sectionbody grid" id="operations"></div></section>
+
+<section class="section"><div class="sectionhead"><div class="num">14</div><div class="sectiontitle"><h2>SDD Catalog — Spec / Plan / Tasks / Verify</h2><div class="small">Each feature must have a specification, a technical plan, implementable tasks, and verification.</div></div><div class="sectioncount" id="c14">0/0</div></div><div class="sectionbody" id="sdd"></div></section>
+
+<section class="section"><div class="sectionhead"><div class="num">15</div><div class="sectiontitle"><h2>Video Scripts — YouTube + LinkedIn</h2><div class="small">Every project milestone becomes technical content. Long-form video + cut-downs.</div></div><div class="sectioncount" id="c15">0/20</div></div><div class="sectionbody" id="videos"></div></section>
+
+<section class="section"><div class="sectionhead"><div class="num">16</div><div class="sectiontitle"><h2>ATLAS Definition of Done</h2><div class="small">Criteria for considering the project complete.</div></div><div class="sectioncount" id="c16">0/14</div></div><div class="sectionbody" id="done"></div></section>
+
+<div class="footer">ATLAS IDP v2 · progress, name, and mentor saved in localStorage · Exporting JSON includes the checklist, diagnostic, and IDP identification.</div>
+</main><div id="toast" class="toast"></div>
+
+<script>
+const objectives=[
+["Core objective","Establish myself as a Software Engineer specialized in GenAI, able to design, implement, test, and operate systems with LLMs, RAG, Vector DB/Store, Agents, and MCP.","HIGH"],
+["Engineering objective","Build senior-level Python software (architecture, SOLID, tests, async, APIs, typing, containers, and CI/CD); master Ollama, prompts, structured output, and tool calling; build a RAG pipeline with traceable citations; design a secure Agent + MCP; and deliver the E2E product — React Chat → FastAPI → Agent → MCP/RAG → synthetic data — with streaming, observability, and security.","HIGH"],
+["Influence objective","Document technical decisions in SDD/ADR and turn the ATLAS project's evolution into a public series of videos and technical posts, building a reference body of work and a portfolio.","MEDIUM"]
+];
+const competencies=[
+["Python / Engineering","Typed APIs, async, tests, clean architecture, and quality.",2,5,"HIGH"],
+["LLMs / Ollama","Local model, prompts, structured output, tool calling, and fallback.",2,5,"HIGH"],
+["RAG","Ingestion, chunking, metadata, retrieval, reranking, and citations.",2,5,"HIGH"],
+["Vector DB / Store","Embeddings, indexes, filters, hybrid search, and operations.",2,5,"HIGH"],
+["Agents","Routing, state, tools, loops, and guardrails.",2,5,"HIGH"],
+["MCP","Building/consuming servers, tools, schemas, and authorization.",2,5,"HIGH"],
+["FastAPI","Contracts, streaming, errors, simulated auth, and OpenAPI.",3,5,"HIGH"],
+["React Chat","Conversational UX, streaming, sources, and actions.",2,5,"MEDIUM"],
+["Harness / Evals","Golden set, regression, groundedness, retrieval, and tool selection.",1,5,"HIGH"],
+["GenAI Security","Injection, PII, authorization, secrets, and auditing.",2,5,"HIGH"],
+["Observability","Logs, traces, tokens, cost, and latency.",2,5,"HIGH"],
+["Docker / CI-CD","Reproducible environment and quality gates.",3,5,"MEDIUM"],
+["ngrok / local exposure","Securely exposing the local API to the published FrontEnd.",1,5,"MEDIUM"],
+["Terraform / AWS","Representing the local architecture in the cloud.",1,5,"MEDIUM"],
+["Banking domain","Tariffs, credit, insurance, consortium, and critical reading of sources.",2,5,"MEDIUM"]
+];
+const quarters=[
+["4","QUARTER 1 · FOUNDATION","Python, FastAPI, Ollama, domain knowledge, synthetic base, and the first vertical slice",[
+["Define vision, scope, out-of-scope, and success criteria.","Vision + SDD backlog.","HIGH"],
+["Create the project Constitution: principles, security, quality, and architecture.","constitution.md.","HIGH"],
+["Create the repository structure and SDD pattern.","specs/, plans/, tasks/, docs/.","HIGH"],
+["Model the fictitious customer and synthetic financial history.","Schemas + versioned dataset.","HIGH"],
+["Create the operations catalog and authorization matrix.","Operation matrix.","HIGH"],
+["Set up Python, lint, formatter, typing, and tests.","Reproducible toolchain.","HIGH"],
+["Create FastAPI /health and /v1/chat.","Minimal API.","HIGH"],
+["Integrate Ollama as the local provider.","LLM adapter + config.","HIGH"],
+["Create structured output for intent.","Knowledge / Query / Simulation / Action.","HIGH"],
+["Implement the first simple agent.","Baseline before going multi-agent.","HIGH"],
+["Create the first customer-query operation.","Local tool + tests.","HIGH"],
+["Create the initial Docker Compose.","API + Ollama + required dependencies.","MEDIUM"],
+["Document the first vertical slice.","Question → intent → tool → response.","HIGH"]
+]],
+["5","QUARTER 2 · KNOWLEDGE + MCP","RAG, Vector DB/Store, MCP, banking operations, and the routing agent",[
+["Select embeddings and a Vector DB/Store for local execution.","Technical ADR.","HIGH"],
+["Build the public-document ingestion pipeline.","Reproducible pipeline.","HIGH"],
+["Extract text plus source metadata.","Traceability.","HIGH"],
+["Define chunking and evaluate alternatives.","Benchmark.","HIGH"],
+["Generate embeddings and index them.","Local index.","HIGH"],
+["Implement semantic retrieval + filters.","Top-k + metadata.","HIGH"],
+["Implement citations and grounding.","Answers backed only by evidence.","HIGH"],
+["Create the RAG evaluation dataset.","Golden questions.","HIGH"],
+["Create the financial-profile MCP Server.","Typed tool.","HIGH"],
+["Create the loan MCP Server.","Controlled simulation.","HIGH"],
+["Create the insurance MCP Server.","Query/simulation.","HIGH"],
+["Create the consortium MCP Server.","Query/simulation.","HIGH"],
+["Create the tariffs MCP Server.","Operational knowledge.","MEDIUM"],
+["Create the fictitious-ticket MCP Server.","Action with confirmation.","HIGH"],
+["Implement the Agent Router.","RAG vs. MCP vs. clarifying question.","HIGH"],
+["Implement the Validator/Critic node.","Grounding, schema, and policy.","HIGH"],
+["Add step limits, timeout, and fallback.","Resilience.","HIGH"],
+["Test prompt injection from the user and from a document.","Guardrails.","HIGH"]
+]],
+["6","QUARTER 3 · PRODUCT + RELIABILITY","React Chat, streaming, Harness/Evals, security, and observability",[
+["Create React Chat.","Initial UI.","HIGH"],
+["Consume FastAPI with streaming.","SSE/streaming.","HIGH"],
+["Display citations and sources.","RAG UX.","HIGH"],
+["Display tool calls in a controlled way.","Transparency without leaking secrets.","MEDIUM"],
+["Create loan, insurance, and consortium cards.","Structured result.","MEDIUM"],
+["Create action confirmation.","Human-in-the-loop.","HIGH"],
+["Configure ngrok for local backend access.","Secure URL + CORS configuration.","HIGH"],
+["Test published FrontEnd → ngrok → local FastAPI.","External E2E.","HIGH"],
+["Create the evaluation Harness.","Runner + datasets.","HIGH"],
+["Create golden conversations.","Full flows.","HIGH"],
+["Measure retrieval, groundedness, and tool selection.","Scorecard.","HIGH"],
+["Create prompt/agent regression tests.","Quality gate.","HIGH"],
+["Implement structured logs and correlation ID.","Observability.","HIGH"],
+["Measure latency, tokens, and estimated cost.","Metrics.","HIGH"],
+["Create the threat model and GenAI security tests.","Injection + exfiltration.","HIGH"],
+["Sanitize logs and apply least privilege.","Security.","HIGH"],
+["Create the full Docker Compose.","Front/API/MCP/Vector/observability.","MEDIUM"]
+]],
+["7","QUARTER 4 · PLATFORM + CLOUD + WRAP-UP","Terraform, AWS, release, documentation, and portfolio",[
+["Map the local architecture to AWS.","Local → AWS matrix.","MEDIUM"],
+["Create the Terraform modules.","Network/compute/data/observability.","MEDIUM"],
+["Define compute for FastAPI/MCP.","ADR.","MEDIUM"],
+["Define storage for documents and vectors.","ADR.","MEDIUM"],
+["Configure secrets and least-privilege IAM.","Security baseline.","HIGH"],
+["Configure cloud observability.","Logs/metrics/traces.","MEDIUM"],
+["Create dev/staging environments.","Variables + state.","MEDIUM"],
+["Run terraform plan with validations.","IaC quality gate.","MEDIUM"],
+["Create cost documentation.","Estimated budget.","LOW"],
+["Create the local release candidate.","Smoke + evals passing.","HIGH"],
+["Run the agent's final evaluation.","Comparative scorecard.","HIGH"],
+["Finalize ADRs and SDD specs.","Traceable decisions.","HIGH"],
+["Publish the architecture and code with no real data.","Security checklist.","HIGH"],
+["Record the final series and retrospective.","Technical portfolio.","MEDIUM"]
+]]
+];
+const operations=[
+["Tariff inquiry","RAG","The manager asks about a tariff/condition. The agent retrieves the current document, answers, and cites the source."],
+["Financial profile","MCP","Query a fictitious customer: income, relationship, products, history, and permitted indicators."],
+["Loan","MCP + rules","Simulate amount/term/installment with synthetic data. Never present a simulation as a real approval."],
+["Insurance","MCP + RAG","Query products/coverage and, when applicable, run a fictitious simulation."],
+["Consortium","MCP + RAG","Query modalities/rules and simulate share/installment scenarios."],
+["Ticket","MCP + approval","Generate a fictitious ticket. Require explicit confirmation before executing the action."],
+["Customer summary","MCP + Agent","Combine synthetic history and conversation context to prepare the manager for the interaction."],
+["Assisted recommendation","Agent + rules","Suggest the next product/action only when there's evidence and explicit rules; never invent eligibility."],
+["Question without evidence","Guardrail","If RAG/MCP can't support the answer, state that there isn't enough information and ask for clarification."],
+["Conflicting sources","RAG + metadata","Prioritize the current/most recent document per policy and show the source used."]
+];
+const sdd=[
+["S00","Constitution + Architecture","Project foundation","Q1","Define the principles: local-first, security by default, explicit tools, evidence before claims, tests before release.","constitution.md + architecture.md",
+["Draft the principles: local-first, security by default, explicit tools.","Define the \"evidence before claims\" and \"tests before release\" criteria.","Document architecture.md with the Front/API/Agent/MCP/RAG/Infra boundaries.","Validate constitution.md with the mentor and version it in the repository."]],
+["S01","Project Setup & Python Toolchain","Foundation","Q1","Python structure, configuration, typing, lint, tests, Docker, and SDD conventions.","spec.md + plan.md + tasks.md",
+["Create the repository layout (SDDs/, docs/, src/).","Configure lint, formatter, and typing (e.g., ruff, mypy) with pre-commit.","Configure the test environment (pytest) with a minimum coverage threshold.","Create the base Dockerfile and a minimal CI pipeline."]],
+["S02","Synthetic Customer Base","Data","Q1","Create the Customer, Account, Product, Contract, FinancialEvent, and History entities; generate deterministic data.","schemas + seed + tests",
+["Model the Customer, Account, Product, Contract, FinancialEvent, and History entities.","Define a deterministic seed and generate a versioned dataset.","Write schema and data-consistency tests for the synthetic data.","Document that no real data is used anywhere in the project."]],
+["S03","FastAPI Gateway","API","Q1","Implement /v1/chat, /v1/sessions, health/readiness, validation, errors, streaming, and simulated auth.","OpenAPI + integration tests",
+["Implement /health, /v1/chat, and /v1/sessions.","Define OpenAPI contracts and payload validation.","Implement streaming responses (SSE) and standardized error handling.","Add simulated authentication and integration tests."]],
+["S04","Ollama Provider","LLM","Q1","Create an Ollama adapter, config-driven model selection, timeout, retry, and structured output.","provider + contract tests",
+["Create a decoupled LLM adapter (interface + Ollama implementation).","Parameterize model selection via configuration.","Implement timeout, retry, and fallback behavior.","Write contract tests for the provider, including structured output."]],
+["S05","Intent Router","Agent","Q1","Classify the message into knowledge/query/simulation/action/clarification and produce validated JSON.","spec + eval dataset",
+["Define the knowledge/query/simulation/action/clarification taxonomy.","Implement validated structured output (JSON schema) for the intent.","Create an evaluation dataset (golden intents) and measure accuracy.","Handle ambiguous cases with a clarifying question."]],
+["S06","RAG Ingestion","Knowledge","Q2","Documents → parsing → chunking → metadata → embeddings → Vector Store.","pipeline + tests",
+["Select embeddings and a local Vector DB/Store (ADR).","Implement text parsing/extraction plus source metadata.","Define a chunking strategy and compare alternatives (benchmark).","Generate embeddings and index them reproducibly."]],
+["S07","RAG Retrieval","Knowledge","Q2","Semantic search, filters, top-k, context, and citations; explicit behavior for missing evidence.","retriever + evals",
+["Implement semantic search with metadata filters and top-k.","Implement grounded response generation with citations.","Explicitly handle missing evidence (never invent an answer).","Create golden questions and measure groundedness/retrieval."]],
+["S08","MCP Customer Server","MCP","Q2","Expose synthetic profile/history queries with schemas, authorization, and logs.","MCP spec + contract tests",
+["Define the schema for the exposed synthetic profile/financial history.","Implement a typed tool with input/output validation.","Apply authorization and access logging.","Write contract tests for the tool."]],
+["S09","MCP Loan Server","MCP","Q2","Loan simulation with input validation, calculation, and assumptions; no real approval.","tool spec + tests",
+["Define simulation parameters (amount, term, rate) and validations.","Implement installment calculation with explicit assumptions.","Ensure the simulation is never treated as a real approval.","Test edge cases and invalid inputs."]],
+["S10","MCP Insurance Server","MCP","Q2","Catalog/coverage and fictitious simulation; separate documentary facts from calculation.","tool spec + tests",
+["Model the product and coverage catalog.","Separate documentary facts (RAG) from calculation/simulation (tool).","Implement a fictitious simulation with explicit parameters.","Test consistency between the response and the assumptions used."]],
+["S11","MCP Consortium Server","MCP","Q2","Modalities, rules, and fictitious simulation with explicit parameters.","tool spec + tests",
+["Model consortium modalities and rules.","Implement share/installment simulation with explicit parameters.","Validate inputs and handle invalid scenarios.","Write contract tests for the tool."]],
+["S12","MCP Tariff Server","MCP","Q2","Standardized capability for tariff queries when relying on RAG alone isn't adequate.","tool spec + tests",
+["Define when to use MCP instead of relying only on RAG for tariffs.","Implement a standardized tariff/condition query.","Sync with the current documentary source.","Test consistency between MCP and RAG for the same tariff."]],
+["S13","MCP Ticket Server","MCP","Q2","Fictitious action with idempotency, auditing, and human confirmation.","approval flow + tests",
+["Define the action schema (fictitious ticket) and idempotency.","Implement a human-confirmation flow before execution.","Log a full audit trail of the executed action.","Test an execution attempt without confirmation (must be blocked)."]],
+["S14","Agent Graph","Orchestration","Q2","Router → RAG/MCP → Validator → Response; step limit, timeout, and fallback.","plan + sequence diagrams",
+["Implement the Router → RAG/MCP → Validator → Response graph.","Define the agent's step limit, timeout, and fallback.","Implement the Validator/Critic node (grounding, schema, policy).","Test prompt injection via the user and via a document."]],
+["S15","React Chat","Product","Q3","React chat with streaming, session, sources, tool status, errors, and operation cards.","UX spec + E2E",
+["Create the chat UI with streaming responses.","Display citations/sources and tool-call status in a controlled way.","Implement simulation cards and action-confirmation UI.","Handle errors and loading states in the UX."]],
+["S16","ngrok Integration","Integration","Q3","Expose the local FastAPI in a controlled way to the FrontEnd published on Vercel; CORS, configuration, and smoke test.","integration spec + runbook",
+["Configure controlled exposure of the local FastAPI via ngrok.","Configure CORS and environment variables for the FrontEnd published on Vercel.","Write a runbook for bringing up the local environment.","Run a smoke test of the published → ngrok → local API flow."]],
+["S17","Harness / Evals","Quality","Q3","Golden dataset, golden conversations, retrieval, groundedness, tool selection, regression, and scorecard.","eval spec + reports",
+["Create the evaluation runner and golden dataset.","Create golden conversations (full end-to-end flows).","Measure retrieval, groundedness, and tool selection.","Create prompt/agent regression tests as a quality gate."]],
+["S18","Security Guardrails","Security","Q3","Threat model, prompt injection, data exfiltration, least privilege, secrets, logs, and authorization.","security spec + adversarial tests",
+["Create the agent's threat model (injection, exfiltration, authorization).","Run a controlled red-team exercise against prompt injection.","Sanitize logs and apply least privilege to the tools.","Document fixes and retest the identified cases."]],
+["S19","Observability","Operations","Q3","Correlation ID, logs, traces, per-step latency, tokens, estimated cost, and errors.","observability spec",
+["Implement a correlation ID per conversation/session.","Implement structured logs and traces per agent step.","Measure latency, tokens, and estimated cost per interaction.","Create an observability dashboard/report."]],
+["S20","Docker Local Stack","Platform","Q3","Full compose setup and reproducible configuration for API, MCP, Vector, Ollama, and FrontEnd when applicable.","runbook + smoke test",
+["Create docker-compose with API, MCP, Vector Store/DB, and Ollama.","Include the FrontEnd when applicable to the local flow.","Document environment variables and dependencies.","Validate the full environment startup with a smoke test."]],
+["S21","Terraform AWS","Cloud","Q4","Represent equivalent infrastructure on AWS, modularized, with IAM/secrets/observability.","terraform plan + docs",
+["Map the local architecture → AWS (equivalence matrix).","Create Terraform modules (network, compute, data, observability).","Configure secrets and IAM with least privilege.","Run terraform plan and review it as an IaC quality gate."]],
+["S22","Release / Portfolio","Wrap-up","Q4","Release candidate, documentation, ADRs, final SDD, demo, and video material.","release checklist",
+["Run the agent's final evaluation (comparative scorecard).","Finalize outstanding ADRs and SDD specs.","Publish the architecture and code with no real data (security checklist).","Prepare the release candidate and material for the video series."]]
+];
+const videos=[
+["01","Why build a local GenAI bank copilot?","The problem, the manager persona, and the project's boundaries.","Show ATLAS and a question that today would require checking several systems."],
+["02","ATLAS Architecture","React → FastAPI → Agent → RAG/MCP → data.","Explain the boundaries and why the agent should never access the database directly."],
+["03","Spec-Driven Development in practice","Constitution → Spec → Plan → Tasks → Verify.","Show a real feature being specified before any code."],
+["04","Ollama: the local LLM","Running a local model and building a provider abstraction.","Compare local development with a hard dependency on a provider."],
+["05","FastAPI as the agent's boundary","Contracts, streaming, errors, and sessions.","Swagger demo + a real request."],
+["06","Building the fictitious bank customer","Schema and synthetic financial history.","Generate personas and explain why no real data enters the project."],
+["07","RAG over public documents","Ingestion, parsing, chunking, and metadata.","Start with one document and follow it all the way to the index."],
+["08","Vector DB vs. Vector Store","Embeddings, indexes, and retrieval.","Demo a semantic search with metadata filters."],
+["09","Answers with evidence","Grounding and citations.","An answerable question versus one with no evidence."],
+["10","MCP from scratch","Server, tool, schema, and contract.","Build the customer-profile MCP."],
+["11","Loan simulation via MCP","Tool calling + validation + calculation.","The manager asks for a simulation and gets the assumptions back."],
+["12","Insurance and consortium","Expanding capabilities without coupling rules to the agent.","Show two specialized MCP Servers."],
+["13","The Router agent","RAG or MCP?","Show the agent choosing the right capability."],
+["14","Human-in-the-loop","Actions require confirmation.","A fictitious ticket blocked until the manager confirms."],
+["15","React Chat + streaming","The manager's experience.","Show the response streaming in, with sources appearing."],
+["16","ngrok: public frontend, local infra","Connecting the published environment to the local lab.","Show the external path → ngrok → FastAPI."],
+["17","Harness and Evals","How to measure an agent.","Golden dataset, groundedness, retrieval, and tool selection."],
+["18","Attacking our own agent","Prompt injection and exfiltration.","Controlled red-teaming and fixes."],
+["19","Observability + cost","Finding out where the execution spent time/tokens.","A full trace of one conversation."],
+["20","Local → AWS with Terraform + release","The cloud path and a retrospective.","Show terraform plan, the architecture, and the final demo."]
+];
+const done=[
+["IDP has an owner and mentor on record","Identification persisted."],["Constitution and architecture approved","Traceable principles and decisions."],["Customer base is 100% synthetic","Deterministic, documented seed."],["Ollama integrated via adapter","Local model is swappable."],["FastAPI with streaming","OpenAPI contract and tests."],["RAG with citations","Traceable source, missing evidence handled."],["Vector DB/Store operational","Search + metadata + filters."],["MCP Servers operational","Profile, loan, insurance, consortium, and ticket."],["Agent routes correctly","Knowledge/query/simulation/action."],["Actions protected by confirmation","Human-in-the-loop."],["React Chat connected externally","Published frontend → ngrok → local infra."],["Harness with regression","Golden set and scorecard."],["Observability working","Logs, traces, latency, and tokens."],["Terraform AWS validated","Reproducible plan and documentation."]
+];
+
+function task(id,t){return `<div class="task"><input type="checkbox" data-id="${id}"><div class="tasktext"><div class="tasktitle">${t[0]}</div><div class="taskmeta">${t[1]}</div></div><span class="badge ${t[2]==='HIGH'?'high':t[2]==='MEDIUM'?'med':'low'}">${t[2]}</span></div>`}
+function taskSlider(id,t){return `<div class="task" style="grid-template-columns:1fr auto"><div class="tasktext"><div class="tasktitle">${t[0]}</div><div class="taskmeta">${t[1]}</div><div style="display:flex;align-items:center;gap:10px;margin-top:9px"><input type="range" min="0" max="100" step="5" value="0" data-id="${id}" style="flex:1;accent-color:var(--blue)"><b id="val_${id}" style="min-width:36px;text-align:right;font-size:12px;color:var(--blue)">0%</b></div></div><span class="badge ${t[2]==='HIGH'?'high':t[2]==='MEDIUM'?'med':'low'}">${t[2]}</span></div>`}
+function getVal(x){return x.type==='range'?(+x.value)/100:(x.checked?1:0)}
+function save(){const checks={};document.querySelectorAll('input[data-id]').forEach(x=>checks[x.dataset.id]=x.type==='range'?+x.value:x.checked);const diag={};competencies.forEach((_,i)=>diag[i]={a:+document.getElementById('a'+i).value});localStorage.setItem('atlasPDIv2',JSON.stringify({version:2,updatedAt:new Date().toISOString(),owner:document.getElementById('owner').value,mentor:document.getElementById('mentor').value,checks,diag}));update();flash('Progress saved')}
+function update(){const all=[...document.querySelectorAll('input[data-id]')],d=all.reduce((s,x)=>s+getVal(x),0),p=all.length?Math.round(d/all.length*100):0;document.getElementById('progressText').textContent=`${d.toFixed(1)} / ${all.length} items · ${p}%`;document.getElementById('progressFill').style.width=p+'%';all.forEach(x=>{if(x.type==='range'){const lbl=document.getElementById('val_'+x.dataset.id);if(lbl)lbl.textContent=x.value+'%'}x.closest('.task')?.classList.toggle('done',x.type==='range'?+x.value>=100:x.checked)});document.querySelectorAll('.section').forEach(s=>{const a=[...s.querySelectorAll('input[data-id]')],c=s.querySelector('.sectioncount');if(c&&a.length){const hasRange=a.some(x=>x.type==='range');c.textContent=hasRange?`${Math.round(a.reduce((s,x)=>s+getVal(x),0)/a.length*100)}%`:`${a.filter(x=>x.checked).length}/${a.length}`}});}
+function load(){const s=JSON.parse(localStorage.getItem('atlasPDIv2')||'{}');if(s.owner!==undefined)document.getElementById('owner').value=s.owner||'';if(s.mentor!==undefined)document.getElementById('mentor').value=s.mentor||'';document.querySelectorAll('input[data-id]').forEach(x=>{const v=s.checks?.[x.dataset.id];if(x.type==='range'){x.value=v!==undefined?v:0}else{x.checked=!!v}});competencies.forEach((d,i)=>{if(s.diag?.[i])document.getElementById('a'+i).value=s.diag[i].a;gap(i)});update()}
+function gap(i){const a=+document.getElementById('a'+i).value,m=+document.getElementById('m'+i).value;document.getElementById('g'+i).textContent=Math.max(0,m-a);const av=document.getElementById('av'+i);if(av)av.textContent=a;const mv=document.getElementById('mv'+i);if(mv)mv.textContent=m;}
+function flash(x){const t=document.getElementById('toast');t.textContent=x;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1400)}
+function exportJSON(){const s=JSON.parse(localStorage.getItem('atlasPDIv2')||'{}');s.exportedAt=new Date().toISOString();const b=new Blob([JSON.stringify(s,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='atlas-pdi-v2.json';a.click();URL.revokeObjectURL(a.href)}
+function importJSON(file){if(!file)return;const reader=new FileReader();reader.onload=function(ev){try{const data=JSON.parse(ev.target.result);localStorage.setItem('atlasPDIv2',JSON.stringify(data));load();flash('Progress imported')}catch(err){alert('Invalid or corrupted JSON file.')}};reader.onerror=function(){alert('Could not read the file.')};reader.readAsText(file)}
+function clearProgress(){if(confirm('Clear progress, diagnostic, and identification?')){localStorage.removeItem('atlasPDIv2');location.reload()}}
+document.getElementById('objectives').innerHTML=objectives.map((x,i)=>taskSlider('o'+i,x)).join('');
+document.getElementById('diag').innerHTML=competencies.map((d,i)=>`<tr><td><b>${d[0]}</b></td><td>${d[1]}</td><td><div style="display:flex;align-items:center;gap:6px"><input id="a${i}" class="diaginput" type="range" min="1" max="5" step="1" value="${d[2]}" style="width:72px;vertical-align:middle;accent-color:var(--blue)"><b id="av${i}" style="font-size:12px;min-width:10px">${d[2]}</b></div></td><td><div style="display:flex;align-items:center;gap:6px"><input id="m${i}" class="diaginput" type="range" min="1" max="5" step="1" value="5" disabled title="Target fixed at 5" style="width:72px;vertical-align:middle;accent-color:var(--muted);opacity:.6;cursor:not-allowed"><b id="mv${i}" style="font-size:12px;min-width:10px">5</b></div></td><td><b id="g${i}">${5-d[2]}</b></td><td><span class="badge ${d[4]==='HIGH'?'high':d[4]==='MEDIUM'?'med':'low'}">${d[4]}</span></td></tr>`).join('');
+document.getElementById('operations').innerHTML=operations.map(x=>`<div class="mini"><h3>${x[0]}</h3><span class="badge med">${x[1]}</span><p>${x[2]}</p></div>`).join('');
+document.getElementById('dynamic').innerHTML=quarters.map((q,qi)=>`<section class="section"><div class="sectionhead"><div class="num">${q[0]}</div><div class="sectiontitle"><h2>${q[1]}</h2><div class="small">${q[2]}</div></div><div class="sectioncount">0/${q[3].length}</div></div><div class="sectionbody"><div class="phase">${q[1]}</div>${q[3].map((t,i)=>task('q'+qi+'_'+i,t)).join('')}</div></section>`).join('');
+document.getElementById('sdd').innerHTML=sdd.map((x,i)=>`<div class="sdd"><h3>${x[0]} · ${x[1]}</h3><div class="small"><b>Domain:</b> ${x[2]} · <b>Delivery:</b> ${x[3]}</div><p><b>Spec:</b> ${x[4]}</p><div class="small" style="margin-top:8px"><b>Tasks for this phase:</b></div><ul style="margin:6px 0 0 18px;padding:0">${x[6].map(t=>`<li style="margin-bottom:4px">${t}</li>`).join('')}</ul><pre>spec.md
+- Context
+- User story / Job to be done
+- Functional requirements
+- Non-functional requirements
+- Invariants / guardrails
+- Acceptance scenarios (Given / When / Then)
+- Data contracts
+- Failure modes
+
+plan.md
+- Architecture / components
+- Interfaces
+- Dependencies
+- Security
+- Observability
+- Test strategy
+- Rollout / rollback
+
+tasks.md
+- Incremental implementation
+- Tests
+- Integration
+- Documentation
+- Verify / evidence</pre><p><b>Evidence / Verify:</b> ${x[5]}</p></div>`).join('');
+document.getElementById('videos').innerHTML=videos.map((v,i)=>`<div class="sdd"><div class="task"><input type="checkbox" data-id="v${i}"><div class="tasktext"><h3>${v[0]} · ${v[1]}</h3><div class="taskmeta"><b>Goal:</b> ${v[2]}<br><b>Script:</b> ${v[3]}<br><b>Deliverable:</b> long-form video + LinkedIn cut-downs + link to the related spec/ADR.</div></div><span class="badge med">CONTENT</span></div></div>`).join('');
+document.getElementById('done').innerHTML=done.map((x,i)=>task('done'+i,[x[0],x[1],'HIGH'])).join('');
+document.getElementById('importFile').addEventListener('change',function(e){const file=e.target.files&&e.target.files[0];importJSON(file);e.target.value=''});
+document.addEventListener('change',e=>{if(e.target.matches('input[data-id]'))save();});document.addEventListener('input',e=>{if(e.target.classList.contains('diaginput')){gap(+e.target.id.slice(1));save()}if(e.target.id==='owner'||e.target.id==='mentor')save();if(e.target.matches('input[type=range][data-id]')){const lbl=document.getElementById('val_'+e.target.dataset.id);if(lbl)lbl.textContent=e.target.value+'%';update();save()}});
+load();competencies.forEach((_,i)=>gap(i));
+</script>
+</body>
+</html>

@@ -1,20 +1,20 @@
-# S00 — Constitution + arquitetura · Tarefas
+# S00 — Constitution + Architecture · Tasks
 
-Fonte: Trimestre 1 (Fundação) do PDI.
+Source: Quarter 1 (Foundation) of the IDP.
 
-- [ ] **Redigir princípios do projeto** — local-first, segurança por padrão,
-      ferramentas explícitas. Cada princípio com 1 frase de definição + 1 exemplo
-      de como se aplica no ATLAS.
-- [ ] **Definir critérios de "evidência antes de afirmação" e "testes antes de
-      release"** — regras objetivas (ex: toda resposta de RAG cita fonte; toda
-      feature marcada "done" tem teste automatizado associado).
-- [ ] **Documentar `architecture.md`** com as fronteiras Front/API/Agent/MCP/RAG/Infra,
-      incluindo o diagrama textual do fluxo principal e o contrato de
-      responsabilidade de cada módulo (o que entra, o que sai, o que nunca
-      atravessa aquela fronteira).
-- [ ] **Validar `constitution.md` com o(a) mentor(a)** e versionar ambos os
-      documentos no repositório (raiz, referenciados no README).
-- [ ] **Criar seção "Processo de mudança"** em `constitution.md` explicando
-      como um princípio pode ser revisto (via ADR, com justificativa).
-- [ ] **Linkar `architecture.md` a partir do README.md** do repositório para
-      garantir que qualquer pessoa que abrir o projeto encontre o documento.
+- [ ] **Draft the project's principles** — local-first, security by default,
+      explicit tools. Each principle with a 1-sentence definition + 1 example
+      of how it applies in ATLAS.
+- [ ] **Define the "evidence before claims" and "tests before release"
+      criteria** — objective rules (e.g., every RAG response cites a source;
+      every feature marked "done" has an associated automated test).
+- [ ] **Document `architecture.md`** with the Front/API/Agent/MCP/RAG/Infra
+      boundaries, including the textual diagram of the main flow and the
+      responsibility contract of each module (what comes in, what goes out,
+      what must never cross that boundary).
+- [ ] **Validate `constitution.md` with the mentor** and version both
+      documents in the repository (root, referenced in the README).
+- [ ] **Create a "Change process" section** in `constitution.md` explaining
+      how a principle can be revised (via ADR, with justification).
+- [ ] **Link `architecture.md` from the repository's README.md** to make sure
+      anyone who opens the project finds the document.
