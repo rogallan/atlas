@@ -1,65 +1,66 @@
-# S01 — Projeto e toolchain Python · Plano técnico
+# S01 — Project Setup & Python Toolchain · Technical Plan
 
-## 1. Abordagem
+## 1. Approach
 
-Trabalho em três blocos sequenciais: (1) estrutura de pastas e ambiente, (2)
-qualidade automatizada (lint/format/typing/pre-commit), (3) testes + Docker + CI.
-Cada bloco termina com uma verificação rápida antes de seguir para o próximo.
+Work in three sequential blocks: (1) folder structure and environment, (2)
+automated quality (lint/format/typing/pre-commit), (3) tests + Docker + CI.
+Each block ends with a quick verification before moving to the next.
 
-## 2. Bloco 1 — Estrutura e ambiente
+## 2. Block 1 — Structure and environment
 
 ```
 atlas/
 ├── src/
-│   ├── api/          # (populado a partir de S03)
-│   ├── agent/         # (populado a partir de S05/S14)
-│   ├── rag/            # (populado a partir de S06/S07)
-│   ├── mcp/             # (populado a partir de S08+)
-│   ├── providers/        # (populado a partir de S04)
-│   └── data/               # (populado a partir de S02)
+│   ├── api/          # (populated starting at S03)
+│   ├── agent/         # (populated starting at S05/S14)
+│   ├── rag/            # (populated starting at S06/S07)
+│   ├── mcp/             # (populated starting at S08+)
+│   ├── providers/        # (populated starting at S04)
+│   └── data/               # (populated starting at S02)
 ├── tests/
 │   ├── unit/
 │   ├── integration/
 │   └── contract/
-├── pyproject.toml   # dependências, metadata, config de ruff/mypy/pytest
-├── uv.lock (ou poetry.lock)
+├── pyproject.toml   # dependencies, metadata, ruff/mypy/pytest config
+├── uv.lock (or poetry.lock)
 ├── Dockerfile
 └── .pre-commit-config.yaml
 ```
 
-Cada subpasta de `src/` recebe um `__init__.py` vazio nesta etapa — o conteúdo
-real chega junto com o item do catálogo correspondente (S02 → S14).
+Each `src/` subfolder gets an empty `__init__.py` at this stage — the real
+content arrives together with the corresponding catalog item (S02 → S14).
 
-## 3. Bloco 2 — Qualidade automatizada
+## 3. Block 2 — Automated quality
 
-- `pyproject.toml` centraliza a configuração de `ruff` (lint + format) e `mypy`
-  (type checking estrito para tudo dentro de `src/`).
-- `.pre-commit-config.yaml` roda, nesta ordem: `ruff format`, `ruff check --fix`,
-  `mypy`. Falha em qualquer etapa bloqueia o commit.
-- Registrar a escolha do gerenciador de pacotes (`uv` vs `poetry`) como ADR em
-  `docs/adr/0001-gerenciador-de-pacotes.md`, com prós/contras considerados.
+- `pyproject.toml` centralizes the configuration for `ruff` (lint + format)
+  and `mypy` (strict type checking for everything under `src/`).
+- `.pre-commit-config.yaml` runs, in this order: `ruff format`,
+  `ruff check --fix`, `mypy`. A failure at any step blocks the commit.
+- Record the package-manager choice (`uv` vs. `poetry`) as an ADR in
+  `docs/adr/0001-package-manager.md`, with the pros/cons considered.
 
-## 4. Bloco 3 — Testes, Docker e CI
+## 4. Block 3 — Tests, Docker, and CI
 
-- `pytest.ini` (ou seção em `pyproject.toml`) configurando `pytest-asyncio` em
-  modo automático, e `pytest-cov` para métrica de cobertura.
-- Um teste de exemplo (`tests/unit/test_setup.py`) que apenas confirma que o
-  pacote importa corretamente — serve de smoke test do ambiente.
-- `Dockerfile` multi-stage: stage de build instala dependências, stage final
-  copia apenas o necessário para produção (imagem enxuta).
-- CI mínimo (GitHub Actions ou equivalente): um workflow que roda em push/PR
-  com os passos `ruff check`, `mypy`, `pytest --cov`.
+- `pytest.ini` (or a section in `pyproject.toml`) configuring
+  `pytest-asyncio` in automatic mode, and `pytest-cov` for coverage
+  reporting.
+- An example test (`tests/unit/test_setup.py`) that simply confirms the
+  package imports correctly — it acts as a smoke test for the environment.
+- Multi-stage `Dockerfile`: a build stage installs dependencies, a final
+  stage copies only what's needed for production (a lean image).
+- Minimal CI (GitHub Actions or equivalent): a workflow that runs on every
+  push/PR with the steps `ruff check`, `mypy`, `pytest --cov`.
 
-## 5. Riscos e mitigação
+## 5. Risks & mitigation
 
-| Risco | Mitigação |
+| Risk | Mitigation |
 |---|---|
-| Typing estrito demais travar velocidade no início do projeto | Começar com `mypy` em modo estrito só em `src/`, não em `tests/`; revisar rigor a cada trimestre |
-| Estrutura de pastas não escalar quando MCP/Agent crescerem | Estrutura já reflete `architecture.md` (S00); qualquer novo módulo deve ser justificado contra essa arquitetura |
-| CI ficar lento e desincentivar commits frequentes | CI mínimo roda só lint+type+testes unitários; testes de integração/contrato pesados ficam fora do CI de PR nesta fase |
+| Overly strict typing slows down the project early on | Start `mypy` in strict mode only for `src/`, not `tests/`; revisit strictness each quarter |
+| Folder structure doesn't scale as MCP/Agent grow | The structure already reflects `architecture.md` (S00); any new module must be justified against that architecture |
+| CI becomes slow and discourages frequent commits | Minimal CI runs only lint+type+unit tests; heavy integration/contract tests stay out of the PR CI at this stage |
 
-## 6. Saída esperada
+## 6. Expected output
 
-Repositório com esqueleto de `src/`, `pyproject.toml`, `.pre-commit-config.yaml`,
-`Dockerfile`, `tests/` com smoke test passando, e workflow de CI mínimo
-executando com sucesso.
+A repository with a `src/` skeleton, `pyproject.toml`,
+`.pre-commit-config.yaml`, `Dockerfile`, `tests/` with a passing smoke test,
+and a minimal CI workflow running successfully.

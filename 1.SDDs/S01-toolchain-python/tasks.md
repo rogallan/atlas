@@ -1,22 +1,22 @@
-# S01 — Projeto e toolchain Python · Tarefas
+# S01 — Project Setup & Python Toolchain · Tasks
 
-Fonte: Trimestre 1 (Fundação) do PDI.
+Source: Quarter 1 (Foundation) of the IDP.
 
-- [ ] **Criar estrutura de repositório** (`SDDs/`, `docs/`, `src/` com as
-      subpastas `api/`, `agent/`, `rag/`, `mcp/`, `providers/`, `data/`
-      alinhadas ao `architecture.md` de S00).
-- [ ] **Escolher e configurar gerenciador de dependências** (`uv` ou `poetry`),
-      com lockfile versionado; registrar a decisão como ADR.
-- [ ] **Configurar lint, formatter e typing** (`ruff` + `mypy`) via
-      `pyproject.toml`, com `mypy` em modo estrito em `src/`.
-- [ ] **Configurar `pre-commit`** com hooks de `ruff format`, `ruff check --fix`
-      e `mypy`, validado localmente.
-- [ ] **Configurar ambiente de testes** (`pytest` + `pytest-asyncio` +
-      `pytest-cov`), com um smoke test de exemplo passando e cobertura mínima
-      inicial definida.
-- [ ] **Criar `Dockerfile` base** (multi-stage) que builda a imagem da
-      aplicação Python com sucesso.
-- [ ] **Criar pipeline de CI mínimo** que roda lint + type check + testes a
-      cada push/PR.
-- [ ] **Documentar o setup local** no `README.md` (passo a passo: clonar,
-      instalar dependências, ativar pre-commit, rodar testes).
+- [ ] **Create the repository structure** (`SDDs/`, `docs/`, `src/` with the
+      `api/`, `agent/`, `rag/`, `mcp/`, `providers/`, `data/` subfolders
+      aligned with S00's `architecture.md`).
+- [ ] **Choose and configure a dependency manager** (`uv` or `poetry`), with a
+      versioned lockfile; record the decision as an ADR.
+- [ ] **Configure lint, formatter, and typing** (`ruff` + `mypy`) via
+      `pyproject.toml`, with `mypy` in strict mode for `src/`.
+- [ ] **Configure `pre-commit`** with `ruff format`, `ruff check --fix`, and
+      `mypy` hooks, validated locally.
+- [ ] **Configure the test environment** (`pytest` + `pytest-asyncio` +
+      `pytest-cov`), with an example smoke test passing and an initial minimum
+      coverage defined.
+- [ ] **Create the base `Dockerfile`** (multi-stage) that successfully builds
+      the Python application's image.
+- [ ] **Create a minimal CI pipeline** that runs lint + type check + tests on
+      every push/PR.
+- [ ] **Document the local setup** in `README.md` (step by step: clone,
+      install dependencies, enable pre-commit, run tests).

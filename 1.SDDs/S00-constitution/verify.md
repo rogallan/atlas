@@ -1,32 +1,32 @@
-# S00 — Constitution + arquitetura · Verificação
+# S00 — Constitution + Architecture · Verification
 
-## Critérios de aceite (Definition of Done deste item)
+## Acceptance criteria (Definition of Done for this item)
 
-- [ ] `constitution.md` existe na raiz do repositório e contém, no mínimo, os
-      6 princípios definidos no spec.md (local-first, segurança por padrão,
-      ferramentas explícitas, evidência antes de afirmação, testes antes de
-      release, dados fictícios sempre).
-- [ ] Cada princípio em `constitution.md` tem pelo menos um exemplo concreto de
-      aplicação no contexto do ATLAS (não é só um enunciado abstrato).
-- [ ] `architecture.md` existe na raiz do repositório e documenta as 6 fronteiras
-      (Front, API, Agent, MCP, Knowledge/RAG, Infra) com responsabilidade e
-      contrato de cada uma.
-- [ ] `architecture.md` contém o diagrama textual do fluxo principal
-      (Usuário → Front → API → Agent Router → RAG/MCP → Validation → Resposta).
-- [ ] Ambos os documentos foram revisados com o(a) mentor(a) do PDI (registrar
-      data/observações no próprio commit ou em `docs/adr/`).
-- [ ] `README.md` do repositório referencia (linka) `constitution.md` e
+- [ ] `constitution.md` exists at the repository root and contains, at
+      minimum, the 6 principles defined in spec.md (local-first, security by
+      default, explicit tools, evidence before claims, tests before release,
+      fictitious data always).
+- [ ] Each principle in `constitution.md` has at least one concrete example of
+      application in the ATLAS context (not just an abstract statement).
+- [ ] `architecture.md` exists at the repository root and documents the 6
+      boundaries (Front, API, Agent, MCP, Knowledge/RAG, Infra) with the
+      responsibility and contract of each.
+- [ ] `architecture.md` contains the textual diagram of the main flow
+      (User → Front → API → Agent Router → RAG/MCP → Validation → Response).
+- [ ] Both documents were reviewed with the IDP mentor (record the
+      date/observations in the commit itself or in `docs/adr/`).
+- [ ] The repository's `README.md` references (links to) `constitution.md` and
       `architecture.md`.
-- [ ] Nenhuma pendência de S01 foi iniciada antes deste item estar concluído
-      (S00 é bloqueante para o restante do catálogo, conforme a ordem T1 do PDI).
+- [ ] No S01 work was started before this item was completed (S00 is blocking
+      for the rest of the catalog, per the IDP's Q1 ordering).
 
-## Como verificar
+## How to verify
 
-1. Abrir `constitution.md` e `architecture.md` na raiz do repositório e conferir
-   que ambos existem e não estão vazios/placeholder.
-2. Conferir que os 6 princípios estão presentes e cada um tem exemplo aplicado.
-3. Conferir que o diagrama de fluxo em `architecture.md` cobre todas as 6
-   fronteiras citadas no PDI.
-4. Confirmar com o(a) mentor(a) que a revisão foi feita.
-5. Marcar este item como concluído no checklist do PDI (seção 14) somente após
-   os 4 passos acima.
+1. Open `constitution.md` and `architecture.md` at the repository root and
+   confirm both exist and are not empty/placeholder.
+2. Confirm the 6 principles are present and each has an applied example.
+3. Confirm the flow diagram in `architecture.md` covers all 6 boundaries
+   mentioned in the IDP.
+4. Confirm with the mentor that the review was done.
+5. Mark this item as complete in the IDP checklist (section 14) only after
+   the 4 steps above.

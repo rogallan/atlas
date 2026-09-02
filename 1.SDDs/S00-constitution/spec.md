@@ -1,66 +1,71 @@
-# S00 — Constitution + arquitetura
+# S00 — Constitution + Architecture
 
-Trimestre: T1 · Categoria: Base do projeto
-Entregável: `constitution.md` + `architecture.md`
+Quarter: Q1 · Category: Project foundation
+Deliverable: `constitution.md` + `architecture.md`
 
-## 1. Objetivo
+## 1. Goal
 
-Estabelecer, antes de qualquer linha de código de produto, os princípios inegociáveis
-e as fronteiras arquiteturais que vão governar todas as decisões técnicas do ATLAS
-ao longo dos quatro trimestres. Este item é a fundação de todo o padrão SDD: nenhum
-outro item do catálogo (S01 → S22) deve entrar em conflito com o que for definido aqui.
+Establish, before any product code is written, the non-negotiable principles and
+the architectural boundaries that will govern every technical decision in ATLAS
+throughout the four quarters. This item is the foundation of the entire SDD
+pattern: no other item in the catalog (S01 → S22) may conflict with what is
+defined here.
 
-## 2. Contexto
+## 2. Context
 
-O ATLAS é um copiloto conversacional para gerente bancário que:
-- consulta conhecimento público do Banco Central via RAG;
-- consulta uma base fictícia de clientes/histórico financeiro via MCP;
-- executa operações simples **simuladas** (nunca reais) por ferramentas controladas.
+ATLAS is a conversational copilot for a bank relationship manager that:
+- consults public knowledge from the Central Bank via RAG;
+- consults a fictitious customer/financial-history database via MCP;
+- executes simple **simulated** operations (never real ones) through controlled
+  tools.
 
-Por lidar com um domínio sensível (bancário) mesmo que com dados sintéticos, e por
-usar LLMs com tool calling, o projeto precisa de princípios explícitos de segurança,
-verificação e qualidade desde o primeiro commit.
+Because it touches a sensitive domain (banking) even with synthetic data, and
+because it uses LLMs with tool calling, the project needs explicit security,
+verification, and quality principles from the very first commit.
 
-## 3. Escopo
+## 3. Scope
 
-Este item cobre exclusivamente a criação de dois documentos fundacionais:
+This item covers exclusively the creation of two foundational documents:
 
-1. **`constitution.md`** — princípios do projeto, não-negociáveis, que qualquer
-   spec/plan/tasks futuro deve respeitar.
-2. **`architecture.md`** — mapa das fronteiras entre os módulos do sistema
-   (Front / API / Agent / MCP / RAG / Infra), com as responsabilidades e os
-   contratos de comunicação entre eles.
+1. **`constitution.md`** — the project's principles, non-negotiable, that any
+   future spec/plan/tasks must respect.
+2. **`architecture.md`** — a map of the boundaries between the system's modules
+   (Front / API / Agent / MCP / RAG / Infra), with the responsibilities and the
+   communication contracts between them.
 
-## 4. Fora de escopo
+## 4. Out of scope
 
-- Implementação de qualquer código de produto (isso começa em S01+).
-- Decisões de baixo nível de bibliotecas/frameworks específicos (ficam nos ADRs
-  de cada item, ex: S06 decide Vector DB, S04 decide integração Ollama).
-- Definição de operações de negócio detalhadas (fica em S02 e na seção "Mapa de
-  Operações" do PDI).
+- Implementation of any product code (that starts at S01+).
+- Low-level decisions about specific libraries/frameworks (those live in the
+  ADRs of each item, e.g., S06 decides the Vector DB, S04 decides the Ollama
+  integration).
+- Detailed definition of business operations (that lives in S02 and in the
+  IDP's "Operations Map" section).
 
-## 5. Princípios candidatos (a redigir em constitution.md)
+## 5. Candidate principles (to be drafted in constitution.md)
 
-- **Local-first**: o desenvolvimento roda inteiramente local (Ollama, containers,
-  Vector DB/Store, MCP); cloud é caminho alternativo, não dependência de dia a dia.
-- **Segurança por padrão**: nenhuma ação sensível é executada sem validação e,
-  quando aplicável, confirmação humana (human-in-the-loop).
-- **Ferramentas explícitas**: o agente nunca improvisa uma capacidade; toda ação
-  passa por uma tool/MCP tipada e auditável.
-- **Evidência antes de afirmação**: respostas baseadas em conhecimento (RAG) só
-  são dadas com citação rastreável; na ausência de evidência, o agente admite
-  não saber em vez de inventar.
-- **Testes antes de release**: nenhuma feature é considerada "pronta" (Definition
-  of Done) sem testes automatizados e, quando aplicável, evals passando.
-- **Dados fictícios, sempre**: nenhum dado real de cliente é usado em nenhuma
-  camada do projeto, inclusive em documentação e vídeos publicados.
+- **Local-first**: development runs entirely locally (Ollama, containers,
+  Vector DB/Store, MCP); the cloud is an alternative path, not a day-to-day
+  dependency.
+- **Security by default**: no sensitive action is executed without validation
+  and, when applicable, human confirmation (human-in-the-loop).
+- **Explicit tools**: the agent never improvises a capability; every action
+  goes through a typed, auditable tool/MCP.
+- **Evidence before claims**: knowledge-based (RAG) responses are only given
+  with a traceable citation; in the absence of evidence, the agent admits it
+  doesn't know instead of making something up.
+- **Tests before release**: no feature is considered "done" (Definition of
+  Done) without automated tests and, when applicable, passing evals.
+- **Fictitious data, always**: no real customer data is used at any layer of
+  the project, including in documentation and published videos.
 
-## 6. Critérios de aceite
+## 6. Acceptance criteria
 
-- [ ] `constitution.md` versionado na raiz do repositório, com princípios acima
-      redigidos e validados.
-- [ ] `architecture.md` documentando as fronteiras Front/API/Agent/MCP/RAG/Infra,
-      incluindo diagrama textual e contrato de responsabilidade de cada módulo.
-- [ ] Ambos os documentos revisados com o(a) mentor(a) do PDI.
-- [ ] Nenhuma decisão de S01+ pode contradizer o que está definido aqui sem
-      abrir um ADR explicando a exceção.
+- [ ] `constitution.md` versioned at the repository root, with the principles
+      above drafted and validated.
+- [ ] `architecture.md` documenting the Front/API/Agent/MCP/RAG/Infra
+      boundaries, including a textual diagram and the responsibility contract
+      of each module.
+- [ ] Both documents reviewed with the IDP mentor.
+- [ ] No decision in S01+ may contradict what is defined here without opening
+      an ADR explaining the exception.

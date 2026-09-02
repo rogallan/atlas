@@ -1,65 +1,70 @@
-# S01 — Projeto e toolchain Python
+# S01 — Project Setup & Python Toolchain
 
-Trimestre: T1 · Categoria: Fundação
-Entregável: `spec.md` + `plan.md` + `tasks.md` (deste item) + toolchain reproduzível no repositório
+Quarter: Q1 · Category: Foundation
+Deliverable: `spec.md` + `plan.md` + `tasks.md` (this item) + a reproducible toolchain in the repository
 
-## 1. Objetivo
+## 1. Goal
 
-Estabelecer a fundação de engenharia do ATLAS: estrutura de repositório, ambiente
-Python reprodutível, qualidade de código automatizada (lint/format/typing) e
-testes, além de um pipeline de CI mínimo. Este item entrega a base sobre a qual
-todo código de S02 em diante será escrito — nenhuma feature de produto deve
-começar antes de S01 estar concluído.
+Establish ATLAS's engineering foundation: repository structure, a reproducible
+Python environment, automated code quality (lint/format/typing), tests, and a
+minimal CI pipeline. This item delivers the base on which all code from S02
+onward will be written — no product feature should start before S01 is
+complete.
 
-## 2. Contexto
+## 2. Context
 
-O ATLAS é escrito majoritariamente em Python no backend (FastAPI, Agent, RAG,
-MCP, providers). Para sustentar um projeto de nível sênior ao longo de quatro
-trimestres, o toolchain precisa ser decidido uma única vez, de forma consistente,
-em vez de crescer organicamente e gerar dívida técnica.
+ATLAS's backend is written mostly in Python (FastAPI, Agent, RAG, MCP,
+providers). To sustain a senior-level project over four quarters, the
+toolchain needs to be decided once, consistently, instead of growing
+organically and generating technical debt.
 
-Este item segue diretamente o `constitution.md` e o `architecture.md` definidos
-em S00: a estrutura de pastas aqui criada deve refletir as fronteiras
-Front/API/Agent/MCP/RAG/Infra já documentadas.
+This item directly follows the `constitution.md` and `architecture.md` defined
+in S00: the folder structure created here must reflect the Front/API/Agent/
+MCP/RAG/Infra boundaries already documented.
 
-## 3. Escopo
+## 3. Scope
 
-1. Estrutura de repositório (`SDDs/`, `docs/`, `src/`, e subpastas de `src/`
-   alinhadas à arquitetura: `api/`, `agent/`, `rag/`, `mcp/`, `providers/`, `data/`).
-2. Gerenciador de dependências e ambiente virtual Python.
-3. Lint, formatter e type checking (ex.: `ruff` para lint/format, `mypy` para
-   tipagem estática) configurados via `pre-commit`.
-4. Ambiente de testes (`pytest`) com cobertura mínima definida.
-5. `Dockerfile` base para a aplicação Python.
-6. Pipeline de CI mínimo (lint + type check + testes rodando em cada push/PR).
+1. Repository structure (`SDDs/`, `docs/`, `src/`, and `src/` subfolders
+   aligned with the architecture: `api/`, `agent/`, `rag/`, `mcp/`,
+   `providers/`, `data/`).
+2. Python dependency manager and virtual environment.
+3. Lint, formatter, and type checking (e.g., `ruff` for lint/format, `mypy` for
+   static typing) configured via `pre-commit`.
+4. Test environment (`pytest`) with a defined minimum coverage.
+5. Base `Dockerfile` for the Python application.
+6. Minimal CI pipeline (lint + type check + tests running on every push/PR).
 
-## 4. Fora de escopo
+## 4. Out of scope
 
-- Código de produto (rotas de API, agente, RAG, MCP) — isso começa em S02+.
-- Docker Compose completo com múltiplos serviços (Ollama, Vector DB) — isso é
-  tratado em S20 (Docker Local Stack); aqui só o `Dockerfile` base da aplicação.
-- CI/CD de deploy em cloud — isso é tratado em T4 (S21/S22).
+- Product code (API routes, agent, RAG, MCP) — that starts at S02+.
+- Full Docker Compose with multiple services (Ollama, Vector DB) — that's
+  covered in S20 (Docker Local Stack); here it's just the application's base
+  `Dockerfile`.
+- Cloud deployment CI/CD — that's covered in Q4 (S21/S22).
 
-## 5. Decisões técnicas sugeridas
+## 5. Suggested technical decisions
 
-- **Gerenciador de pacotes**: `uv` ou `poetry` (decisão registrada como ADR em
-  `docs/adr/`, com justificativa de escolha).
-- **Versão do Python**: 3.11+ (suporte a typing moderno, performance async).
-- **Lint/format**: `ruff` (substitui flake8+black+isort em uma ferramenta).
-- **Type checking**: `mypy` em modo estrito nos módulos de `src/`.
-- **Testes**: `pytest` + `pytest-asyncio` (o projeto usa FastAPI/async desde S03).
-- **Pre-commit**: hooks de lint, format e type check rodando antes de cada commit.
-- **Cobertura mínima**: definir um piso inicial (ex.: 70%) que sobe ao longo dos
-  trimestres, sem travar o T1 com uma meta irrealista.
+- **Package manager**: `uv` or `poetry` (decision recorded as an ADR in
+  `docs/adr/`, with the reasoning behind the choice).
+- **Python version**: 3.11+ (modern typing support, async performance).
+- **Lint/format**: `ruff` (replaces flake8+black+isort with a single tool).
+- **Type checking**: `mypy` in strict mode for the modules under `src/`.
+- **Tests**: `pytest` + `pytest-asyncio` (the project uses FastAPI/async from
+  S03 onward).
+- **Pre-commit**: lint, format, and type-check hooks running before every
+  commit.
+- **Minimum coverage**: set an initial floor (e.g., 70%) that rises over the
+  quarters, without locking Q1 into an unrealistic target.
 
-## 6. Critérios de aceite
+## 6. Acceptance criteria
 
-- [ ] Estrutura de `src/` criada e alinhada ao `architecture.md` (S00).
-- [ ] Ambiente Python reprodutível (lockfile versionado, `README` com passo a
-      passo de setup local).
-- [ ] `ruff` e `mypy` configurados e rodando sem erros no esqueleto inicial.
-- [ ] `pre-commit` instalado e validado localmente.
-- [ ] `pytest` configurado, com pelo menos um teste de exemplo passando e
-      métrica de cobertura sendo reportada.
-- [ ] `Dockerfile` base builda a imagem da aplicação com sucesso.
-- [ ] Pipeline de CI mínimo executa lint + type check + testes a cada push/PR.
+- [ ] `src/` structure created and aligned with `architecture.md` (S00).
+- [ ] Reproducible Python environment (versioned lockfile, `README` with a
+      step-by-step local setup guide).
+- [ ] `ruff` and `mypy` configured and running without errors on the initial
+      skeleton.
+- [ ] `pre-commit` installed and validated locally.
+- [ ] `pytest` configured, with at least one example test passing and a
+      coverage metric being reported.
+- [ ] Base `Dockerfile` builds the application image successfully.
+- [ ] Minimal CI pipeline runs lint + type check + tests on every push/PR.
