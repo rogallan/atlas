@@ -1,0 +1,16 @@
+{
+  "name": "bmad",
+  "version": "1.0.0",
+  "description": "Breakthrough Method for Agile AI-Driven Development (BMAD) bundle for Google Antigravity",
+  "author": "ATLAS Team",
+  "skills": [
+    "bmad-product-manager",
+    "bmad-architect",
+    "bmad-developer",
+    "bmad-qa-evaluator"
+  ],
+  "rules": [
+    "bmad-principles",
+    "bmad-dod"
+  ]
+}
