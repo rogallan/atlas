@@ -87,3 +87,9 @@ uv run uvicorn api.main:app --reload --port 8000
 - **Documentação Interativa (Swagger):** http://localhost:8000/docs
 - **Documentação Alternativa (ReDoc):** http://localhost:8000/redoc
 - **Contrato OpenAPI:** http://localhost:8000/openapi.json
+
+### 7. Roteador de Intenções (S05 Intent Router)
+```bash
+# Executar a suíte de testes unitários e benchmark de intenções
+uv run pytest 4.tests/unit/test_intent_router.py 4.tests/evals/test_golden_intents.py -v
+```

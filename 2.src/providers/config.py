@@ -14,11 +14,14 @@ def _normalize_ollama_host(raw_host: str) -> str:
     hostname = parsed.hostname or "127.0.0.1"
     if hostname == "0.0.0.0":
         hostname = "127.0.0.1"
-    port = (
-        f":{parsed.port}"
-        if parsed.port
-        else (":11434" if parsed.port is None and not (parsed.scheme == "http" and ":80" in raw_host or parsed.scheme == "https" and ":443" in raw_host) else "")
-    )
+    is_default_http = parsed.scheme == "http" and ":80" in raw_host
+    is_default_https = parsed.scheme == "https" and ":443" in raw_host
+    if parsed.port:
+        port = f":{parsed.port}"
+    elif not (is_default_http or is_default_https):
+        port = ":11434"
+    else:
+        port = ""
     return f"{parsed.scheme}://{hostname}{port}"
 
 
