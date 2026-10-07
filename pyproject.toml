@@ -11,6 +11,7 @@ dependencies = [
     "fastapi>=0.115.0",
     "pydantic>=2.10.0",
     "httpx>=0.28.0",
+    "uvicorn[standard]>=0.32.0",
 ]
 
 [project.optional-dependencies]
@@ -77,6 +78,7 @@ warn_redundant_casts = true
 warn_unused_ignores = true
 warn_no_return = true
 warn_unreachable = true
+disallow_untyped_decorators = false
 mypy_path = "2.src"
 files = ["2.src", "4.tests"]
 

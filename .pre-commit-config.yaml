@@ -18,5 +18,10 @@ repos:
     rev: v1.13.0
     hooks:
       - id: mypy
-        additional_dependencies: [pydantic>=2.10.0, fastapi>=0.115.0]
+        additional_dependencies:
+          - pydantic>=2.10.0
+          - fastapi>=0.115.0
+          - pytest>=8.3.4
+          - pytest-asyncio>=0.24.0
+          - httpx>=0.28.0
         args: [--config-file=pyproject.toml]

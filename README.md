@@ -77,3 +77,11 @@ uv run pytest
 ```bash
 docker build -t atlas-banking-copilot:latest .
 ```
+
+### 6. Executar o Servidor FastAPI Gateway (S03)
+```bash
+uv run uvicorn api.main:app --reload --port 8000
+```
+- **Documentação Interativa (Swagger):** http://localhost:8000/docs
+- **Documentação Alternativa (ReDoc):** http://localhost:8000/redoc
+- **Contrato OpenAPI:** http://localhost:8000/openapi.json
