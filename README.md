@@ -7,6 +7,8 @@ operações simples simuladas por ferramentas controladas.
 Stack: React Chat · FastAPI · Ollama · RAG/Vector DB · MCP · Harness/Evals ·
 Docker · ngrok · Terraform/AWS · uv · Ruff · Mypy · Pytest.
 
+Token Simulado: atlas-simulated-token-2026
+
 ---
 
 ## 🏛️ Governança & Arquitetura
