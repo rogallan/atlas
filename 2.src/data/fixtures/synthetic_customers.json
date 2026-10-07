@@ -1,0 +1,2653 @@
+{
+  "accounts": [
+    {
+      "balance": "37670.91",
+      "currency": "BRL",
+      "customer_id": "CUST-0001",
+      "id": "ACC-0001",
+      "opened_at": "2023-10-09",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "43454.63",
+      "currency": "BRL",
+      "customer_id": "CUST-0002",
+      "id": "ACC-0002",
+      "opened_at": "2023-04-15",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "42629.58",
+      "currency": "BRL",
+      "customer_id": "CUST-0003",
+      "id": "ACC-0003",
+      "opened_at": "2023-02-02",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "9650.31",
+      "currency": "BRL",
+      "customer_id": "CUST-0004",
+      "id": "ACC-0004",
+      "opened_at": "2023-08-27",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "71644.33",
+      "currency": "BRL",
+      "customer_id": "CUST-0004",
+      "id": "ACC-0005",
+      "opened_at": "2023-09-06",
+      "status": "active",
+      "type": "savings"
+    },
+    {
+      "balance": "38811.54",
+      "currency": "BRL",
+      "customer_id": "CUST-0005",
+      "id": "ACC-0006",
+      "opened_at": "2024-10-27",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "53350.46",
+      "currency": "BRL",
+      "customer_id": "CUST-0005",
+      "id": "ACC-0007",
+      "opened_at": "2024-11-06",
+      "status": "active",
+      "type": "savings"
+    },
+    {
+      "balance": "14873.17",
+      "currency": "BRL",
+      "customer_id": "CUST-0006",
+      "id": "ACC-0008",
+      "opened_at": "2024-08-26",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "12915.96",
+      "currency": "BRL",
+      "customer_id": "CUST-0006",
+      "id": "ACC-0009",
+      "opened_at": "2024-09-05",
+      "status": "active",
+      "type": "savings"
+    },
+    {
+      "balance": "3587.14",
+      "currency": "BRL",
+      "customer_id": "CUST-0007",
+      "id": "ACC-0010",
+      "opened_at": "2023-06-13",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "10984.87",
+      "currency": "BRL",
+      "customer_id": "CUST-0008",
+      "id": "ACC-0011",
+      "opened_at": "2023-06-09",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "9326.49",
+      "currency": "BRL",
+      "customer_id": "CUST-0008",
+      "id": "ACC-0012",
+      "opened_at": "2023-06-19",
+      "status": "active",
+      "type": "savings"
+    },
+    {
+      "balance": "25509.76",
+      "currency": "BRL",
+      "customer_id": "CUST-0009",
+      "id": "ACC-0013",
+      "opened_at": "2023-04-15",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "70352.32",
+      "currency": "BRL",
+      "customer_id": "CUST-0009",
+      "id": "ACC-0014",
+      "opened_at": "2023-04-25",
+      "status": "active",
+      "type": "savings"
+    },
+    {
+      "balance": "36756.01",
+      "currency": "BRL",
+      "customer_id": "CUST-0010",
+      "id": "ACC-0015",
+      "opened_at": "2024-01-03",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "16014.87",
+      "currency": "BRL",
+      "customer_id": "CUST-0010",
+      "id": "ACC-0016",
+      "opened_at": "2024-01-13",
+      "status": "active",
+      "type": "savings"
+    },
+    {
+      "balance": "35690.96",
+      "currency": "BRL",
+      "customer_id": "CUST-0011",
+      "id": "ACC-0017",
+      "opened_at": "2023-02-14",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "42506.43",
+      "currency": "BRL",
+      "customer_id": "CUST-0012",
+      "id": "ACC-0018",
+      "opened_at": "2024-01-23",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "28992.2",
+      "currency": "BRL",
+      "customer_id": "CUST-0013",
+      "id": "ACC-0019",
+      "opened_at": "2024-10-05",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "95646.92",
+      "currency": "BRL",
+      "customer_id": "CUST-0013",
+      "id": "ACC-0020",
+      "opened_at": "2024-10-15",
+      "status": "active",
+      "type": "savings"
+    },
+    {
+      "balance": "17761.64",
+      "currency": "BRL",
+      "customer_id": "CUST-0014",
+      "id": "ACC-0021",
+      "opened_at": "2023-03-13",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "67542.13",
+      "currency": "BRL",
+      "customer_id": "CUST-0014",
+      "id": "ACC-0022",
+      "opened_at": "2023-03-23",
+      "status": "active",
+      "type": "savings"
+    },
+    {
+      "balance": "41479.38",
+      "currency": "BRL",
+      "customer_id": "CUST-0015",
+      "id": "ACC-0023",
+      "opened_at": "2023-10-24",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "67540.77",
+      "currency": "BRL",
+      "customer_id": "CUST-0015",
+      "id": "ACC-0024",
+      "opened_at": "2023-11-03",
+      "status": "active",
+      "type": "savings"
+    },
+    {
+      "balance": "13535.19",
+      "currency": "BRL",
+      "customer_id": "CUST-0016",
+      "id": "ACC-0025",
+      "opened_at": "2023-04-14",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "11087.69",
+      "currency": "BRL",
+      "customer_id": "CUST-0017",
+      "id": "ACC-0026",
+      "opened_at": "2024-10-12",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "70514.0",
+      "currency": "BRL",
+      "customer_id": "CUST-0017",
+      "id": "ACC-0027",
+      "opened_at": "2024-10-22",
+      "status": "active",
+      "type": "savings"
+    },
+    {
+      "balance": "39752.41",
+      "currency": "BRL",
+      "customer_id": "CUST-0018",
+      "id": "ACC-0028",
+      "opened_at": "2023-12-30",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "15662.46",
+      "currency": "BRL",
+      "customer_id": "CUST-0018",
+      "id": "ACC-0029",
+      "opened_at": "2024-01-09",
+      "status": "active",
+      "type": "savings"
+    },
+    {
+      "balance": "20653.3",
+      "currency": "BRL",
+      "customer_id": "CUST-0019",
+      "id": "ACC-0030",
+      "opened_at": "2024-11-30",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "37682.1",
+      "currency": "BRL",
+      "customer_id": "CUST-0020",
+      "id": "ACC-0031",
+      "opened_at": "2023-06-25",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "32349.08",
+      "currency": "BRL",
+      "customer_id": "CUST-0021",
+      "id": "ACC-0032",
+      "opened_at": "2024-01-24",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "70822.98",
+      "currency": "BRL",
+      "customer_id": "CUST-0021",
+      "id": "ACC-0033",
+      "opened_at": "2024-02-03",
+      "status": "active",
+      "type": "savings"
+    },
+    {
+      "balance": "8741.16",
+      "currency": "BRL",
+      "customer_id": "CUST-0022",
+      "id": "ACC-0034",
+      "opened_at": "2024-07-24",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "73063.21",
+      "currency": "BRL",
+      "customer_id": "CUST-0022",
+      "id": "ACC-0035",
+      "opened_at": "2024-08-03",
+      "status": "active",
+      "type": "savings"
+    },
+    {
+      "balance": "17870.67",
+      "currency": "BRL",
+      "customer_id": "CUST-0023",
+      "id": "ACC-0036",
+      "opened_at": "2023-02-27",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "56461.27",
+      "currency": "BRL",
+      "customer_id": "CUST-0023",
+      "id": "ACC-0037",
+      "opened_at": "2023-03-09",
+      "status": "active",
+      "type": "savings"
+    },
+    {
+      "balance": "35843.96",
+      "currency": "BRL",
+      "customer_id": "CUST-0024",
+      "id": "ACC-0038",
+      "opened_at": "2023-11-20",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "27365.91",
+      "currency": "BRL",
+      "customer_id": "CUST-0024",
+      "id": "ACC-0039",
+      "opened_at": "2023-11-30",
+      "status": "active",
+      "type": "savings"
+    },
+    {
+      "balance": "20928.51",
+      "currency": "BRL",
+      "customer_id": "CUST-0025",
+      "id": "ACC-0040",
+      "opened_at": "2023-08-05",
+      "status": "active",
+      "type": "checking"
+    },
+    {
+      "balance": "86180.47",
+      "currency": "BRL",
+      "customer_id": "CUST-0025",
+      "id": "ACC-0041",
+      "opened_at": "2023-08-15",
+      "status": "active",
+      "type": "savings"
+    }
+  ],
+  "contracts": [
+    {
+      "customer_id": "CUST-0001",
+      "end_date": null,
+      "id": "CTR-0001",
+      "installment_amount": "0.00",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-BASIC",
+      "start_date": "2023-10-09",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Tarif\u00e1rio Essencial"
+      }
+    },
+    {
+      "customer_id": "CUST-0002",
+      "end_date": null,
+      "id": "CTR-0002",
+      "installment_amount": "69.90",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-PRIME",
+      "start_date": "2023-04-15",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Prime Exclusivo"
+      }
+    },
+    {
+      "customer_id": "CUST-0003",
+      "end_date": null,
+      "id": "CTR-0003",
+      "installment_amount": "0.00",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-BASIC",
+      "start_date": "2023-02-02",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Tarif\u00e1rio Essencial"
+      }
+    },
+    {
+      "customer_id": "CUST-0003",
+      "end_date": "2025-02-21",
+      "id": "CTR-0004",
+      "installment_amount": "619.56",
+      "principal_amount": "12930",
+      "product_id": "PROD-LOAN-PERSONAL",
+      "start_date": "2023-03-04",
+      "status": "active",
+      "terms": {
+        "rate_monthly_pct": 2.49,
+        "terms_months": 24
+      }
+    },
+    {
+      "customer_id": "CUST-0004",
+      "end_date": null,
+      "id": "CTR-0005",
+      "installment_amount": "0.00",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-BASIC",
+      "start_date": "2023-08-27",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Tarif\u00e1rio Essencial"
+      }
+    },
+    {
+      "customer_id": "CUST-0005",
+      "end_date": null,
+      "id": "CTR-0006",
+      "installment_amount": "0.00",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-BASIC",
+      "start_date": "2024-10-27",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Tarif\u00e1rio Essencial"
+      }
+    },
+    {
+      "customer_id": "CUST-0006",
+      "end_date": null,
+      "id": "CTR-0007",
+      "installment_amount": "0.00",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-BASIC",
+      "start_date": "2024-08-26",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Tarif\u00e1rio Essencial"
+      }
+    },
+    {
+      "customer_id": "CUST-0007",
+      "end_date": null,
+      "id": "CTR-0008",
+      "installment_amount": "69.90",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-PRIME",
+      "start_date": "2023-06-13",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Prime Exclusivo"
+      }
+    },
+    {
+      "customer_id": "CUST-0008",
+      "end_date": null,
+      "id": "CTR-0009",
+      "installment_amount": "0.00",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-BASIC",
+      "start_date": "2023-06-09",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Tarif\u00e1rio Essencial"
+      }
+    },
+    {
+      "customer_id": "CUST-0008",
+      "end_date": "2025-06-28",
+      "id": "CTR-0010",
+      "installment_amount": "931.12",
+      "principal_amount": "19432",
+      "product_id": "PROD-LOAN-PERSONAL",
+      "start_date": "2023-07-09",
+      "status": "active",
+      "terms": {
+        "rate_monthly_pct": 2.49,
+        "terms_months": 24
+      }
+    },
+    {
+      "customer_id": "CUST-0009",
+      "end_date": null,
+      "id": "CTR-0011",
+      "installment_amount": "69.90",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-PRIME",
+      "start_date": "2023-04-15",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Prime Exclusivo"
+      }
+    },
+    {
+      "customer_id": "CUST-0010",
+      "end_date": null,
+      "id": "CTR-0012",
+      "installment_amount": "0.00",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-BASIC",
+      "start_date": "2024-01-03",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Tarif\u00e1rio Essencial"
+      }
+    },
+    {
+      "customer_id": "CUST-0011",
+      "end_date": null,
+      "id": "CTR-0013",
+      "installment_amount": "69.90",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-PRIME",
+      "start_date": "2023-02-14",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Prime Exclusivo"
+      }
+    },
+    {
+      "customer_id": "CUST-0011",
+      "end_date": "2025-03-05",
+      "id": "CTR-0014",
+      "installment_amount": "424.45",
+      "principal_amount": "8858",
+      "product_id": "PROD-LOAN-PERSONAL",
+      "start_date": "2023-03-16",
+      "status": "active",
+      "terms": {
+        "rate_monthly_pct": 2.49,
+        "terms_months": 24
+      }
+    },
+    {
+      "customer_id": "CUST-0012",
+      "end_date": null,
+      "id": "CTR-0015",
+      "installment_amount": "0.00",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-BASIC",
+      "start_date": "2024-01-23",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Tarif\u00e1rio Essencial"
+      }
+    },
+    {
+      "customer_id": "CUST-0013",
+      "end_date": null,
+      "id": "CTR-0016",
+      "installment_amount": "0.00",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-BASIC",
+      "start_date": "2024-10-05",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Tarif\u00e1rio Essencial"
+      }
+    },
+    {
+      "customer_id": "CUST-0013",
+      "end_date": "2026-10-25",
+      "id": "CTR-0017",
+      "installment_amount": "1277.17",
+      "principal_amount": "26654",
+      "product_id": "PROD-LOAN-PERSONAL",
+      "start_date": "2024-11-04",
+      "status": "active",
+      "terms": {
+        "rate_monthly_pct": 2.49,
+        "terms_months": 24
+      }
+    },
+    {
+      "customer_id": "CUST-0014",
+      "end_date": null,
+      "id": "CTR-0018",
+      "installment_amount": "69.90",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-PRIME",
+      "start_date": "2023-03-13",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Prime Exclusivo"
+      }
+    },
+    {
+      "customer_id": "CUST-0015",
+      "end_date": null,
+      "id": "CTR-0019",
+      "installment_amount": "0.00",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-BASIC",
+      "start_date": "2023-10-24",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Tarif\u00e1rio Essencial"
+      }
+    },
+    {
+      "customer_id": "CUST-0016",
+      "end_date": null,
+      "id": "CTR-0020",
+      "installment_amount": "0.00",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-BASIC",
+      "start_date": "2023-04-14",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Tarif\u00e1rio Essencial"
+      }
+    },
+    {
+      "customer_id": "CUST-0017",
+      "end_date": null,
+      "id": "CTR-0021",
+      "installment_amount": "0.00",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-BASIC",
+      "start_date": "2024-10-12",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Tarif\u00e1rio Essencial"
+      }
+    },
+    {
+      "customer_id": "CUST-0017",
+      "end_date": "2026-11-01",
+      "id": "CTR-0022",
+      "installment_amount": "912.33",
+      "principal_amount": "19040",
+      "product_id": "PROD-LOAN-PERSONAL",
+      "start_date": "2024-11-11",
+      "status": "active",
+      "terms": {
+        "rate_monthly_pct": 2.49,
+        "terms_months": 24
+      }
+    },
+    {
+      "customer_id": "CUST-0018",
+      "end_date": null,
+      "id": "CTR-0023",
+      "installment_amount": "69.90",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-PRIME",
+      "start_date": "2023-12-30",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Prime Exclusivo"
+      }
+    },
+    {
+      "customer_id": "CUST-0018",
+      "end_date": "2026-01-18",
+      "id": "CTR-0024",
+      "installment_amount": "1723.85",
+      "principal_amount": "35976",
+      "product_id": "PROD-LOAN-PERSONAL",
+      "start_date": "2024-01-29",
+      "status": "active",
+      "terms": {
+        "rate_monthly_pct": 2.49,
+        "terms_months": 24
+      }
+    },
+    {
+      "customer_id": "CUST-0019",
+      "end_date": null,
+      "id": "CTR-0025",
+      "installment_amount": "69.90",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-PRIME",
+      "start_date": "2024-11-30",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Prime Exclusivo"
+      }
+    },
+    {
+      "customer_id": "CUST-0020",
+      "end_date": null,
+      "id": "CTR-0026",
+      "installment_amount": "0.00",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-BASIC",
+      "start_date": "2023-06-25",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Tarif\u00e1rio Essencial"
+      }
+    },
+    {
+      "customer_id": "CUST-0021",
+      "end_date": null,
+      "id": "CTR-0027",
+      "installment_amount": "69.90",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-PRIME",
+      "start_date": "2024-01-24",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Prime Exclusivo"
+      }
+    },
+    {
+      "customer_id": "CUST-0022",
+      "end_date": null,
+      "id": "CTR-0028",
+      "installment_amount": "69.90",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-PRIME",
+      "start_date": "2024-07-24",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Prime Exclusivo"
+      }
+    },
+    {
+      "customer_id": "CUST-0023",
+      "end_date": null,
+      "id": "CTR-0029",
+      "installment_amount": "69.90",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-PRIME",
+      "start_date": "2023-02-27",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Prime Exclusivo"
+      }
+    },
+    {
+      "customer_id": "CUST-0023",
+      "end_date": "2025-03-18",
+      "id": "CTR-0030",
+      "installment_amount": "1352.16",
+      "principal_amount": "28219",
+      "product_id": "PROD-LOAN-PERSONAL",
+      "start_date": "2023-03-29",
+      "status": "active",
+      "terms": {
+        "rate_monthly_pct": 2.49,
+        "terms_months": 24
+      }
+    },
+    {
+      "customer_id": "CUST-0024",
+      "end_date": null,
+      "id": "CTR-0031",
+      "installment_amount": "69.90",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-PRIME",
+      "start_date": "2023-11-20",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Prime Exclusivo"
+      }
+    },
+    {
+      "customer_id": "CUST-0025",
+      "end_date": null,
+      "id": "CTR-0032",
+      "installment_amount": "0.00",
+      "principal_amount": null,
+      "product_id": "PROD-TAR-BASIC",
+      "start_date": "2023-08-05",
+      "status": "active",
+      "terms": {
+        "plan": "Pacote Tarif\u00e1rio Essencial"
+      }
+    }
+  ],
+  "customers": [
+    {
+      "created_at": "2023-10-09",
+      "credit_score": 362,
+      "document_hash": "b1040c515f54a979",
+      "email": "dave.weckl1@simulado.atlas.local",
+      "id": "CUST-0001",
+      "income_monthly": "8274",
+      "name": "Dave Weckl",
+      "segment": "retail"
+    },
+    {
+      "created_at": "2023-04-15",
+      "credit_score": 677,
+      "document_hash": "e96f2ba0dada283f",
+      "email": "vinnie.colaiuta2@simulado.atlas.local",
+      "id": "CUST-0002",
+      "income_monthly": "12286",
+      "name": "Vinnie Colaiuta",
+      "segment": "prime"
+    },
+    {
+      "created_at": "2023-02-02",
+      "credit_score": 652,
+      "document_hash": "7f174435550797bd",
+      "email": "dennis.chambers3@simulado.atlas.local",
+      "id": "CUST-0003",
+      "income_monthly": "5656",
+      "name": "Dennis Chambers",
+      "segment": "retail"
+    },
+    {
+      "created_at": "2023-08-27",
+      "credit_score": 397,
+      "document_hash": "07eaab778d5c8b7e",
+      "email": "buddy.rich4@simulado.atlas.local",
+      "id": "CUST-0004",
+      "income_monthly": "3991",
+      "name": "Buddy Rich",
+      "segment": "retail"
+    },
+    {
+      "created_at": "2024-10-27",
+      "credit_score": 637,
+      "document_hash": "00da6241294e4f3c",
+      "email": "steve.gadd5@simulado.atlas.local",
+      "id": "CUST-0005",
+      "income_monthly": "3828",
+      "name": "Steve Gadd",
+      "segment": "retail"
+    },
+    {
+      "created_at": "2024-08-26",
+      "credit_score": 692,
+      "document_hash": "a2811ffd46001947",
+      "email": "thomas.lang6@simulado.atlas.local",
+      "id": "CUST-0006",
+      "income_monthly": "47439",
+      "name": "Thomas Lang",
+      "segment": "corporate_smb"
+    },
+    {
+      "created_at": "2023-06-13",
+      "credit_score": 987,
+      "document_hash": "852092aa5bf4aaba",
+      "email": "mike.portnoy7@simulado.atlas.local",
+      "id": "CUST-0007",
+      "income_monthly": "25425",
+      "name": "Mike Portnoy",
+      "segment": "private"
+    },
+    {
+      "created_at": "2023-06-09",
+      "credit_score": 754,
+      "document_hash": "68059a7d188bb3d2",
+      "email": "neil.peart8@simulado.atlas.local",
+      "id": "CUST-0008",
+      "income_monthly": "36210",
+      "name": "Neil Peart",
+      "segment": "corporate_smb"
+    },
+    {
+      "created_at": "2023-04-15",
+      "credit_score": 815,
+      "document_hash": "229251c9914d026b",
+      "email": "john.bonham9@simulado.atlas.local",
+      "id": "CUST-0009",
+      "income_monthly": "15514",
+      "name": "John Bonham",
+      "segment": "prime"
+    },
+    {
+      "created_at": "2024-01-03",
+      "credit_score": 544,
+      "document_hash": "44d2f65f55f8f051",
+      "email": "stewart.copeland10@simulado.atlas.local",
+      "id": "CUST-0010",
+      "income_monthly": "2992",
+      "name": "Stewart Copeland",
+      "segment": "retail"
+    },
+    {
+      "created_at": "2023-02-14",
+      "credit_score": 934,
+      "document_hash": "c8a19d64148e931e",
+      "email": "danny.carey11@simulado.atlas.local",
+      "id": "CUST-0011",
+      "income_monthly": "42335",
+      "name": "Danny Carey",
+      "segment": "private"
+    },
+    {
+      "created_at": "2024-01-23",
+      "credit_score": 854,
+      "document_hash": "f14a63d03145b797",
+      "email": "ginger.baker12@simulado.atlas.local",
+      "id": "CUST-0012",
+      "income_monthly": "26180",
+      "name": "Ginger Baker",
+      "segment": "corporate_smb"
+    },
+    {
+      "created_at": "2024-10-05",
+      "credit_score": 632,
+      "document_hash": "e6bd489e600177fb",
+      "email": "keith.moon13@simulado.atlas.local",
+      "id": "CUST-0013",
+      "income_monthly": "4601",
+      "name": "Keith Moon",
+      "segment": "retail"
+    },
+    {
+      "created_at": "2023-03-13",
+      "credit_score": 927,
+      "document_hash": "9355436c4c60c608",
+      "email": "gene.krupa14@simulado.atlas.local",
+      "id": "CUST-0014",
+      "income_monthly": "37601",
+      "name": "Gene Krupa",
+      "segment": "private"
+    },
+    {
+      "created_at": "2023-10-24",
+      "credit_score": 688,
+      "document_hash": "bcf814cc59ef6d58",
+      "email": "billy.cobham15@simulado.atlas.local",
+      "id": "CUST-0015",
+      "income_monthly": "4066",
+      "name": "Billy Cobham",
+      "segment": "retail"
+    },
+    {
+      "created_at": "2023-04-14",
+      "credit_score": 469,
+      "document_hash": "2969159047502c34",
+      "email": "bernard.purdie16@simulado.atlas.local",
+      "id": "CUST-0016",
+      "income_monthly": "9298",
+      "name": "Bernard Purdie",
+      "segment": "retail"
+    },
+    {
+      "created_at": "2024-10-12",
+      "credit_score": 722,
+      "document_hash": "a2c1079e8f98f5bd",
+      "email": "simon.phillips17@simulado.atlas.local",
+      "id": "CUST-0017",
+      "income_monthly": "47714",
+      "name": "Simon Phillips",
+      "segment": "corporate_smb"
+    },
+    {
+      "created_at": "2023-12-30",
+      "credit_score": 821,
+      "document_hash": "245677ed0412764b",
+      "email": "tony.williams18@simulado.atlas.local",
+      "id": "CUST-0018",
+      "income_monthly": "49260",
+      "name": "Tony Williams",
+      "segment": "private"
+    },
+    {
+      "created_at": "2024-11-30",
+      "credit_score": 791,
+      "document_hash": "c625bb2dd52ced1f",
+      "email": "jeff.porcaro19@simulado.atlas.local",
+      "id": "CUST-0019",
+      "income_monthly": "14374",
+      "name": "Jeff Porcaro",
+      "segment": "prime"
+    },
+    {
+      "created_at": "2023-06-25",
+      "credit_score": 661,
+      "document_hash": "1f9e11dabb988187",
+      "email": "terry.bozzio20@simulado.atlas.local",
+      "id": "CUST-0020",
+      "income_monthly": "7401",
+      "name": "Terry Bozzio",
+      "segment": "retail"
+    },
+    {
+      "created_at": "2024-01-24",
+      "credit_score": 661,
+      "document_hash": "208b744871ded502",
+      "email": "chad.smith21@simulado.atlas.local",
+      "id": "CUST-0021",
+      "income_monthly": "17573",
+      "name": "Chad Smith",
+      "segment": "prime"
+    },
+    {
+      "created_at": "2024-07-24",
+      "credit_score": 943,
+      "document_hash": "3b6d74874e8819b8",
+      "email": "gavin.harrison22@simulado.atlas.local",
+      "id": "CUST-0022",
+      "income_monthly": "70099",
+      "name": "Gavin Harrison",
+      "segment": "private"
+    },
+    {
+      "created_at": "2023-02-27",
+      "credit_score": 795,
+      "document_hash": "36ba4c01eefdf9ff",
+      "email": "jojo.mayer23@simulado.atlas.local",
+      "id": "CUST-0023",
+      "income_monthly": "15313",
+      "name": "Jojo Mayer",
+      "segment": "prime"
+    },
+    {
+      "created_at": "2023-11-20",
+      "credit_score": 830,
+      "document_hash": "3a8edc2b2dcf143b",
+      "email": "virgil.donati24@simulado.atlas.local",
+      "id": "CUST-0024",
+      "income_monthly": "10525",
+      "name": "Virgil Donati",
+      "segment": "prime"
+    },
+    {
+      "created_at": "2023-08-05",
+      "credit_score": 717,
+      "document_hash": "73c1ef3f2a6f3a53",
+      "email": "ian.paice25@simulado.atlas.local",
+      "id": "CUST-0025",
+      "income_monthly": "22337",
+      "name": "Ian Paice",
+      "segment": "corporate_smb"
+    }
+  ],
+  "disclaimer": "DISCLAIMER: 100% SYNTHETIC DATA. This dataset is entirely fictitious and simulated for testing and evaluation in the ATLAS Banking Copilot project. No real individual, account, bank, or transaction data is contained herein.",
+  "financial_events": [
+    {
+      "account_id": "ACC-0001",
+      "amount": "268.51",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_out na conta ACC-0001",
+      "id": "EVT-00001",
+      "timestamp": "2026-09-30T22:00:00+00:00",
+      "type": "pix_out"
+    },
+    {
+      "account_id": "ACC-0001",
+      "amount": "467.31",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0001",
+      "id": "EVT-00002",
+      "timestamp": "2026-09-26T06:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0002",
+      "amount": "594.54",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0002",
+      "id": "EVT-00003",
+      "timestamp": "2026-10-01T07:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0002",
+      "amount": "1914.31",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0002",
+      "id": "EVT-00004",
+      "timestamp": "2026-09-26T08:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0002",
+      "amount": "2274.12",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0002",
+      "id": "EVT-00005",
+      "timestamp": "2026-09-21T09:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0003",
+      "amount": "402.96",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0003",
+      "id": "EVT-00006",
+      "timestamp": "2026-10-01T06:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0003",
+      "amount": "1684.62",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o salary_deposit na conta ACC-0003",
+      "id": "EVT-00007",
+      "timestamp": "2026-09-26T02:00:00+00:00",
+      "type": "salary_deposit"
+    },
+    {
+      "account_id": "ACC-0003",
+      "amount": "1662.07",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0003",
+      "id": "EVT-00008",
+      "timestamp": "2026-09-21T07:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0003",
+      "amount": "28.49",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0003",
+      "id": "EVT-00009",
+      "timestamp": "2026-09-16T05:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0003",
+      "amount": "1188.54",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0003",
+      "id": "EVT-00010",
+      "timestamp": "2026-09-10T22:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0003",
+      "amount": "654.24",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0003",
+      "id": "EVT-00011",
+      "timestamp": "2026-09-06T05:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0004",
+      "amount": "2392.94",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0004",
+      "id": "EVT-00012",
+      "timestamp": "2026-10-01T01:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0004",
+      "amount": "1304.07",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0004",
+      "id": "EVT-00013",
+      "timestamp": "2026-09-26T09:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0004",
+      "amount": "2079.67",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0004",
+      "id": "EVT-00014",
+      "timestamp": "2026-09-21T07:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0005",
+      "amount": "781.08",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_out na conta ACC-0005",
+      "id": "EVT-00015",
+      "timestamp": "2026-10-01T00:00:00+00:00",
+      "type": "pix_out"
+    },
+    {
+      "account_id": "ACC-0005",
+      "amount": "983.51",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_out na conta ACC-0005",
+      "id": "EVT-00016",
+      "timestamp": "2026-09-26T08:00:00+00:00",
+      "type": "pix_out"
+    },
+    {
+      "account_id": "ACC-0006",
+      "amount": "2391.76",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0006",
+      "id": "EVT-00017",
+      "timestamp": "2026-10-01T09:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0006",
+      "amount": "1737.84",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_out na conta ACC-0006",
+      "id": "EVT-00018",
+      "timestamp": "2026-09-26T00:00:00+00:00",
+      "type": "pix_out"
+    },
+    {
+      "account_id": "ACC-0006",
+      "amount": "1088.26",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0006",
+      "id": "EVT-00019",
+      "timestamp": "2026-09-20T23:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0006",
+      "amount": "997.33",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0006",
+      "id": "EVT-00020",
+      "timestamp": "2026-09-16T03:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0006",
+      "amount": "1248.58",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o salary_deposit na conta ACC-0006",
+      "id": "EVT-00021",
+      "timestamp": "2026-09-11T04:00:00+00:00",
+      "type": "salary_deposit"
+    },
+    {
+      "account_id": "ACC-0006",
+      "amount": "58.58",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_out na conta ACC-0006",
+      "id": "EVT-00022",
+      "timestamp": "2026-09-06T00:00:00+00:00",
+      "type": "pix_out"
+    },
+    {
+      "account_id": "ACC-0007",
+      "amount": "320.68",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_out na conta ACC-0007",
+      "id": "EVT-00023",
+      "timestamp": "2026-10-01T06:00:00+00:00",
+      "type": "pix_out"
+    },
+    {
+      "account_id": "ACC-0007",
+      "amount": "562.44",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0007",
+      "id": "EVT-00024",
+      "timestamp": "2026-09-26T08:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0007",
+      "amount": "1533.36",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0007",
+      "id": "EVT-00025",
+      "timestamp": "2026-09-21T07:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0007",
+      "amount": "2245.9",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0007",
+      "id": "EVT-00026",
+      "timestamp": "2026-09-16T05:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0007",
+      "amount": "2291.38",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0007",
+      "id": "EVT-00027",
+      "timestamp": "2026-09-10T23:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0007",
+      "amount": "570.33",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_out na conta ACC-0007",
+      "id": "EVT-00028",
+      "timestamp": "2026-09-06T08:00:00+00:00",
+      "type": "pix_out"
+    },
+    {
+      "account_id": "ACC-0008",
+      "amount": "1135.36",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o salary_deposit na conta ACC-0008",
+      "id": "EVT-00029",
+      "timestamp": "2026-10-01T00:00:00+00:00",
+      "type": "salary_deposit"
+    },
+    {
+      "account_id": "ACC-0008",
+      "amount": "1424.26",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0008",
+      "id": "EVT-00030",
+      "timestamp": "2026-09-25T23:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0009",
+      "amount": "1048.06",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0009",
+      "id": "EVT-00031",
+      "timestamp": "2026-10-01T08:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0009",
+      "amount": "1153.05",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0009",
+      "id": "EVT-00032",
+      "timestamp": "2026-09-26T09:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0009",
+      "amount": "555.81",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0009",
+      "id": "EVT-00033",
+      "timestamp": "2026-09-21T05:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0009",
+      "amount": "1829.7",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o salary_deposit na conta ACC-0009",
+      "id": "EVT-00034",
+      "timestamp": "2026-09-15T22:00:00+00:00",
+      "type": "salary_deposit"
+    },
+    {
+      "account_id": "ACC-0010",
+      "amount": "478.09",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0010",
+      "id": "EVT-00035",
+      "timestamp": "2026-09-30T22:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0010",
+      "amount": "2254.04",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o salary_deposit na conta ACC-0010",
+      "id": "EVT-00036",
+      "timestamp": "2026-09-26T04:00:00+00:00",
+      "type": "salary_deposit"
+    },
+    {
+      "account_id": "ACC-0010",
+      "amount": "1780.16",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o salary_deposit na conta ACC-0010",
+      "id": "EVT-00037",
+      "timestamp": "2026-09-21T09:00:00+00:00",
+      "type": "salary_deposit"
+    },
+    {
+      "account_id": "ACC-0010",
+      "amount": "1513.05",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0010",
+      "id": "EVT-00038",
+      "timestamp": "2026-09-16T04:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0010",
+      "amount": "1042.85",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0010",
+      "id": "EVT-00039",
+      "timestamp": "2026-09-11T08:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0011",
+      "amount": "653.3",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0011",
+      "id": "EVT-00040",
+      "timestamp": "2026-10-01T07:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0011",
+      "amount": "1708.03",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o salary_deposit na conta ACC-0011",
+      "id": "EVT-00041",
+      "timestamp": "2026-09-26T07:00:00+00:00",
+      "type": "salary_deposit"
+    },
+    {
+      "account_id": "ACC-0011",
+      "amount": "1706.85",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0011",
+      "id": "EVT-00042",
+      "timestamp": "2026-09-20T22:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0011",
+      "amount": "1112.2",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0011",
+      "id": "EVT-00043",
+      "timestamp": "2026-09-15T22:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0012",
+      "amount": "178.6",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0012",
+      "id": "EVT-00044",
+      "timestamp": "2026-10-01T06:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0012",
+      "amount": "1905.44",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0012",
+      "id": "EVT-00045",
+      "timestamp": "2026-09-26T05:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0013",
+      "amount": "116.84",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0013",
+      "id": "EVT-00046",
+      "timestamp": "2026-10-01T06:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0013",
+      "amount": "1364.35",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0013",
+      "id": "EVT-00047",
+      "timestamp": "2026-09-26T08:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0013",
+      "amount": "1458.82",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0013",
+      "id": "EVT-00048",
+      "timestamp": "2026-09-21T01:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0014",
+      "amount": "133.14",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0014",
+      "id": "EVT-00049",
+      "timestamp": "2026-10-01T05:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0014",
+      "amount": "2398.33",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o salary_deposit na conta ACC-0014",
+      "id": "EVT-00050",
+      "timestamp": "2026-09-26T09:00:00+00:00",
+      "type": "salary_deposit"
+    },
+    {
+      "account_id": "ACC-0014",
+      "amount": "2463.55",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_out na conta ACC-0014",
+      "id": "EVT-00051",
+      "timestamp": "2026-09-21T04:00:00+00:00",
+      "type": "pix_out"
+    },
+    {
+      "account_id": "ACC-0014",
+      "amount": "1807.77",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0014",
+      "id": "EVT-00052",
+      "timestamp": "2026-09-16T01:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0014",
+      "amount": "1597.73",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_out na conta ACC-0014",
+      "id": "EVT-00053",
+      "timestamp": "2026-09-11T06:00:00+00:00",
+      "type": "pix_out"
+    },
+    {
+      "account_id": "ACC-0015",
+      "amount": "1806.0",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0015",
+      "id": "EVT-00054",
+      "timestamp": "2026-10-01T01:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0015",
+      "amount": "1511.55",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0015",
+      "id": "EVT-00055",
+      "timestamp": "2026-09-26T08:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0015",
+      "amount": "1305.84",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0015",
+      "id": "EVT-00056",
+      "timestamp": "2026-09-21T08:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0015",
+      "amount": "2097.39",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0015",
+      "id": "EVT-00057",
+      "timestamp": "2026-09-15T23:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0016",
+      "amount": "1668.89",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0016",
+      "id": "EVT-00058",
+      "timestamp": "2026-10-01T05:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0016",
+      "amount": "805.53",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o salary_deposit na conta ACC-0016",
+      "id": "EVT-00059",
+      "timestamp": "2026-09-25T23:00:00+00:00",
+      "type": "salary_deposit"
+    },
+    {
+      "account_id": "ACC-0016",
+      "amount": "732.78",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0016",
+      "id": "EVT-00060",
+      "timestamp": "2026-09-21T00:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0016",
+      "amount": "1683.7",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0016",
+      "id": "EVT-00061",
+      "timestamp": "2026-09-16T09:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0016",
+      "amount": "1195.26",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0016",
+      "id": "EVT-00062",
+      "timestamp": "2026-09-11T03:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0017",
+      "amount": "1924.56",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0017",
+      "id": "EVT-00063",
+      "timestamp": "2026-10-01T02:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0017",
+      "amount": "2113.6",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0017",
+      "id": "EVT-00064",
+      "timestamp": "2026-09-25T22:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0017",
+      "amount": "367.36",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o salary_deposit na conta ACC-0017",
+      "id": "EVT-00065",
+      "timestamp": "2026-09-21T01:00:00+00:00",
+      "type": "salary_deposit"
+    },
+    {
+      "account_id": "ACC-0017",
+      "amount": "402.96",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0017",
+      "id": "EVT-00066",
+      "timestamp": "2026-09-16T06:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0017",
+      "amount": "940.25",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0017",
+      "id": "EVT-00067",
+      "timestamp": "2026-09-11T07:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0017",
+      "amount": "209.31",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0017",
+      "id": "EVT-00068",
+      "timestamp": "2026-09-06T02:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0018",
+      "amount": "1885.53",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_out na conta ACC-0018",
+      "id": "EVT-00069",
+      "timestamp": "2026-09-30T23:00:00+00:00",
+      "type": "pix_out"
+    },
+    {
+      "account_id": "ACC-0018",
+      "amount": "1592.63",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0018",
+      "id": "EVT-00070",
+      "timestamp": "2026-09-26T03:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0018",
+      "amount": "624.83",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0018",
+      "id": "EVT-00071",
+      "timestamp": "2026-09-20T22:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0018",
+      "amount": "456.99",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0018",
+      "id": "EVT-00072",
+      "timestamp": "2026-09-16T03:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0018",
+      "amount": "740.89",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0018",
+      "id": "EVT-00073",
+      "timestamp": "2026-09-11T01:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0018",
+      "amount": "225.71",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0018",
+      "id": "EVT-00074",
+      "timestamp": "2026-09-06T06:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0019",
+      "amount": "566.59",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0019",
+      "id": "EVT-00075",
+      "timestamp": "2026-09-30T23:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0019",
+      "amount": "1832.78",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0019",
+      "id": "EVT-00076",
+      "timestamp": "2026-09-25T22:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0020",
+      "amount": "2264.57",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0020",
+      "id": "EVT-00077",
+      "timestamp": "2026-10-01T07:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0020",
+      "amount": "1863.33",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0020",
+      "id": "EVT-00078",
+      "timestamp": "2026-09-26T06:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0020",
+      "amount": "2155.62",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0020",
+      "id": "EVT-00079",
+      "timestamp": "2026-09-20T23:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0020",
+      "amount": "1144.56",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0020",
+      "id": "EVT-00080",
+      "timestamp": "2026-09-16T08:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0020",
+      "amount": "980.34",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0020",
+      "id": "EVT-00081",
+      "timestamp": "2026-09-11T04:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0020",
+      "amount": "2232.1",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0020",
+      "id": "EVT-00082",
+      "timestamp": "2026-09-06T07:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0021",
+      "amount": "1588.88",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0021",
+      "id": "EVT-00083",
+      "timestamp": "2026-10-01T07:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0021",
+      "amount": "283.53",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0021",
+      "id": "EVT-00084",
+      "timestamp": "2026-09-26T03:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0021",
+      "amount": "2242.59",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0021",
+      "id": "EVT-00085",
+      "timestamp": "2026-09-21T03:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0022",
+      "amount": "1740.49",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0022",
+      "id": "EVT-00086",
+      "timestamp": "2026-10-01T00:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0022",
+      "amount": "2378.48",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0022",
+      "id": "EVT-00087",
+      "timestamp": "2026-09-26T02:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0023",
+      "amount": "1243.96",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0023",
+      "id": "EVT-00088",
+      "timestamp": "2026-10-01T03:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0023",
+      "amount": "2224.95",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0023",
+      "id": "EVT-00089",
+      "timestamp": "2026-09-25T22:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0024",
+      "amount": "2019.28",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0024",
+      "id": "EVT-00090",
+      "timestamp": "2026-10-01T05:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0024",
+      "amount": "2009.03",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0024",
+      "id": "EVT-00091",
+      "timestamp": "2026-09-26T03:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0024",
+      "amount": "1676.92",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0024",
+      "id": "EVT-00092",
+      "timestamp": "2026-09-21T07:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0024",
+      "amount": "542.79",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0024",
+      "id": "EVT-00093",
+      "timestamp": "2026-09-16T01:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0024",
+      "amount": "1633.75",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0024",
+      "id": "EVT-00094",
+      "timestamp": "2026-09-11T00:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0024",
+      "amount": "363.82",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0024",
+      "id": "EVT-00095",
+      "timestamp": "2026-09-06T03:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0025",
+      "amount": "764.06",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0025",
+      "id": "EVT-00096",
+      "timestamp": "2026-10-01T05:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0025",
+      "amount": "1360.27",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0025",
+      "id": "EVT-00097",
+      "timestamp": "2026-09-26T02:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0025",
+      "amount": "1402.97",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0025",
+      "id": "EVT-00098",
+      "timestamp": "2026-09-21T03:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0026",
+      "amount": "1053.1",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0026",
+      "id": "EVT-00099",
+      "timestamp": "2026-10-01T02:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0026",
+      "amount": "2229.06",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0026",
+      "id": "EVT-00100",
+      "timestamp": "2026-09-26T04:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0026",
+      "amount": "301.99",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0026",
+      "id": "EVT-00101",
+      "timestamp": "2026-09-20T23:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0026",
+      "amount": "147.31",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0026",
+      "id": "EVT-00102",
+      "timestamp": "2026-09-16T06:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0027",
+      "amount": "997.16",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o salary_deposit na conta ACC-0027",
+      "id": "EVT-00103",
+      "timestamp": "2026-10-01T02:00:00+00:00",
+      "type": "salary_deposit"
+    },
+    {
+      "account_id": "ACC-0027",
+      "amount": "2330.27",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_out na conta ACC-0027",
+      "id": "EVT-00104",
+      "timestamp": "2026-09-26T02:00:00+00:00",
+      "type": "pix_out"
+    },
+    {
+      "account_id": "ACC-0028",
+      "amount": "707.77",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0028",
+      "id": "EVT-00105",
+      "timestamp": "2026-10-01T00:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0028",
+      "amount": "690.39",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_out na conta ACC-0028",
+      "id": "EVT-00106",
+      "timestamp": "2026-09-26T08:00:00+00:00",
+      "type": "pix_out"
+    },
+    {
+      "account_id": "ACC-0028",
+      "amount": "1297.73",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0028",
+      "id": "EVT-00107",
+      "timestamp": "2026-09-20T23:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0028",
+      "amount": "1644.91",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0028",
+      "id": "EVT-00108",
+      "timestamp": "2026-09-16T06:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0029",
+      "amount": "437.89",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0029",
+      "id": "EVT-00109",
+      "timestamp": "2026-10-01T05:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0029",
+      "amount": "2338.05",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_out na conta ACC-0029",
+      "id": "EVT-00110",
+      "timestamp": "2026-09-26T04:00:00+00:00",
+      "type": "pix_out"
+    },
+    {
+      "account_id": "ACC-0030",
+      "amount": "1537.08",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0030",
+      "id": "EVT-00111",
+      "timestamp": "2026-10-01T01:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0030",
+      "amount": "71.53",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0030",
+      "id": "EVT-00112",
+      "timestamp": "2026-09-26T02:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0030",
+      "amount": "1795.46",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_out na conta ACC-0030",
+      "id": "EVT-00113",
+      "timestamp": "2026-09-20T23:00:00+00:00",
+      "type": "pix_out"
+    },
+    {
+      "account_id": "ACC-0030",
+      "amount": "646.55",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0030",
+      "id": "EVT-00114",
+      "timestamp": "2026-09-16T07:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0030",
+      "amount": "2224.99",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0030",
+      "id": "EVT-00115",
+      "timestamp": "2026-09-11T02:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0030",
+      "amount": "1804.93",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0030",
+      "id": "EVT-00116",
+      "timestamp": "2026-09-06T00:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0031",
+      "amount": "1025.11",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0031",
+      "id": "EVT-00117",
+      "timestamp": "2026-10-01T05:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0031",
+      "amount": "1018.96",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0031",
+      "id": "EVT-00118",
+      "timestamp": "2026-09-26T02:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0031",
+      "amount": "1397.03",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0031",
+      "id": "EVT-00119",
+      "timestamp": "2026-09-21T02:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0031",
+      "amount": "764.62",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0031",
+      "id": "EVT-00120",
+      "timestamp": "2026-09-16T06:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0032",
+      "amount": "1414.35",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0032",
+      "id": "EVT-00121",
+      "timestamp": "2026-10-01T00:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0032",
+      "amount": "2296.01",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0032",
+      "id": "EVT-00122",
+      "timestamp": "2026-09-26T01:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0032",
+      "amount": "370.3",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0032",
+      "id": "EVT-00123",
+      "timestamp": "2026-09-20T22:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0032",
+      "amount": "2021.71",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0032",
+      "id": "EVT-00124",
+      "timestamp": "2026-09-16T06:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0033",
+      "amount": "1855.02",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0033",
+      "id": "EVT-00125",
+      "timestamp": "2026-10-01T08:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0033",
+      "amount": "927.51",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0033",
+      "id": "EVT-00126",
+      "timestamp": "2026-09-25T22:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0033",
+      "amount": "1274.84",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0033",
+      "id": "EVT-00127",
+      "timestamp": "2026-09-21T00:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0033",
+      "amount": "1958.7",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0033",
+      "id": "EVT-00128",
+      "timestamp": "2026-09-16T01:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0033",
+      "amount": "1762.95",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0033",
+      "id": "EVT-00129",
+      "timestamp": "2026-09-11T01:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0034",
+      "amount": "1878.34",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0034",
+      "id": "EVT-00130",
+      "timestamp": "2026-10-01T05:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0034",
+      "amount": "964.15",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0034",
+      "id": "EVT-00131",
+      "timestamp": "2026-09-25T22:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0034",
+      "amount": "1312.15",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0034",
+      "id": "EVT-00132",
+      "timestamp": "2026-09-20T22:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0034",
+      "amount": "804.27",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o salary_deposit na conta ACC-0034",
+      "id": "EVT-00133",
+      "timestamp": "2026-09-15T22:00:00+00:00",
+      "type": "salary_deposit"
+    },
+    {
+      "account_id": "ACC-0035",
+      "amount": "2434.97",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0035",
+      "id": "EVT-00134",
+      "timestamp": "2026-10-01T01:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0035",
+      "amount": "431.24",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0035",
+      "id": "EVT-00135",
+      "timestamp": "2026-09-26T05:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0035",
+      "amount": "1498.22",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0035",
+      "id": "EVT-00136",
+      "timestamp": "2026-09-21T05:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0035",
+      "amount": "2207.16",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0035",
+      "id": "EVT-00137",
+      "timestamp": "2026-09-16T05:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0035",
+      "amount": "243.7",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0035",
+      "id": "EVT-00138",
+      "timestamp": "2026-09-11T05:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0036",
+      "amount": "440.01",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0036",
+      "id": "EVT-00139",
+      "timestamp": "2026-10-01T00:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0036",
+      "amount": "1942.61",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0036",
+      "id": "EVT-00140",
+      "timestamp": "2026-09-26T02:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0036",
+      "amount": "775.06",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_installment na conta ACC-0036",
+      "id": "EVT-00141",
+      "timestamp": "2026-09-21T05:00:00+00:00",
+      "type": "loan_installment"
+    },
+    {
+      "account_id": "ACC-0037",
+      "amount": "287.51",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_out na conta ACC-0037",
+      "id": "EVT-00142",
+      "timestamp": "2026-10-01T02:00:00+00:00",
+      "type": "pix_out"
+    },
+    {
+      "account_id": "ACC-0037",
+      "amount": "2383.8",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_out na conta ACC-0037",
+      "id": "EVT-00143",
+      "timestamp": "2026-09-25T23:00:00+00:00",
+      "type": "pix_out"
+    },
+    {
+      "account_id": "ACC-0037",
+      "amount": "641.19",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0037",
+      "id": "EVT-00144",
+      "timestamp": "2026-09-21T00:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0037",
+      "amount": "368.31",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0037",
+      "id": "EVT-00145",
+      "timestamp": "2026-09-16T08:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0037",
+      "amount": "2461.79",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0037",
+      "id": "EVT-00146",
+      "timestamp": "2026-09-11T06:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0038",
+      "amount": "1865.56",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0038",
+      "id": "EVT-00147",
+      "timestamp": "2026-10-01T05:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0038",
+      "amount": "1270.72",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0038",
+      "id": "EVT-00148",
+      "timestamp": "2026-09-26T00:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0038",
+      "amount": "426.97",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0038",
+      "id": "EVT-00149",
+      "timestamp": "2026-09-21T06:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0038",
+      "amount": "1103.84",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0038",
+      "id": "EVT-00150",
+      "timestamp": "2026-09-16T08:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0038",
+      "amount": "1002.22",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o salary_deposit na conta ACC-0038",
+      "id": "EVT-00151",
+      "timestamp": "2026-09-11T01:00:00+00:00",
+      "type": "salary_deposit"
+    },
+    {
+      "account_id": "ACC-0038",
+      "amount": "661.0",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_out na conta ACC-0038",
+      "id": "EVT-00152",
+      "timestamp": "2026-09-06T03:00:00+00:00",
+      "type": "pix_out"
+    },
+    {
+      "account_id": "ACC-0039",
+      "amount": "1212.04",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0039",
+      "id": "EVT-00153",
+      "timestamp": "2026-10-01T06:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0039",
+      "amount": "1178.89",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0039",
+      "id": "EVT-00154",
+      "timestamp": "2026-09-26T02:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0039",
+      "amount": "976.33",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_out na conta ACC-0039",
+      "id": "EVT-00155",
+      "timestamp": "2026-09-20T23:00:00+00:00",
+      "type": "pix_out"
+    },
+    {
+      "account_id": "ACC-0039",
+      "amount": "1761.14",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0039",
+      "id": "EVT-00156",
+      "timestamp": "2026-09-16T01:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0039",
+      "amount": "630.34",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o bill_payment na conta ACC-0039",
+      "id": "EVT-00157",
+      "timestamp": "2026-09-11T07:00:00+00:00",
+      "type": "bill_payment"
+    },
+    {
+      "account_id": "ACC-0040",
+      "amount": "699.39",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0040",
+      "id": "EVT-00158",
+      "timestamp": "2026-10-01T00:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0040",
+      "amount": "1818.15",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0040",
+      "id": "EVT-00159",
+      "timestamp": "2026-09-26T02:00:00+00:00",
+      "type": "loan_disbursement"
+    },
+    {
+      "account_id": "ACC-0041",
+      "amount": "1135.64",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o tariff_charge na conta ACC-0041",
+      "id": "EVT-00160",
+      "timestamp": "2026-10-01T01:00:00+00:00",
+      "type": "tariff_charge"
+    },
+    {
+      "account_id": "ACC-0041",
+      "amount": "1813.1",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o insurance_premium na conta ACC-0041",
+      "id": "EVT-00161",
+      "timestamp": "2026-09-26T00:00:00+00:00",
+      "type": "insurance_premium"
+    },
+    {
+      "account_id": "ACC-0041",
+      "amount": "1789.94",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o pix_in na conta ACC-0041",
+      "id": "EVT-00162",
+      "timestamp": "2026-09-21T04:00:00+00:00",
+      "type": "pix_in"
+    },
+    {
+      "account_id": "ACC-0041",
+      "amount": "125.11",
+      "description": "Simula\u00e7\u00e3o de transa\u00e7\u00e3o loan_disbursement na conta ACC-0041",
+      "id": "EVT-00163",
+      "timestamp": "2026-09-16T06:00:00+00:00",
+      "type": "loan_disbursement"
+    }
+  ],
+  "generated_at": "2026-10-06T00:00:00Z",
+  "histories": [
+    {
+      "active_contracts_count": 1,
+      "credit_risk_tier": "HIGH",
+      "customer_id": "CUST-0001",
+      "events_count": 2,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "37670.91",
+      "total_borrowed": "0"
+    },
+    {
+      "active_contracts_count": 1,
+      "credit_risk_tier": "MEDIUM",
+      "customer_id": "CUST-0002",
+      "events_count": 3,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "43454.63",
+      "total_borrowed": "0"
+    },
+    {
+      "active_contracts_count": 2,
+      "credit_risk_tier": "MEDIUM",
+      "customer_id": "CUST-0003",
+      "events_count": 6,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "42629.58",
+      "total_borrowed": "12930"
+    },
+    {
+      "active_contracts_count": 1,
+      "credit_risk_tier": "HIGH",
+      "customer_id": "CUST-0004",
+      "events_count": 5,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "81294.64",
+      "total_borrowed": "0"
+    },
+    {
+      "active_contracts_count": 1,
+      "credit_risk_tier": "MEDIUM",
+      "customer_id": "CUST-0005",
+      "events_count": 12,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "92162.00",
+      "total_borrowed": "0"
+    },
+    {
+      "active_contracts_count": 1,
+      "credit_risk_tier": "MEDIUM",
+      "customer_id": "CUST-0006",
+      "events_count": 6,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "27789.13",
+      "total_borrowed": "0"
+    },
+    {
+      "active_contracts_count": 1,
+      "credit_risk_tier": "LOW",
+      "customer_id": "CUST-0007",
+      "events_count": 5,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "3587.14",
+      "total_borrowed": "0"
+    },
+    {
+      "active_contracts_count": 2,
+      "credit_risk_tier": "LOW",
+      "customer_id": "CUST-0008",
+      "events_count": 6,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "20311.36",
+      "total_borrowed": "19432"
+    },
+    {
+      "active_contracts_count": 1,
+      "credit_risk_tier": "LOW",
+      "customer_id": "CUST-0009",
+      "events_count": 8,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "95862.08",
+      "total_borrowed": "0"
+    },
+    {
+      "active_contracts_count": 1,
+      "credit_risk_tier": "HIGH",
+      "customer_id": "CUST-0010",
+      "events_count": 9,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "52770.88",
+      "total_borrowed": "0"
+    },
+    {
+      "active_contracts_count": 2,
+      "credit_risk_tier": "LOW",
+      "customer_id": "CUST-0011",
+      "events_count": 6,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "35690.96",
+      "total_borrowed": "8858"
+    },
+    {
+      "active_contracts_count": 1,
+      "credit_risk_tier": "LOW",
+      "customer_id": "CUST-0012",
+      "events_count": 6,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "42506.43",
+      "total_borrowed": "0"
+    },
+    {
+      "active_contracts_count": 2,
+      "credit_risk_tier": "MEDIUM",
+      "customer_id": "CUST-0013",
+      "events_count": 8,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "124639.12",
+      "total_borrowed": "26654"
+    },
+    {
+      "active_contracts_count": 1,
+      "credit_risk_tier": "LOW",
+      "customer_id": "CUST-0014",
+      "events_count": 5,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "85303.77",
+      "total_borrowed": "0"
+    },
+    {
+      "active_contracts_count": 1,
+      "credit_risk_tier": "MEDIUM",
+      "customer_id": "CUST-0015",
+      "events_count": 8,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "109020.15",
+      "total_borrowed": "0"
+    },
+    {
+      "active_contracts_count": 1,
+      "credit_risk_tier": "HIGH",
+      "customer_id": "CUST-0016",
+      "events_count": 3,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "13535.19",
+      "total_borrowed": "0"
+    },
+    {
+      "active_contracts_count": 2,
+      "credit_risk_tier": "MEDIUM",
+      "customer_id": "CUST-0017",
+      "events_count": 6,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "81601.69",
+      "total_borrowed": "19040"
+    },
+    {
+      "active_contracts_count": 2,
+      "credit_risk_tier": "LOW",
+      "customer_id": "CUST-0018",
+      "events_count": 6,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "55414.87",
+      "total_borrowed": "35976"
+    },
+    {
+      "active_contracts_count": 1,
+      "credit_risk_tier": "LOW",
+      "customer_id": "CUST-0019",
+      "events_count": 6,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "20653.3",
+      "total_borrowed": "0"
+    },
+    {
+      "active_contracts_count": 1,
+      "credit_risk_tier": "MEDIUM",
+      "customer_id": "CUST-0020",
+      "events_count": 4,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "37682.1",
+      "total_borrowed": "0"
+    },
+    {
+      "active_contracts_count": 1,
+      "credit_risk_tier": "MEDIUM",
+      "customer_id": "CUST-0021",
+      "events_count": 9,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "103172.06",
+      "total_borrowed": "0"
+    },
+    {
+      "active_contracts_count": 1,
+      "credit_risk_tier": "LOW",
+      "customer_id": "CUST-0022",
+      "events_count": 9,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "81804.37",
+      "total_borrowed": "0"
+    },
+    {
+      "active_contracts_count": 2,
+      "credit_risk_tier": "LOW",
+      "customer_id": "CUST-0023",
+      "events_count": 8,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "74331.94",
+      "total_borrowed": "28219"
+    },
+    {
+      "active_contracts_count": 1,
+      "credit_risk_tier": "LOW",
+      "customer_id": "CUST-0024",
+      "events_count": 11,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "63209.87",
+      "total_borrowed": "0"
+    },
+    {
+      "active_contracts_count": 1,
+      "credit_risk_tier": "MEDIUM",
+      "customer_id": "CUST-0025",
+      "events_count": 6,
+      "last_activity_date": "2026-10-01",
+      "total_balance": "107108.98",
+      "total_borrowed": "0"
+    }
+  ],
+  "products": [
+    {
+      "base_rate_or_fee": "2.49",
+      "category": "loan",
+      "description": "Empr\u00e9stimo pessoal com taxa pr\u00e9-fixada e parcelamento em at\u00e9 48x.",
+      "id": "PROD-LOAN-PERSONAL",
+      "min_credit_score": 500,
+      "name": "Cr\u00e9dito Pessoal Flex"
+    },
+    {
+      "base_rate_or_fee": "1.65",
+      "category": "loan",
+      "description": "Empr\u00e9stimo com desconto em folha e taxas reduzidas.",
+      "id": "PROD-LOAN-PAYROLL",
+      "min_credit_score": 400,
+      "name": "Cr\u00e9dito Consignado Atlas"
+    },
+    {
+      "base_rate_or_fee": "45.00",
+      "category": "insurance",
+      "description": "Cobertura abrangente para morte acidental, invalidez e aux\u00edlio funeral.",
+      "id": "PROD-INS-LIFE",
+      "min_credit_score": 300,
+      "name": "Seguro Vida Tranquila"
+    },
+    {
+      "base_rate_or_fee": "180.00",
+      "category": "insurance",
+      "description": "Prote\u00e7\u00e3o veicular contra colis\u00e3o, furto e terceiros.",
+      "id": "PROD-INS-AUTO",
+      "min_credit_score": 450,
+      "name": "Seguro Auto Protegido"
+    },
+    {
+      "base_rate_or_fee": "12.00",
+      "category": "consortium",
+      "description": "Cartas de cr\u00e9dito automotivo com taxa de administra\u00e7\u00e3o competitiva.",
+      "id": "PROD-CON-AUTO",
+      "min_credit_score": 400,
+      "name": "Cons\u00f3rcio Auto Sonho"
+    },
+    {
+      "base_rate_or_fee": "15.00",
+      "category": "consortium",
+      "description": "Planejamento para aquisi\u00e7\u00e3o de im\u00f3veis sem juros banc\u00e1rios tradicionais.",
+      "id": "PROD-CON-HOME",
+      "min_credit_score": 550,
+      "name": "Cons\u00f3rcio Imobili\u00e1rio Atlas"
+    },
+    {
+      "base_rate_or_fee": "0.00",
+      "category": "tariff",
+      "description": "Cesta b\u00e1sica de servi\u00e7os banc\u00e1rios conforme normativo Bacen.",
+      "id": "PROD-TAR-BASIC",
+      "min_credit_score": 0,
+      "name": "Pacote Tarif\u00e1rio Essencial"
+    },
+    {
+      "base_rate_or_fee": "69.90",
+      "category": "tariff",
+      "description": "Atendimento preferencial, transfer\u00eancias ilimitadas e isen\u00e7\u00f5es parciais.",
+      "id": "PROD-TAR-PRIME",
+      "min_credit_score": 700,
+      "name": "Pacote Prime Exclusivo"
+    }
+  ],
+  "seed": 42,
+  "version": "1.0.0"
+}
