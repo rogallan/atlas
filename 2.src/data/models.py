@@ -77,6 +77,7 @@ class Customer(BaseModel):
     document_hash: str = Field(..., description="Fictitious hashed CPF/CNPJ identifier")
     segment: CustomerSegment
     credit_score: int = Field(..., ge=0, le=1000, description="Simulated credit score (0-1000)")
+    # pyrefly: ignore [bad-argument-type]
     income_monthly: Decimal = Field(..., ge=0, description="Monthly income in BRL")
     created_at: date
 
