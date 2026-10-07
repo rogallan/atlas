@@ -12,3 +12,11 @@ build/
 .terraform/
 *.tfstate
 *.tfstate.backup
+
+# Testing and quality tool caches
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/

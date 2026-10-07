@@ -36,15 +36,15 @@ flowchart TD
     RouterNode -->|knowledge| RAGNode[RAG Node]
     RouterNode -->|query / simulation / action| MCPNode[MCP Tool Node]
     RouterNode -->|clarification| ClarifyNode[Clarification Node]
-    
+
     RAGNode --> ValidatorNode[Validator / Critic Node]
     MCPNode --> ValidatorNode
     ClarifyNode --> SynthesizerNode[Synthesizer Node]
-    
+
     ValidatorNode -->|passed| SynthesizerNode
     ValidatorNode -->|blocked action / unconfirmed| ActionConfirmNode[Confirmation Card Node]
     ValidatorNode -->|ungrounded / error| FallbackNode[Fallback Node]
-    
+
     SynthesizerNode --> End([Response to Gateway])
     ActionConfirmNode --> End
     FallbackNode --> End

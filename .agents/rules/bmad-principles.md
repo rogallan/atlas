@@ -11,11 +11,10 @@ O objetivo é transformar o desenvolvimento assistido por IA em um processo rigo
 
 ## 2. Princípios de Execução BMAD
 1. **Spec First (SDD):** Antes de codificar, valide os requisitos na pasta `1.SDDs/` (`spec.md` -> `plan.md` -> `tasks.md`).
-2. **Separação de Preocupações:** 
+2. **Separação de Preocupações:**
    - *PM/Analyst:* Define o "quê", o valor de negócio e critérios de aceitação.
    - *Architect:* Define o "como", contratos de dados (Pydantic/OpenAPI) e trade-offs técnicos (ADRs).
    - *Developer:* Implementa código limpo, tipado e com testes unitários.
    - *QA/Evaluator:* Mede regressões, avalia scorecards e valida conformidade.
 3. **Evidência Antes de Conclusão:** Uma tarefa só é dada como finalizada quando comprovada com saída de testes, validação de schema ou verificação prática.
 4. **Idioma dos Artefatos Técnicos (Inglês Mandatório):** Independentemente da língua utilizada no chat ou na descrição das skills, todos os artefatos técnicos formais do repositório (`1.SDDs/` com `spec.md`, `plan.md`, `tasks.md`, `verify.md`, bem como código-fonte em `2.src/`, testes e documentação técnica) **devem ser gerados e mantidos estritamente em inglês**, preservando a convenção global e o padrão dos SDDs já existentes.
-

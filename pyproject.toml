@@ -1,0 +1,111 @@
+[project]
+name = "atlas-banking-copilot"
+version = "0.1.0"
+description = "Conversational GenAI copilot for bank relationship managers"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Roger Allan Silva Teixeira", email = "roger.allan@yahoo.com.br" },
+]
+dependencies = [
+    "fastapi>=0.115.0",
+    "pydantic>=2.10.0",
+    "httpx>=0.28.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.13.0",
+    "pre-commit>=4.0.1",
+    "pytest>=8.3.4",
+    "pytest-asyncio>=0.24.0",
+    "pytest-cov>=6.0.0",
+    "ruff>=0.8.4",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = [
+    "2.src/agent",
+    "2.src/api",
+    "2.src/data",
+    "2.src/mcp",
+    "2.src/providers",
+    "2.src/rag",
+]
+
+# --- Ruff Configuration ---
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["2.src", "4.tests"]
+extend-exclude = [
+    ".venv",
+    "1.SDDs",
+    ".agents",
+    "3.frontend",
+    "5.infra",
+    "6.ops",
+    "7.evals",
+    "8.docs",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "SIM", # flake8-simplify
+]
+ignore = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["agent", "api", "data", "mcp", "providers", "rag"]
+
+# --- Mypy Configuration ---
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+mypy_path = "2.src"
+files = ["2.src", "4.tests"]
+
+# --- Pytest Configuration ---
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["4.tests"]
+pythonpath = ["2.src", "."]
+asyncio_mode = "auto"
+addopts = [
+    "-ra",
+    "-q",
+    "--cov=2.src",
+    "--cov-report=term-missing",
+    "--cov-fail-under=70",
+]
+
+# --- Coverage Configuration ---
+[tool.coverage.run]
+branch = true
+source = ["2.src"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 70
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]

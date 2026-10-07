@@ -36,7 +36,7 @@ sequenceDiagram
     participant Engine as 📚 S07 RAG / 🛠️ S08-13 MCP (Span: tool.execute)
     participant Critic as 🔍 S14 Validator (Span: agent.validate)
     participant OTel as 📊 OpenTelemetry Collector / Logs
-    
+
     User->>Gateway: POST /v1/chat (X-Correlation-ID: abc-123)
     Note over Gateway: Set context: correlation_id=abc-123
     Gateway->>Router: Classify intent
