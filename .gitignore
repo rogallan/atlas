@@ -20,3 +20,7 @@ htmlcov/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+
+# Vector database local storage
+**/storage/chroma/
+.chroma/

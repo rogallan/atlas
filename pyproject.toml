@@ -12,6 +12,8 @@ dependencies = [
     "pydantic>=2.10.0",
     "httpx>=0.28.0",
     "uvicorn[standard]>=0.32.0",
+    "chromadb>=1.5.9",
+    "pypdf>=6.19.0",
 ]
 
 [project.optional-dependencies]
@@ -81,6 +83,10 @@ warn_unreachable = true
 disallow_untyped_decorators = false
 mypy_path = "2.src"
 files = ["2.src", "4.tests"]
+
+[[tool.mypy.overrides]]
+module = ["chromadb.*", "pypdf.*"]
+ignore_missing_imports = true
 
 # --- Pytest Configuration ---
 [tool.pytest.ini_options]

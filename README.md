@@ -93,3 +93,12 @@ uv run uvicorn api.main:app --reload --port 8000
 # Executar a suíte de testes unitários e benchmark de intenções
 uv run pytest 4.tests/unit/test_intent_router.py 4.tests/evals/test_golden_intents.py -v
 ```
+
+### 8. Pipeline de Ingestão RAG (S06)
+```bash
+# Executar a ingestão e indexação das normas do BACEN no ChromaDB local
+uv run python 2.src/rag/ingestion/pipeline.py --input-dir 8.docs/knowledge
+
+# Executar os testes unitários do RAG Ingestion
+uv run pytest 4.tests/unit/test_rag_ingestion.py -v
+```
