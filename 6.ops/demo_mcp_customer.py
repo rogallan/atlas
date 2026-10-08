@@ -15,9 +15,10 @@ from mcp.customer.server import create_customer_server
 
 
 def main() -> None:
-    if sys.stdout.encoding.lower() != "utf-8":
+    reconfigure_fn = getattr(sys.stdout, "reconfigure", None)
+    if callable(reconfigure_fn) and sys.stdout.encoding.lower() != "utf-8":
         try:
-            sys.stdout.reconfigure(encoding="utf-8")
+            reconfigure_fn(encoding="utf-8")
         except Exception:
             pass
 

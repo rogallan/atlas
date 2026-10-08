@@ -1,13 +1,13 @@
 # Tasks — S09 · MCP Loan Server
 
-- [ ] Define loan modalities catalog, interest rates, and term constraints in `src/mcp/loan/catalog.py`.
-- [ ] Define Pydantic models (`LoanModality`, `LoanSimulationResult`, `ModalityInfo`) in `src/mcp/loan/models.py`.
-- [ ] Implement deterministic financial math engine (Price table, IOF, CET) in `src/mcp/loan/calculator.py`.
-- [ ] Implement debt-to-income margin evaluation against S02/S08 synthetic customer records.
-- [ ] Implement MCP tool handlers (`simulate_loan`, `get_loan_modalities`, `check_loan_pre_conditions`) in `src/mcp/loan/tools.py`.
-- [ ] Implement MCP Server bootstrap and transport integration in `src/mcp/loan/server.py`.
-- [ ] Implement unit and contract tests in `tests/unit/test_mcp_loan.py` covering mathematical formulas, boundary limits, and schema validation.
-- [ ] Validate presence of mandatory disclaimer and premises in 100% of simulation outputs.
+- [x] Define loan modalities catalog, interest rates, and term constraints in `src/mcp/loan/catalog.py`.
+- [x] Define Pydantic models (`LoanModality`, `LoanSimulationResult`, `ModalityInfo`) in `src/mcp/loan/models.py`.
+- [x] Implement deterministic financial math engine (Price table, IOF, CET) in `src/mcp/loan/calculator.py`.
+- [x] Implement debt-to-income margin evaluation against S02/S08 synthetic customer records.
+- [x] Implement MCP tool handlers (`simulate_loan`, `get_loan_modalities`, `check_loan_pre_conditions`) in `src/mcp/loan/tools.py`.
+- [x] Implement MCP Server bootstrap and transport integration in `src/mcp/loan/server.py` and `http_server.py`.
+- [x] Implement unit and contract tests in `tests/unit/test_mcp_loan.py` covering mathematical formulas, boundary limits, and schema validation.
+- [x] Validate presence of mandatory disclaimer and premises in 100% of simulation outputs.
 
 ## Definition of Done
 

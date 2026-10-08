@@ -80,9 +80,16 @@ class CustomerTools:
         current_year = datetime.now(UTC).year
         relationship_years = max(1, current_year - customer.created_at.year)
 
-        risk_tier = history.credit_risk_tier if history else (
-            "HIGH" if customer.credit_score < 400 else "MEDIUM"
-            if customer.credit_score < 700 else "LOW"
+        risk_tier = (
+            history.credit_risk_tier
+            if history
+            else (
+                "HIGH"
+                if customer.credit_score < 400
+                else "MEDIUM"
+                if customer.credit_score < 700
+                else "LOW"
+            )
         )
 
         response = CustomerProfileResponse(
@@ -121,9 +128,7 @@ class CustomerTools:
         Returns:
             List of AccountSummary models.
         """
-        ctx = self.security.verify_authorization(
-            auth_context, "get_customer_accounts", customer_id
-        )
+        ctx = self.security.verify_authorization(auth_context, "get_customer_accounts", customer_id)
 
         customer = self.repository.get_customer(customer_id)
         if not customer:
@@ -179,9 +184,7 @@ class CustomerTools:
         if limit < 1 or limit > 50:
             raise ValueError(f"Parâmetro 'limit' deve estar entre 1 e 50. Recebido: {limit}")
 
-        ctx = self.security.verify_authorization(
-            auth_context, "get_financial_history", customer_id
-        )
+        ctx = self.security.verify_authorization(auth_context, "get_financial_history", customer_id)
 
         customer = self.repository.get_customer(customer_id)
         if not customer:
@@ -231,9 +234,7 @@ class CustomerTools:
         Returns:
             CustomerSummaryResponse combining profile, accounts, active contracts, and events.
         """
-        ctx = self.security.verify_authorization(
-            auth_context, "get_customer_summary", customer_id
-        )
+        ctx = self.security.verify_authorization(auth_context, "get_customer_summary", customer_id)
 
         # 1. Profile
         profile = self.get_customer_profile(customer_id, auth_context=ctx)
