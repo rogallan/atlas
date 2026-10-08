@@ -1,8 +1,8 @@
 # Resolução CNSP nº 439/2022 e Circulares SUSEP — Seguros de Pessoas e Danos
 
-**Data de Publicação:** 04/07/2022  
-**Norma de Referência:** Resolução CNSP nº 439/2022 e Circular SUSEP nº 667/2022  
-**Órgão Emissor:** Superintendência de Seguros Privados (SUSEP) / CNSP  
+**Data de Publicação:** 04/07/2022
+**Norma de Referência:** Resolução CNSP nº 439/2022 e Circular SUSEP nº 667/2022
+**Órgão Emissor:** Superintendência de Seguros Privados (SUSEP) / CNSP
 
 ---
 

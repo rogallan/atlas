@@ -1,8 +1,8 @@
 # Resolução CMN nº 4.881 e Resolução CMN nº 5.004 — Crédito, CET e Liquidação Antecipada
 
-**Data de Publicação:** 23/12/2020  
-**Norma de Referência:** Resolução CMN nº 4.881/2020 e Resolução CMN nº 5.004/2022  
-**Órgão Emissor:** Conselho Monetário Nacional (CMN) / Banco Central do Brasil  
+**Data de Publicação:** 23/12/2020
+**Norma de Referência:** Resolução CMN nº 4.881/2020 e Resolução CMN nº 5.004/2022
+**Órgão Emissor:** Conselho Monetário Nacional (CMN) / Banco Central do Brasil
 
 ---
 

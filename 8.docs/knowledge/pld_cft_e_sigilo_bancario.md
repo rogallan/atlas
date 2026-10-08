@@ -1,8 +1,8 @@
 # Circular BCB nº 3.978/2020 e Lei Complementar nº 105/2001 — PLD/CFT e Sigilo Bancário
 
-**Data de Publicação:** 23/01/2020  
-**Norma de Referência:** Circular BCB nº 3.978/2020 e LC nº 105/2001  
-**Órgão Emissor:** Banco Central do Brasil / Congresso Nacional  
+**Data de Publicação:** 23/01/2020
+**Norma de Referência:** Circular BCB nº 3.978/2020 e LC nº 105/2001
+**Órgão Emissor:** Banco Central do Brasil / Congresso Nacional
 
 ---
 

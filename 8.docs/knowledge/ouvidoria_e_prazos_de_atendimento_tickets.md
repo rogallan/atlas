@@ -1,8 +1,8 @@
 # Resolução CMN nº 4.860/2020 — Sistema de Ouvidoria e Prazos de Atendimento a Demandas
 
-**Data de Publicação:** 23/10/2020  
-**Norma de Referência:** Resolução CMN nº 4.860/2020  
-**Órgão Emissor:** Banco Central do Brasil / Conselho Monetário Nacional  
+**Data de Publicação:** 23/10/2020
+**Norma de Referência:** Resolução CMN nº 4.860/2020
+**Órgão Emissor:** Banco Central do Brasil / Conselho Monetário Nacional
 
 ---
 

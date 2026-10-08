@@ -1,0 +1,152 @@
+[
+  {
+    "id": "RAG-POS-001",
+    "question": "Qual é o limite padrão para transferências Pix no período noturno?",
+    "category": "factual",
+    "expected_evidence": true,
+    "expected_doc_substring": "Pix",
+    "key_facts": ["1.000", "noturno", "20h e 6h"]
+  },
+  {
+    "id": "RAG-POS-002",
+    "question": "Como funciona o Mecanismo Especial de Devolução (MED) do Pix e qual o prazo de registro?",
+    "category": "factual",
+    "expected_evidence": true,
+    "expected_doc_substring": "Pix",
+    "key_facts": ["MED", "80 dias", "fraude"]
+  },
+  {
+    "id": "RAG-POS-003",
+    "question": "Quais são os serviços bancários essenciais gratuitos em conta corrente segundo a norma?",
+    "category": "factual",
+    "expected_evidence": true,
+    "expected_doc_substring": "Tarifas",
+    "key_facts": ["débito", "quatro saques", "dois extratos", "gratuitos"]
+  },
+  {
+    "id": "RAG-POS-004",
+    "question": "Qual é o prazo máximo de permanência da dívida no crédito rotativo do cartão de crédito?",
+    "category": "factual",
+    "expected_evidence": true,
+    "expected_doc_substring": "Rotativo",
+    "key_facts": ["30 dias", "parcelamento", "rotativo"]
+  },
+  {
+    "id": "RAG-POS-005",
+    "question": "Qual o teto máximo de juros estabelecido para o crédito rotativo pela Lei 14.690?",
+    "category": "factual",
+    "expected_evidence": true,
+    "expected_doc_substring": "Rotativo",
+    "key_facts": ["100%", "valor original", "dívida"]
+  },
+  {
+    "id": "RAG-POS-006",
+    "question": "Como funciona a contemplação por lance embutido em consórcio?",
+    "category": "factual",
+    "expected_evidence": true,
+    "expected_doc_substring": "Consórcios",
+    "key_facts": ["lance embutido", "carta de crédito", "30%"]
+  },
+  {
+    "id": "RAG-POS-007",
+    "question": "Incidem juros bancários nas parcelas mensais de consórcio?",
+    "category": "factual",
+    "expected_evidence": true,
+    "expected_doc_substring": "Consórcios",
+    "key_facts": ["Não incidem juros", "taxa de administração"]
+  },
+  {
+    "id": "RAG-POS-008",
+    "question": "O que obrigatoriamente deve compor o cálculo do Custo Efetivo Total (CET)?",
+    "category": "factual",
+    "expected_evidence": true,
+    "expected_doc_substring": "CET",
+    "key_facts": ["juros", "IOF", "seguros", "tarifas"]
+  },
+  {
+    "id": "RAG-POS-009",
+    "question": "Qual é a regra para liquidação antecipada de empréstimo ou CDC pelo cliente?",
+    "category": "factual",
+    "expected_evidence": true,
+    "expected_doc_substring": "CET",
+    "key_facts": ["redução proporcional dos juros", "vedada cobrança de tarifa"]
+  },
+  {
+    "id": "RAG-POS-010",
+    "question": "Qual o prazo regulatório para a ouvidoria emitir resposta conclusiva a uma reclamação?",
+    "category": "factual",
+    "expected_evidence": true,
+    "expected_doc_substring": "Ouvidoria",
+    "key_facts": ["10 dias úteis", "ouvidoria"]
+  },
+  {
+    "id": "RAG-POS-011",
+    "question": "Qual o prazo legal para a seguradora pagar a indenização após a entrega de documentos do sinistro?",
+    "category": "factual",
+    "expected_evidence": true,
+    "expected_doc_substring": "Seguros",
+    "key_facts": ["30 dias", "sinistro"]
+  },
+  {
+    "id": "RAG-POS-012",
+    "question": "Qual o prazo de direito de arrependimento para apólices de seguro contratadas pela internet?",
+    "category": "factual",
+    "expected_evidence": true,
+    "expected_doc_substring": "Seguros",
+    "key_facts": ["7 dias", "arrependimento"]
+  },
+  {
+    "id": "RAG-POS-013",
+    "question": "O que é a política Conheça seu Cliente (KYC) e quais são seus requisitos básicos?",
+    "category": "factual",
+    "expected_evidence": true,
+    "expected_doc_substring": "Sigilo",
+    "key_facts": ["KYC", "renda", "risco"]
+  },
+  {
+    "id": "RAG-POS-014",
+    "question": "Em que hipóteses é autorizada a quebra do sigilo bancário segundo a legislação?",
+    "category": "factual",
+    "expected_evidence": true,
+    "expected_doc_substring": "Sigilo",
+    "key_facts": ["autorização judicial", "sigilo"]
+  },
+  {
+    "id": "RAG-POS-015",
+    "question": "Qual a antecedência mínima para o banco divulgar aumento no valor de tarifas bancárias?",
+    "category": "factual",
+    "expected_evidence": true,
+    "expected_doc_substring": "Tarifas",
+    "key_facts": ["30 dias", "majoração", "tarifas"]
+  },
+  {
+    "id": "RAG-NEG-001",
+    "question": "Qual é a velocidade média de uma andorinha europeia sem carga?",
+    "category": "out_of_domain",
+    "expected_evidence": false
+  },
+  {
+    "id": "RAG-NEG-002",
+    "question": "Qual é a receita secreta da torta de maçã holandesa?",
+    "category": "out_of_domain",
+    "expected_evidence": false
+  },
+  {
+    "id": "RAG-NEG-003",
+    "question": "Quais são as regras de tributação de criptomoedas em Liechtenstein?",
+    "category": "out_of_domain",
+    "expected_evidence": false
+  },
+  {
+    "id": "RAG-NEG-004",
+    "question": "Qual o resultado do jogo de futebol de ontem entre Palmeiras e Corinthians?",
+    "category": "out_of_domain",
+    "expected_evidence": false
+  },
+  {
+    "id": "RAG-NEG-005",
+    "question": "Qual a dosagem recomendada de paracetamol para adultos com febre?",
+    "category": "out_of_domain",
+    "expected_evidence": false
+  }
+]

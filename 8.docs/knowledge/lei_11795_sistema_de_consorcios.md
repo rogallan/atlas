@@ -1,8 +1,8 @@
 # Lei nº 11.795/2008 e Resolução BCB — Sistema de Consórcios
 
-**Data de Publicação:** 08/10/2008  
-**Norma de Referência:** Lei nº 11.795/2008 e Resolução BCB nº 285/2023  
-**Órgão Emissor:** Banco Central do Brasil (BACEN)  
+**Data de Publicação:** 08/10/2008
+**Norma de Referência:** Lei nº 11.795/2008 e Resolução BCB nº 285/2023
+**Órgão Emissor:** Banco Central do Brasil (BACEN)
 
 ---
 
