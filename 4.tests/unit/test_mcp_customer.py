@@ -338,9 +338,7 @@ def test_authorization_denied_jsonrpc(server: CustomerMCPServer) -> None:
 # ---------------------------------------------------------------------------
 
 
-def test_audit_logging_lifecycle(
-    tools: CustomerTools, security_manager: SecurityManager
-) -> None:
+def test_audit_logging_lifecycle(tools: CustomerTools, security_manager: SecurityManager) -> None:
     """SecurityManager records audit logs for success, denied, and not_found events."""
     # 1. Success event
     ctx = AuthContext(operator_id="MGR-100", role="relationship_manager")
@@ -386,9 +384,7 @@ def test_server_execute_tool_all_endpoints(server: CustomerMCPServer) -> None:
     assert len(accs) >= 1
 
     # 2. History
-    evts = server.execute_tool(
-        "get_financial_history", {"customer_id": "CUST-0001", "limit": 5}
-    )
+    evts = server.execute_tool("get_financial_history", {"customer_id": "CUST-0001", "limit": 5})
     assert len(evts) <= 5
 
     # 3. Summary
@@ -429,3 +425,43 @@ def test_compute_score_range_categories() -> None:
     assert "Bom" in _compute_score_range(750)
     assert "Excelente" in _compute_score_range(900)
 
+
+def test_mcp_http_server_endpoints() -> None:
+    """Test MCP HTTP server endpoints (/health, /tools, REST invocation)."""
+    from fastapi.testclient import TestClient
+
+    from mcp.customer.http_server import app
+
+    client = TestClient(app)
+
+    # 1. Health
+    res_health = client.get("/health")
+    assert res_health.status_code == 200
+    assert res_health.json()["status"] == "healthy"
+
+    # 2. Tools
+    res_tools = client.get("/tools")
+    assert res_tools.status_code == 200
+    assert len(res_tools.json()["tools"]) == 4
+
+    # 3. Call tool via REST
+    res_call = client.post(
+        "/tools/get_customer_profile",
+        json={"customer_id": "CUST-0001"},
+    )
+    assert res_call.status_code == 200
+    assert res_call.json()["result"]["full_name"] == "Dave Weckl"
+
+    # 4. JSON-RPC over HTTP
+    rpc_req = {
+        "jsonrpc": "2.0",
+        "id": "http-1",
+        "method": "tools/call",
+        "params": {
+            "name": "get_customer_profile",
+            "arguments": {"customer_id": "CUST-0001"},
+        },
+    }
+    res_rpc = client.post("/mcp/jsonrpc", json=rpc_req)
+    assert res_rpc.status_code == 200
+    assert res_rpc.json()["result"]["isError"] is False
