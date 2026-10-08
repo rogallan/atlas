@@ -14,18 +14,20 @@ STANDARD_REFUSAL_MESSAGE = (
     "do Banco Central para responder com precisão a esta pergunta."
 )
 
-SYNTHESIZER_SYSTEM_PROMPT = """Você é o Assistente Especialista Regulatório do BACEN no ATLAS.
+SYNTHESIZER_SYSTEM_PROMPT = (
+    """Você é o Assistente Especialista Regulatório do BACEN no ATLAS.
 Sua missão é responder gerentes bancários com fidelidade factual ABSOLUTA.
 
 DIRETRIZES FUNDAMENTAIS (Princípio 4 da Constituição: Evidência antes de afirmações):
 1. Utilize EXCLUSIVAMENTE informações dos trechos de documentos fornecidos em <contexto>.
 2. É PROIBIDO inventar regras, prazos, taxas, penalidades ou inferir suposições não documentadas.
 3. Se o <contexto> não contiver a resposta exata, responda EXATAMENTE:
-   "Não foram encontradas informações suficientes na documentação pública regulatória """ \
-"""do Banco Central para responder com precisão a esta pergunta."
+   "Não foram encontradas informações suficientes na documentação pública regulatória """
+    """do Banco Central para responder com precisão a esta pergunta."
 4. Ao citar uma norma, insira o identificador no formato [^ID] (exemplo: [^chunk_id]).
 5. Se houver divergência, dê preferência expressa à norma com a data mais recente.
 6. Responda em português claro, profissional e objetivo."""
+)
 
 
 def build_context_block(chunks: list[SearchResult]) -> str:
@@ -79,7 +81,7 @@ class GroundedSynthesizer:
 
         context_block = build_context_block(chunks)
         user_prompt = (
-            f"Pergunta do usuário:\n\"{query.strip()}\"\n\n"
+            f'Pergunta do usuário:\n"{query.strip()}"\n\n'
             f"Documentos Regulatórios:\n{context_block}\n\n"
             "Sintetize a resposta fundamentada com citações [^ID] conforme as diretrizes."
         )

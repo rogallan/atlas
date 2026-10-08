@@ -66,9 +66,7 @@ class GroundedResponse(BaseModel):
 
     answer: str = Field(description="Synthesized answer text with inline citation markers")
     has_sufficient_evidence: bool = Field(
-        description=(
-            "True if context contained sufficient evidence; False if lack of evidence"
-        ),
+        description=("True if context contained sufficient evidence; False if lack of evidence"),
     )
     citations: list[Citation] = Field(
         default_factory=list,

@@ -105,11 +105,13 @@ async def evaluate_rag_service(
             if response.has_sufficient_evidence and (has_relevant_chunk or has_key_facts):
                 factual_recalled += 1
             else:
-                failed_cases.append({
-                    "id": q_id,
-                    "reason": "Missing expected evidence or failed factual recall",
-                    "answer": response.answer,
-                })
+                failed_cases.append(
+                    {
+                        "id": q_id,
+                        "reason": "Missing expected evidence or failed factual recall",
+                        "answer": response.answer,
+                    }
+                )
 
             # Check groundedness: response must have citations backing claims
             if response.has_sufficient_evidence and len(response.citations) > 0:
@@ -120,11 +122,13 @@ async def evaluate_rag_service(
             if not response.has_sufficient_evidence and len(response.citations) == 0:
                 ood_refused += 1
             else:
-                failed_cases.append({
-                    "id": q_id,
-                    "reason": "Hallucinated or failed to refuse out-of-domain query",
-                    "answer": response.answer,
-                })
+                failed_cases.append(
+                    {
+                        "id": q_id,
+                        "reason": "Hallucinated or failed to refuse out-of-domain query",
+                        "answer": response.answer,
+                    }
+                )
 
     recall = (factual_recalled / factual_total) if factual_total > 0 else 0.0
     refusal_acc = (ood_refused / ood_total) if ood_total > 0 else 0.0
@@ -198,12 +202,12 @@ async def test_simulated_rag_retrieval_benchmark(golden_dataset: list[dict[str, 
     # Acceptance Criteria (DoD)
     assert report.total_questions == len(golden_dataset)
     assert report.recall_at_k >= 0.85, f"Recall@k below 85%: {report.recall_at_k:.2%}"
-    assert report.groundedness_rate >= 0.90, (
-        f"Groundedness below 90%: {report.groundedness_rate:.2%}"
-    )
-    assert report.refusal_accuracy == 1.0, (
-        f"Refusal accuracy below 100%: {report.refusal_accuracy:.2%}"
-    )
+    assert (
+        report.groundedness_rate >= 0.90
+    ), f"Groundedness below 90%: {report.groundedness_rate:.2%}"
+    assert (
+        report.refusal_accuracy == 1.0
+    ), f"Refusal accuracy below 100%: {report.refusal_accuracy:.2%}"
     assert len(report.failed_cases) == 0
 
     summary_text = report.summary()

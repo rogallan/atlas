@@ -211,11 +211,13 @@ async def test_vector_searcher_filters_by_threshold() -> None:
     mock_store.collection.query.return_value = {
         "ids": [["c1", "c2", "c3"]],
         "documents": [["Doc 1 text", "Doc 2 text", "Doc 3 text"]],
-        "metadatas": [[
-            {"document_id": "d1", "title": "Doc 1"},
-            {"document_id": "d2", "title": "Doc 2"},
-            {"document_id": "d3", "title": "Doc 3"},
-        ]],
+        "metadatas": [
+            [
+                {"document_id": "d1", "title": "Doc 1"},
+                {"document_id": "d2", "title": "Doc 2"},
+                {"document_id": "d3", "title": "Doc 3"},
+            ]
+        ],
         "distances": [[0.2, 0.5, 2.0]],
     }
 
