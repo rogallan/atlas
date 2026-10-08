@@ -72,8 +72,7 @@ def call_tool_rest(
         if isinstance(result, list):
             return {
                 "result": [
-                    item.model_dump() if hasattr(item, "model_dump") else item
-                    for item in result
+                    item.model_dump() if hasattr(item, "model_dump") else item for item in result
                 ]
             }
         return {"result": result}

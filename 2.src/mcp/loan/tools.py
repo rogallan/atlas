@@ -85,8 +85,8 @@ class LoanTools:
             n=term_months,
         )
         # Summary: first 3 installments + last installment if n > 3
-        summary_schedule = (
-            full_schedule[:3] + ([full_schedule[-1]] if len(full_schedule) > 3 else [])
+        summary_schedule = full_schedule[:3] + (
+            [full_schedule[-1]] if len(full_schedule) > 3 else []
         )
 
         # 4. Check synthetic customer income if customer_id provided

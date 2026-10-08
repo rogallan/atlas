@@ -34,7 +34,7 @@ def calculate_pmt(pv: Decimal, monthly_rate: Decimal, n: int) -> Decimal:
         return round_currency(pv / Decimal(n))
 
     one_plus_i = Decimal("1") + monthly_rate
-    factor = one_plus_i ** n
+    factor = one_plus_i**n
     numerator = pv * monthly_rate * factor
     denominator = factor - Decimal("1")
     pmt = numerator / denominator
