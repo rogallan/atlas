@@ -1,12 +1,12 @@
 # Tasks — S11 · MCP Consortium Server
 
-- [ ] Model synthetic consortium modalities, group rules, allowed terms, and fee structures in `src/mcp/consortium/catalog.py`.
-- [ ] Define Pydantic request and response schemas in `src/mcp/consortium/models.py`.
-- [ ] Implement deterministic consortium accounting engine (common fund, admin fee, reserve fund, bids) in `src/mcp/consortium/calculator.py`.
-- [ ] Implement MCP tool handlers (`list_consortium_modalities`, `get_consortium_group_rules`, `simulate_consortium`) in `src/mcp/consortium/tools.py`.
-- [ ] Implement MCP Server bootstrap and transport registration in `src/mcp/consortium/server.py`.
-- [ ] Implement unit and contract tests in `tests/unit/test_mcp_consortium.py` verifying catalog inspection, fee calculations, bid simulations, and schemas.
-- [ ] Validate presence of mandatory contemplation disclaimer and fee breakdown in 100% of simulation outputs.
+- [x] Model synthetic consortium modalities, group rules, allowed terms, and fee structures in `src/mcp/consortium/catalog.py`.
+- [x] Define Pydantic request and response schemas in `src/mcp/consortium/models.py`.
+- [x] Implement deterministic consortium accounting engine (common fund, admin fee, reserve fund, bids) in `src/mcp/consortium/calculator.py`.
+- [x] Implement MCP tool handlers (`list_consortium_modalities`, `get_consortium_group_rules`, `simulate_consortium`) in `src/mcp/consortium/tools.py`.
+- [x] Implement MCP Server bootstrap and transport registration in `src/mcp/consortium/server.py` and `http_server.py`.
+- [x] Implement unit and contract tests in `tests/unit/test_mcp_consortium.py` verifying catalog inspection, fee calculations, bid simulations, and schemas.
+- [x] Validate presence of mandatory contemplation disclaimer and fee breakdown in 100% of simulation outputs.
 
 ## Definition of Done
 
