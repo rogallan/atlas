@@ -21,7 +21,7 @@ Orquestrador central baseado em **Grafo de Estados Determinístico (State Graph)
 ```mermaid
 flowchart TD
     Start([Mensagem do Usuário]) --> Router[Router Node\nClassificação & Injeção]
-    
+
     Router -->|knowledge| RAG[RAG Node\nBusca Híbrida]
     Router -->|query / simulation / action| MCP[MCP Node\nS08 a S13]
     Router -->|clarification| Clarify[Clarification Node\nPerguntas de Apoio]
@@ -33,7 +33,7 @@ flowchart TD
     Validator -->|aprovado / fundamentado| Synth[Synthesizer Node\nMontagem da Resposta]
     Validator -->|ação pendente HITL| Synth
     Validator -->|sem evidência / política violada| Fallback
-    
+
     Clarify --> End([Fim do Turno])
     Synth --> End
     Fallback --> End
