@@ -1,15 +1,15 @@
 'use client';
 
 import React, { useState } from 'react';
-import { 
-  Users, 
-  Calculator, 
-  ShieldCheck, 
-  Building2, 
-  FileText, 
-  AlertCircle, 
-  ChevronDown, 
-  ChevronRight, 
+import {
+  Users,
+  Calculator,
+  ShieldCheck,
+  Building2,
+  FileText,
+  AlertCircle,
+  ChevronDown,
+  ChevronRight,
   PlayCircle,
   Database,
   CreditCard,

@@ -1,13 +1,13 @@
 'use client';
 
 import React from 'react';
-import { 
-  Building, 
-  RotateCcw, 
-  ShieldCheck, 
-  UserCheck, 
-  Menu, 
-  Sparkles 
+import {
+  Building,
+  RotateCcw,
+  ShieldCheck,
+  UserCheck,
+  Menu,
+  Sparkles
 } from 'lucide-react';
 import { CustomerSummary } from '../../types/api';
 

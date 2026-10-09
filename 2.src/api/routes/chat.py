@@ -54,11 +54,11 @@ async def agent_chat_stream(
             for cit in state.citations:
                 cit_payload = json.dumps(
                     {
-                        "chunk_id": cit.chunk_id,
-                        "title": cit.document_title,
-                        "norm_reference": cit.document_title,
-                        "section_title": cit.section,
-                        "excerpt": cit.quote,
+                        "chunk_id": cit.get("chunk_id", ""),
+                        "title": cit.get("document_title", "Norma BACEN"),
+                        "norm_reference": cit.get("document_title", "Norma BACEN"),
+                        "section_title": cit.get("section", "Disposições Gerais"),
+                        "excerpt": cit.get("quote", ""),
                         "relevance": 0.95,
                     },
                     ensure_ascii=False,

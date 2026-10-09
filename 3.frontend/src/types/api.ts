@@ -40,7 +40,7 @@ export interface ChatMessage {
 export interface CustomerSummary {
   id: string;
   name: string;
-  segment: 'RETAIL' | 'PRIME' | 'PRIVATE' | 'CORPORATE';
+  segment: 'RETAIL' | 'PRIME' | 'PRIVATE' | 'CORPORATE' | 'CORPORATE_SMB' | string;
   monthly_income: number;
   credit_score: number;
   active_account: string;

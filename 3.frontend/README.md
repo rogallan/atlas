@@ -12,7 +12,7 @@ flowchart TD
         Sidebar["SidebarMenu: Menus dos MCPs & Base Sintética"]
         Navbar["Navbar: Seletor de Clientes & Sessão"]
         ChatArea["ChatContainer: SSE Stream & Markdown"]
-        
+
         Cards["Cards Financeiros:\n- LoanCard (CET/Price)\n- InsuranceCard\n- ConsortiumCard"]
         HITL["ActionConfirmCard:\n[Confirmar] / [Cancelar]"]
         Drawer["SourceDrawer:\nEvidências Normativas RAG"]
