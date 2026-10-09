@@ -152,7 +152,7 @@ export function useChat(activeCustomer: CustomerSummary) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer dev-token',
+          'Authorization': 'Bearer atlas-simulated-token-2026',
         },
         body: JSON.stringify({
           session_id: sessionId,

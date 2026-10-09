@@ -14,6 +14,9 @@ from api.config import SIMULATED_AUTH_TOKEN
 security = HTTPBearer(auto_error=False)
 
 
+VALID_TOKENS = {SIMULATED_AUTH_TOKEN, "dev-token"}
+
+
 def require_manager_auth(
     credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(security)] = None,
 ) -> str:
@@ -22,7 +25,7 @@ def require_manager_auth(
     Returns the authenticated manager identifier on success.
     Raises HTTPException 401 with standard detail shape on failure.
     """
-    if credentials is None or credentials.credentials != SIMULATED_AUTH_TOKEN:
+    if credentials is None or credentials.credentials not in VALID_TOKENS:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail={
