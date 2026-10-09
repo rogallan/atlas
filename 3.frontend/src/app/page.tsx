@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SYNTHETIC_CUSTOMERS } from '../data/mcpMenus';
 import { CustomerSummary } from '../types/api';
 import { Navbar } from '../components/layout/Navbar';
@@ -10,8 +10,29 @@ import { SourceDrawer } from '../components/citations/SourceDrawer';
 import { useChat } from '../hooks/useChat';
 
 export default function Home() {
+  const [customerList, setCustomerList] = useState<CustomerSummary[]>(SYNTHETIC_CUSTOMERS);
   const [activeCustomer, setActiveCustomer] = useState<CustomerSummary>(SYNTHETIC_CUSTOMERS[0]);
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
+
+  // Fetch customers dynamically from the backend repository
+  useEffect(() => {
+    async function fetchCustomers() {
+      try {
+        const res = await fetch('/v1/customers');
+        if (res.ok) {
+          const data: CustomerSummary[] = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setCustomerList(data);
+            setActiveCustomer(data[0]);
+          }
+        }
+      } catch (err) {
+        console.warn('Fallback to bundled customer dataset:', err);
+      }
+    }
+
+    fetchCustomers();
+  }, []);
 
   const {
     messages,
@@ -44,7 +65,7 @@ export default function Home() {
         <Navbar
           activeCustomer={activeCustomer}
           onCustomerChange={setActiveCustomer}
-          customers={SYNTHETIC_CUSTOMERS}
+          customers={customerList}
           onResetSession={resetSession}
           toggleSidebar={() => setIsSidebarOpen((prev) => !prev)}
           isSidebarOpen={isSidebarOpen}
