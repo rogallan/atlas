@@ -1,12 +1,12 @@
 # Tasks — S12 · MCP Tariff Server
 
-- [ ] Model structured tariff items, channel rates, and essential services quotas in `src/mcp/tariff/catalog.py`.
-- [ ] Define Pydantic request and response schemas in `src/mcp/tariff/models.py`.
-- [ ] Implement essential services quota calculation and package waiver rules in `src/mcp/tariff/tools.py`.
-- [ ] Implement cross-validation sync helper with RAG documentary source in `src/mcp/tariff/sync.py`.
-- [ ] Implement MCP Server bootstrap and transport registration in `src/mcp/tariff/server.py`.
-- [ ] Implement unit and contract tests in `tests/unit/test_mcp_tariff.py` verifying catalog lookups, channel pricing, and essential services.
-- [ ] Implement consistency test comparing MCP values with RAG tariff documents.
+- [x] Model structured tariff items, channel rates, and essential services quotas in `src/mcp/tariff/catalog.py`.
+- [x] Define Pydantic request and response schemas in `src/mcp/tariff/models.py`.
+- [x] Implement essential services quota calculation and package waiver rules in `src/mcp/tariff/tools.py`.
+- [x] Implement cross-validation sync helper with RAG documentary source in `src/mcp/tariff/sync.py`.
+- [x] Implement MCP Server bootstrap and transport registration in `src/mcp/tariff/server.py` and `http_server.py`.
+- [x] Implement unit and contract tests in `tests/unit/test_mcp_tariff.py` verifying catalog lookups, channel pricing, and essential services.
+- [x] Implement consistency test comparing MCP values with RAG tariff documents.
 
 ## Definition of Done
 

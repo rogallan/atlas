@@ -2,7 +2,7 @@
 
 ## 1. Approach
 
-Build the React Chat frontend under `3.frontend/` using Vite, React 18+, TypeScript, and clean modular CSS (or Tailwind if standard in repo, adhering to rich, responsive bank copilot aesthetics). The client acts as a lightweight consumer of the FastAPI Gateway (S03) through ngrok (S16) or local origin, emphasizing streaming responsiveness, citation verification drawers, structured simulation widgets, and HITL action confirmation cards.
+Build the React Chat frontend under `3.frontend/` using NextJS, TypeScript, and clean modular CSS (or Tailwind if standard in repo, adhering to rich, responsive bank copilot aesthetics). The client acts as a lightweight consumer of the FastAPI Gateway (S03) through ngrok (S16) or local origin, emphasizing streaming responsiveness, citation verification drawers, structured simulation widgets, and HITL action confirmation cards.
 
 ## 2. Architecture & Components
 

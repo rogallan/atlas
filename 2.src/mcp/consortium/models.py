@@ -141,7 +141,7 @@ class SimulateConsortiumInput(BaseModel):
 class MCPConsortiumError(Exception):
     """Base exception for MCP Consortium errors."""
 
-    def __init__(self, message: str, code: int = -32000):
+    def __init__(self, message: str, code: int = -32000) -> None:
         super().__init__(message)
         self.code = code
         self.message = message
@@ -150,7 +150,7 @@ class MCPConsortiumError(Exception):
 class ModalityNotFoundError(MCPConsortiumError):
     """Raised when a consortium segment/modality is unknown."""
 
-    def __init__(self, modality: str):
+    def __init__(self, modality: str) -> None:
         super().__init__(
             f"Segmento de consórcio '{modality}' não encontrado no catálogo.",
             code=-32001,
@@ -160,5 +160,5 @@ class ModalityNotFoundError(MCPConsortiumError):
 class InvalidConsortiumParameterError(MCPConsortiumError):
     """Raised when credit value, term, or bid violates group rules."""
 
-    def __init__(self, message: str):
+    def __init__(self, message: str) -> None:
         super().__init__(message, code=-32002)
