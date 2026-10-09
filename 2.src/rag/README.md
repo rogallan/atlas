@@ -76,13 +76,11 @@ uv run python -m rag.ingestion.pipeline
 from rag.retrieval.service import RetrievalService
 
 service = RetrievalService()
-result = service.query(
-    "Quantos saques gratuitos por mês um cliente tem direito na conta corrente?"
-)
+result = service.query("Quantos saques gratuitos por mês um cliente tem direito na conta corrente?")
 
 print(result.answer)
 for citation in result.citations:
-  print(f"- {citation.document_title} ({citation.section}): {citation.quote}")
+    print(f"- {citation.document_title} ({citation.section}): {citation.quote}")
 ```
 
 ---

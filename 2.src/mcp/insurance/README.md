@@ -17,17 +17,17 @@ Servidor Model Context Protocol (MCP) especializado na **Cotação Atuarial e Pa
 ```mermaid
 flowchart TD
     Client["Agente / Orquestrador"] -->|JSON-RPC / REST| Server["InsuranceMCPServer (Port 8003)"]
-    
+
     subgraph MCP Insurance Server
         Server --> Tools["InsuranceTools\n(tools.py)"]
         Tools --> Catalog["Insurance Catalog\n(catalog.py)"]
         Tools --> Calc["Actuarial Calculator\n(calculator.py)"]
-        
+
         Calc --> Risk["Tábua Atuarial\nIdade & Risco"]
         Calc --> Franquia["Ajuste Franquia\nReduzida / Normal"]
         Calc --> IOF["IOF-Seguros\n0,38%"]
     end
-    
+
     Tools -->|Cotação & Apólice Sintética| Server
     Server -->|Content Block JSON| Client
 ```

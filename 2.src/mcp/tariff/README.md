@@ -18,17 +18,17 @@ Servidor Model Context Protocol (MCP) responsável pela **Tabela de Tarifas Banc
 ```mermaid
 flowchart TD
     Client["Agente / Orquestrador"] -->|JSON-RPC / REST| Server["TariffMCPServer (Port 8005)"]
-    
+
     subgraph MCP Tariff Server
         Server --> Tools["TariffTools\n(tools.py)"]
         Tools --> Catalog["Tariff Catalog\n(catalog.py)"]
         Tools --> Sync["RAG Consistency Checker\n(sync.py)"]
-        
+
         Catalog --> Quota["Quota Validator\nRes CMN 3.919/2010"]
         Catalog --> Channels["Canal: Digital vs ATM vs Presencial"]
         Catalog --> Waiver["Isenção por Investimentos / Salário"]
     end
-    
+
     Tools -->|Tarifa & Parecer Regulatório| Server
     Server -->|Content Block JSON| Client
 ```

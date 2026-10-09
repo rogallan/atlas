@@ -19,13 +19,13 @@ Gateway HTTP/REST central do ATLAS Copilot. Fornece a camada de entrada para a i
 ```mermaid
 flowchart TD
     UI["Frontend React / Mobile (S15)"] -->|HTTP / SSE Streaming| Gateway["FastAPI Gateway (Port 8000)"]
-    
+
     subgraph Gateway Architecture
         Gateway --> Auth["Bearer Auth\n(auth.py)"]
         Gateway --> Sess["Session Manager\n(/sessions)"]
         Gateway --> Chat["Chat Route & SSE\n(/chat)"]
     end
-    
+
     Chat -->|Invoca| AgentGraph["S14 Agent Graph Orchestrator"]
     AgentGraph -->|Eventos de Streaming| Chat
     Chat -->|SSE text/event-stream| UI

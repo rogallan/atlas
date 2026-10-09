@@ -24,12 +24,12 @@ Módulo de **Roteamento Inteligente de Intenções** do ATLAS Copilot. Analisa m
 ```mermaid
 flowchart TD
     Prompt["Mensagem do Operador"] --> Router["IntentRouter (router.py)"]
-    
+
     Router --> Primary{"LLM Classifier\n(Ollama)"}
     Primary -->|Sucesso & Confiança >= 0.65| Decision["IntentDecision"]
     Primary -->|Timeout / Erro / Baixa Confiança| Fallback["Rule-Based Fallback\n(Regex Heuristics)"]
     Fallback --> Decision
-    
+
     Decision -->|knowledge| RAG["RAG Ingestion / Retrieval"]
     Decision -->|query| MCPCust["MCP Customer"]
     Decision -->|simulation| MCPSim["MCP Simulators (Loan/Insur/Cons)"]
@@ -43,12 +43,12 @@ flowchart TD
 
 ```python
 class IntentDecision(BaseModel):
-  intent: IntentType  # knowledge | query | simulation | action | clarification
-  confidence: float  # 0.0 a 1.0
-  reasoning: str  # Justificativa da decisão
-  extracted_entities: dict[str, Any]  # Ex: {"customer_id": "CUST-001"}
-  route_target: str  # rag | mcp_customer | mcp_simulation | mcp_ticket
-  latency_ms: float
+    intent: IntentType  # knowledge | query | simulation | action | clarification
+    confidence: float  # 0.0 a 1.0
+    reasoning: str  # Justificativa da decisão
+    extracted_entities: dict[str, Any]  # Ex: {"customer_id": "CUST-001"}
+    route_target: str  # rag | mcp_customer | mcp_simulation | mcp_ticket
+    latency_ms: float
 ```
 
 ---

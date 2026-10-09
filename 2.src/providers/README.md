@@ -21,13 +21,13 @@ Camada de abstração e integração com modelos de linguagem locais (LLM) e ger
 flowchart TD
     Consumer["Agente / Router / RAG"] --> Base["Interfaces Base\n(base.py)"]
     Base --> Provider["OllamaProvider\n(ollama.py)"]
-    
+
     subgraph Local Runtime
         Provider -->|HTTP REST| Daemon["Ollama Daemon\nhttp://localhost:11434"]
         Daemon --> LLM["LLM Engine\nqwen2.5:7b / llama3.1:8b"]
         Daemon --> Embed["Embedding Engine\nnomic-embed-text"]
     end
-    
+
     Provider -->|Mock / Fallback| FallbackEngine["Deterministic Rule Fallback\n(se Ollama offline)"]
 ```
 

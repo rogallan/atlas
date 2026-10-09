@@ -19,14 +19,14 @@ Servidor Model Context Protocol (MCP) responsável pelo domínio de **Clientes e
 ```mermaid
 flowchart TD
     Client["Agente / LLM Orchestrator"] -->|JSON-RPC 2.0 / REST| Server["CustomerMCPServer (Port 8001)"]
-    
+
     subgraph MCP Customer Server
         Server --> Auth["RBAC & LGPD Masking\n(auth.py)"]
         Auth --> Tools["CustomerTools\n(tools.py)"]
         Tools --> Repo["CustomerRepository\n(repository.py)"]
         Repo --> Store[("Base Sintética\n2.src/data/")]
     end
-    
+
     Tools -->|Perfil Mascarado| Server
     Server -->|Content Block JSON| Client
 ```

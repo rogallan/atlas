@@ -17,17 +17,17 @@ Servidor Model Context Protocol (MCP) especializado na **Simulação e Contabili
 ```mermaid
 flowchart TD
     Client["Agente / Orquestrador"] -->|JSON-RPC / REST| Server["ConsortiumMCPServer (Port 8004)"]
-    
+
     subgraph MCP Consortium Server
         Server --> Tools["ConsortiumTools\n(tools.py)"]
         Tools --> Catalog["Group Catalog\n(catalog.py)"]
         Tools --> Calc["Quota Calculator\n(calculator.py)"]
-        
+
         Calc --> Accounting["Lei 11.795/2008\nFundo Comum & Reserva"]
         Calc --> Admin["Taxa de Administração\nDiluída por Prazo"]
         Calc --> BidEngine["Bid Estimator\nLance Livre vs Embutido"]
     end
-    
+
     Tools -->|Projeção & Parcela Consolidada| Server
     Server -->|Content Block JSON| Client
 ```

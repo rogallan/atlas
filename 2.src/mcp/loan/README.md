@@ -17,17 +17,17 @@ Servidor Model Context Protocol (MCP) especializado na **Simulação e Validaç�
 ```mermaid
 flowchart TD
     Client["Agente / Orquestrador"] -->|JSON-RPC / REST| Server["LoanMCPServer (Port 8002)"]
-    
+
     subgraph MCP Loan Server
         Server --> Tools["LoanTools\n(tools.py)"]
         Tools --> Catalog["Loan Catalog\n(catalog.py)"]
         Tools --> Calc["Financial Calculator\n(calculator.py)"]
-        
+
         Calc --> IOF["IOF Fiscal Engine\nDec 6.306/2007"]
         Calc --> Amort["Amortization Engine\nPrice & SAC"]
         Calc --> CET["CET Analyzer\nRes CMN 3.517"]
     end
-    
+
     Tools -->|Simulação & CET Detalhado| Server
     Server -->|Content Block JSON| Client
 ```
