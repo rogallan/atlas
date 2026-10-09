@@ -160,17 +160,13 @@ class TicketStore:
 
     def list_customer_tickets(self, customer_id: str) -> list[TicketRecord]:
         """List all tickets associated with a given customer ID."""
-        matched = [
-            ticket for ticket in self._tickets.values() if ticket.customer_id == customer_id
-        ]
+        matched = [ticket for ticket in self._tickets.values() if ticket.customer_id == customer_id]
         return sorted(matched, key=lambda t: t.created_at, reverse=True)
 
     def clean_expired_drafts(self) -> int:
         """Evict expired drafts from memory."""
         now = datetime.now(UTC)
-        expired_tokens = [
-            token for token, draft in self._drafts.items() if draft.expires_at <= now
-        ]
+        expired_tokens = [token for token, draft in self._drafts.items() if draft.expires_at <= now]
         for token in expired_tokens:
             del self._drafts[token]
         return len(expired_tokens)

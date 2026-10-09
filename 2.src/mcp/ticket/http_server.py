@@ -57,9 +57,7 @@ def call_tool_rest(
         if isinstance(result, list):
             return {
                 "result": [
-                    item.model_dump(mode="json")
-                    if hasattr(item, "model_dump")
-                    else item
+                    item.model_dump(mode="json") if hasattr(item, "model_dump") else item
                     for item in result
                 ]
             }
@@ -73,9 +71,7 @@ def call_tool_rest(
         ) from exc
     except Exception as exc:  # noqa: BLE001
         logger.exception("Unexpected error executing tool %s via REST", tool_name)
-        raise HTTPException(
-            status_code=500, detail={"code": -32603, "message": str(exc)}
-        ) from exc
+        raise HTTPException(status_code=500, detail={"code": -32603, "message": str(exc)}) from exc
 
 
 @app.post("/mcp/jsonrpc", tags=["MCP JSON-RPC"])
@@ -108,9 +104,7 @@ async def sse_endpoint() -> StreamingResponse:
 
 def main() -> None:
     """CLI launcher for the HTTP / SSE server."""
-    parser = argparse.ArgumentParser(
-        description="Run ATLAS MCP Ticket Server via HTTP / SSE"
-    )
+    parser = argparse.ArgumentParser(description="Run ATLAS MCP Ticket Server via HTTP / SSE")
     parser.add_argument(
         "--host",
         default="127.0.0.1",

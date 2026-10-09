@@ -147,9 +147,9 @@ def test_token_expiration_guardrail(
     )
 
     # Artificially expire token by moving expires_at to past
-    ticket_store._drafts[draft.confirmation_token].expires_at = datetime.now(
-        UTC
-    ) - timedelta(minutes=1)
+    ticket_store._drafts[draft.confirmation_token].expires_at = datetime.now(UTC) - timedelta(
+        minutes=1
+    )
 
     with pytest.raises(TokenExpiredError) as exc_info:
         ticket_tools.confirm_and_create_ticket(
@@ -316,15 +316,11 @@ def test_audit_trail_captures_complete_lifecycle(
 
 
 def test_mcp_server_initialize_and_tools_list(ticket_server: TicketMCPServer) -> None:
-    init_res = ticket_server.handle_request(
-        {"jsonrpc": "2.0", "id": 1, "method": "initialize"}
-    )
+    init_res = ticket_server.handle_request({"jsonrpc": "2.0", "id": 1, "method": "initialize"})
     assert init_res["result"]["serverInfo"]["name"] == "atlas-mcp-ticket"
     assert init_res["result"]["protocolVersion"] == "2024-11-05"
 
-    list_res = ticket_server.handle_request(
-        {"jsonrpc": "2.0", "id": 2, "method": "tools/list"}
-    )
+    list_res = ticket_server.handle_request({"jsonrpc": "2.0", "id": 2, "method": "tools/list"})
     tool_names = [t["name"] for t in list_res["result"]["tools"]]
     assert "prepare_ticket" in tool_names
     assert "confirm_and_create_ticket" in tool_names

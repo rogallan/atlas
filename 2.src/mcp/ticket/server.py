@@ -147,9 +147,7 @@ class TicketMCPServer:
 
                 if isinstance(result, list):
                     dumped = [
-                        item.model_dump(mode="json")
-                        if hasattr(item, "model_dump")
-                        else item
+                        item.model_dump(mode="json") if hasattr(item, "model_dump") else item
                         for item in result
                     ]
                 elif hasattr(result, "model_dump"):

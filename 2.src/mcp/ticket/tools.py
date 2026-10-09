@@ -51,9 +51,7 @@ class TicketTools:
             raise InvalidTicketParameterError("description must be at least 5 characters.")
 
         try:
-            cat_enum = (
-                TicketCategory(category) if isinstance(category, str) else category
-            )
+            cat_enum = TicketCategory(category) if isinstance(category, str) else category
         except ValueError as err:
             valid_cats = [c.value for c in TicketCategory]
             raise InvalidTicketParameterError(
@@ -61,9 +59,7 @@ class TicketTools:
             ) from err
 
         try:
-            prio_enum = (
-                TicketPriority(priority) if isinstance(priority, str) else priority
-            )
+            prio_enum = TicketPriority(priority) if isinstance(priority, str) else priority
         except ValueError as err:
             valid_prios = [p.value for p in TicketPriority]
             raise InvalidTicketParameterError(
