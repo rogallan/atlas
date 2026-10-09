@@ -99,9 +99,7 @@ class TariffMCPServer:
 
             if name == "compare_packages":
                 validated_comp = ComparePackagesInput(**arguments)
-                return self.tools.compare_packages(
-                    customer_segment=validated_comp.customer_segment
-                )
+                return self.tools.compare_packages(customer_segment=validated_comp.customer_segment)
 
             raise MCPTariffError(f"Tool '{name}' desconhecida.", code=-32601)
 
