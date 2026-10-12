@@ -21,10 +21,14 @@ from api.routes.ops import router as ops_router
 from api.routes.sessions import router as sessions_router
 from api.schemas import ErrorDetail, ErrorEnvelope
 from ops.middleware import ObservabilityMiddleware, metrics_router
+from ops.tracing import configure_tracing
 
 
 def create_app() -> FastAPI:
     """Build and configure the FastAPI Gateway application."""
+    # 0. Initialize distributed tracing provider
+    configure_tracing(service_name="atlas-copilot", in_memory=True)
+
     app = FastAPI(
         title=API_TITLE,
         version=API_VERSION,
