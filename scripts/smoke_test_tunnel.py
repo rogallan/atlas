@@ -1,8 +1,11 @@
-"""End-to-end smoke test validating health, CORS, and SSE streaming over ngrok or local tunnel (S16)."""
+"""End-to-end smoke test validating health, CORS, and SSE streaming over ngrok
+or local tunnel (S16).
+"""
 
 import argparse
 import sys
 from typing import Any
+
 import httpx
 
 if sys.platform == "win32":
@@ -95,7 +98,9 @@ def run_smoke_test(base_url: str) -> bool:
 
     try:
         chunks_received = 0
-        with client.stream("POST", f"{base_url}/v1/chat", headers=chat_headers, json=chat_payload) as stream_res:
+        with client.stream(
+            "POST", f"{base_url}/v1/chat", headers=chat_headers, json=chat_payload
+        ) as stream_res:
             print(f"   Status: {stream_res.status_code}")
             content_type = stream_res.headers.get("content-type", "")
             print(f"   Content-Type: {content_type}")

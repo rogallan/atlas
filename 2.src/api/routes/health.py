@@ -24,3 +24,18 @@ async def get_health() -> HealthResponse:
         version=API_VERSION,
         uptime_seconds=uptime,
     )
+
+
+@router.get(
+    "/",
+    summary="Root service status",
+    description="Returns high-level API metadata and documentation links.",
+)
+async def get_root() -> dict[str, str]:
+    return {
+        "service": "ATLAS Banking Copilot API Gateway",
+        "status": "online",
+        "version": API_VERSION,
+        "docs": "/docs",
+        "health": "/health",
+    }
