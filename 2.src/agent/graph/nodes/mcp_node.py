@@ -139,10 +139,26 @@ class MCPNode:
         amount = (entities and entities.amount) or 15000.0
         term_months = (entities and entities.term_months) or 24
 
-        if any(k in msg_lower for k in ["seguro", "apólice", "apolice", "vida", "auto"]):
+        if any(
+            k in msg_lower
+            for k in ["seguro", "apólice", "apolice", "vida", "auto", "residenc", "casa"]
+        ):
+            if any(k in msg_lower for k in ["residenc", "casa", "imóvel", "imovel"]):
+                prod_id = "home_complete"
+                insured_cap = max(50000.0, amount)
+            elif any(k in msg_lower for k in ["cartão", "cartao", "fraude", "pix"]):
+                prod_id = "card_protection_plus"
+                insured_cap = max(1000.0, min(50000.0, amount))
+            elif any(k in msg_lower for k in ["prestamista", "parcela"]):
+                prod_id = "credit_life_presta"
+                insured_cap = max(1000.0, amount)
+            else:
+                prod_id = "life_individual"
+                insured_cap = max(20000.0, amount)
+
             quote = self.insurance_tools.simulate_insurance_quote(
-                product_id="life_standard",
-                insured_capital=max(50000.0, amount),
+                product_id=prod_id,
+                insured_capital=insured_cap,
                 customer_id=customer_id,
             )
             state.tool_outputs.append(
