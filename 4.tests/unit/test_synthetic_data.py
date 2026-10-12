@@ -41,32 +41,32 @@ def test_referential_integrity() -> None:
 
     # 1. Accounts reference valid Customers
     for account in dataset.accounts:
-        assert (
-            account.customer_id in customer_ids
-        ), f"Account {account.id} references invalid customer {account.customer_id}"
+        assert account.customer_id in customer_ids, (
+            f"Account {account.id} references invalid customer {account.customer_id}"
+        )
         assert account.balance >= Decimal("0"), f"Account {account.id} has negative balance"
 
     # 2. Contracts reference valid Customers and Products
     for contract in dataset.contracts:
-        assert (
-            contract.customer_id in customer_ids
-        ), f"Contract {contract.id} references invalid customer {contract.customer_id}"
-        assert (
-            contract.product_id in product_ids
-        ), f"Contract {contract.id} references invalid product {contract.product_id}"
+        assert contract.customer_id in customer_ids, (
+            f"Contract {contract.id} references invalid customer {contract.customer_id}"
+        )
+        assert contract.product_id in product_ids, (
+            f"Contract {contract.id} references invalid product {contract.product_id}"
+        )
 
     # 3. Financial Events reference valid Accounts
     for event in dataset.financial_events:
-        assert (
-            event.account_id in account_ids
-        ), f"Event {event.id} references invalid account {event.account_id}"
+        assert event.account_id in account_ids, (
+            f"Event {event.id} references invalid account {event.account_id}"
+        )
         assert event.amount > Decimal("0"), f"Event {event.id} must have positive amount"
 
     # 4. Histories reference valid Customers
     for history in dataset.histories:
-        assert (
-            history.customer_id in customer_ids
-        ), f"History references invalid customer {history.customer_id}"
+        assert history.customer_id in customer_ids, (
+            f"History references invalid customer {history.customer_id}"
+        )
         assert history.credit_risk_tier in {"LOW", "MEDIUM", "HIGH"}
 
 
@@ -100,9 +100,9 @@ def test_synthetic_privacy_invariants() -> None:
 
     for cust in dataset.customers:
         # Check simulated domain
-        assert cust.email.endswith(
-            "@simulado.atlas.local"
-        ), f"Customer email {cust.email} must use simulated local domain"
+        assert cust.email.endswith("@simulado.atlas.local"), (
+            f"Customer email {cust.email} must use simulated local domain"
+        )
         # Check simulated CPF hash format
         assert len(cust.document_hash) == 16, "Document hash must be simulated 16-char hex"
         assert 0 <= cust.credit_score <= 1000, "Credit score must be between 0 and 1000"
