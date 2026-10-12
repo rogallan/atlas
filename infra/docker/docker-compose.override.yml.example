@@ -1,0 +1,16 @@
+# ==============================================================================
+# ATLAS Banking Copilot — Docker Compose Local Overrides (S20)
+# Copy to 'docker-compose.override.yml' to enable NVIDIA GPU acceleration.
+# ==============================================================================
+
+version: "3.8"
+
+services:
+  ollama:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

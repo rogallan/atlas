@@ -1,13 +1,13 @@
 # Tasks — S20 · Docker Local Stack
 
-- [ ] Create multi-stage backend container definition in `infra/docker/Dockerfile.backend` (non-root `appuser`, optimized layers).
-- [ ] Create multi-stage frontend container definition in `infra/docker/Dockerfile.frontend` (Nginx + static build).
-- [ ] Create Docker Compose file in `infra/docker/docker-compose.yml` with health checks, network bridge, and volume mounts.
-- [ ] Create environment variable template in `infra/docker/.env.example`.
-- [ ] Implement Ollama model initialization script in `infra/docker/init_ollama.sh`.
-- [ ] Implement automated Docker smoke test script in `scripts/smoke_test_docker.py` validating container health and end-to-end connectivity.
-- [ ] Write operational runbook in `docs/runbooks/docker_local_stack.md` detailing startup, teardown, persistence validation, and GPU configuration.
-- [ ] Execute smoke test verifying full stack startup and persistence across container restarts.
+- [x] Create multi-stage backend container definition in `infra/docker/Dockerfile.backend` (non-root `appuser`, optimized layers).
+- [x] Create multi-stage frontend container definition in `infra/docker/Dockerfile.frontend` (Nginx + static build / Next.js multi-stage).
+- [x] Create Docker Compose file in `infra/docker/docker-compose.yml` with health checks, network bridge, and volume mounts.
+- [x] Create environment variable template in `infra/docker/.env.example`.
+- [x] Implement Ollama model initialization script in `infra/docker/init_ollama.sh`.
+- [x] Implement automated Docker smoke test script in `scripts/smoke_test_docker.py` validating container health and end-to-end connectivity.
+- [x] Write operational runbook in `docs/runbooks/docker_local_stack.md` detailing startup, teardown, persistence validation, and GPU configuration.
+- [x] Execute smoke test verifying full stack startup and persistence across container restarts.
 
 ## Definition of Done
 
