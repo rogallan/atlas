@@ -2,22 +2,22 @@
 
 ## Acceptance criteria (Definition of Done for this item)
 
-- [ ] `constitution.md` exists at the repository root and contains, at
+- [x] `constitution.md` exists at the repository root and contains, at
       minimum, the 6 principles defined in spec.md (local-first, security by
       default, explicit tools, evidence before claims, tests before release,
       fictitious data always).
-- [ ] Each principle in `constitution.md` has at least one concrete example of
+- [x] Each principle in `constitution.md` has at least one concrete example of
       application in the ATLAS context (not just an abstract statement).
-- [ ] `architecture.md` exists at the repository root and documents the 6
+- [x] `architecture.md` exists at the repository root and documents the 6
       boundaries (Front, API, Agent, MCP, Knowledge/RAG, Infra) with the
       responsibility and contract of each.
-- [ ] `architecture.md` contains the textual diagram of the main flow
+- [x] `architecture.md` contains the textual diagram of the main flow
       (User → Front → API → Agent Router → RAG/MCP → Validation → Response).
-- [ ] Both documents were reviewed with the IDP mentor (record the
+- [x] Both documents were reviewed with the IDP mentor (record the
       date/observations in the commit itself or in `docs/adr/`).
-- [ ] The repository's `README.md` references (links to) `constitution.md` and
+- [x] The repository's `README.md` references (links to) `constitution.md` and
       `architecture.md`.
-- [ ] No S01 work was started before this item was completed (S00 is blocking
+- [x] No S01 work was started before this item was completed (S00 is blocking
       for the rest of the catalog, per the IDP's Q1 ordering).
 
 ## How to verify

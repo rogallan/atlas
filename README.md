@@ -1,104 +1,148 @@
 # ATLAS — Banking GenAI Copilot
 
-Copiloto conversacional para gerente bancário: consulta conhecimento público do
-Banco Central (RAG), consulta base fictícia de clientes/histórico (MCP) e executa
-operações simples simuladas por ferramentas controladas.
+[![Release](https://img.shields.io/badge/Release-v1.0.0_RC-blue.svg)](file:///c:/Users/rogall/source/repos/atlas/CHANGELOG.md)
+[![Tests](https://img.shields.io/badge/Tests-299_passed-brightgreen.svg)](file:///c:/Users/rogall/source/repos/atlas/4.tests)
+[![Coverage](https://img.shields.io/badge/Coverage-84.6%25-success.svg)](file:///c:/Users/rogall/source/repos/atlas/CHANGELOG.md)
+[![Quality Gate](https://img.shields.io/badge/Quality_Gate-PASSED-success.svg)](file:///c:/Users/rogall/source/repos/atlas/7.evals/reports/final_scorecard_v1.0.0.md)
+[![Python](https://img.shields.io/badge/Python-3.11%2B-blue.svg)](https://www.python.org/)
+[![Toolchain](https://img.shields.io/badge/Toolchain-uv_by_Astral-purple.svg)](https://docs.astral.sh/uv/)
+[![Orchestration](https://img.shields.io/badge/Agent-LangGraph-orange.svg)](https://www.langchain.com/langgraph)
+[![Protocol](https://img.shields.io/badge/Tools-MCP_Model_Context_Protocol-blueviolet.svg)](https://modelcontextprotocol.io/)
+[![IaC](https://img.shields.io/badge/Infrastructure-Terraform_AWS-623ce4.svg)](file:///c:/Users/rogall/source/repos/atlas/infra/terraform)
 
-Stack: React Chat · FastAPI · Ollama · RAG/Vector DB · MCP · Harness/Evals ·
-Docker · ngrok · Terraform/AWS · uv · Ruff · Mypy · Pytest.
-
-Token Simulado: atlas-simulated-token-2026
-
----
-
-## 🏛️ Governança & Arquitetura
-
-O projeto é guiado pelas decisões e diretrizes documentadas em:
-- [Constituição do Projeto (`constitution.md`)](file:///c:/Users/rogall/source/repos/atlas/1.SDDs/constitution.md) — Princípios inegociáveis (Local-first, Security by default, 100% synthetic data, etc.).
-- [Arquitetura do Sistema (`architecture.md`)](file:///c:/Users/rogall/source/repos/atlas/1.SDDs/architecture.md) — Os 6 boundaries (Front, API, Agent, MCP, RAG, Infra).
-- [Architecture Decision Records (`8.docs/adr/`)](file:///c:/Users/rogall/source/repos/atlas/8.docs/adr) — Decisões técnicas fundamentadas (ex: [ADR-0001: uv](file:///c:/Users/rogall/source/repos/atlas/8.docs/adr/0001-package-manager.md)).
+**ATLAS** (*Agentic Tiered Lightweight Advisory System*) é um copiloto conversacional bancário corporativo de alta precisão para gerentes de relacionamento. Ele consulta normativas regulatórias do **Banco Central do Brasil (BACEN)** com citação jurídica obrigatória via RAG, inspeciona perfis e transações bancárias sintéticas e executa simulações financeiras determinísticas via **Model Context Protocol (MCP)** com governança **Human-in-the-Loop (HITL)**.
 
 ---
 
-## 📂 Estrutura do Repositório
+## 🏛️ Princípios & Governança (Constituição)
 
-- `1.SDDs/` — Especificações e planos de entrega (S00 → S22), cada uma com `spec.md`, `plan.md`, `tasks.md`, `verify.md`.
-- `2.src/`
-  - `api/` — FastAPI: rotas, contratos OpenAPI, streaming SSE, auth simulada.
-  - `agent/` — Router de intenção, nó Validator/Critic, orquestração.
-  - `rag/` — Ingestão, chunking, embeddings e retrieval.
-  - `mcp/` — Servidores MCP: customer, loan, insurance, consortium, tariff, ticket.
-  - `providers/` — Adapter para LLM local (Ollama).
-  - `data/` — Modelos de dados sintéticos e fixtures.
-- `3.frontend/` — Interface conversacional React Chat.
-- `4.tests/` — Testes unitários (`unit/`), integração (`integration/`) e contrato (`contract/`).
-- `5.infra/` — Docker Compose local e módulos Terraform para AWS.
-- `6.ops/` — Observabilidade: logs estruturados, tracing e métricas.
-- `7.evals/` — Harness de avaliação, golden datasets e scorecards GenAI.
-- `8.docs/` — ADRs e runbooks operacionais.
+O projeto segue à risca os princípios inegociáveis formalizados em:
+- [Constituição do Projeto (`constitution.md`)](file:///c:/Users/rogall/source/repos/atlas/constitution.md) — Local-first, segurança por padrão, ferramentas explícitas, evidência antes de claims e 100% dados sintéticos.
+- [Arquitetura do Sistema (`architecture.md`)](file:///c:/Users/rogall/source/repos/atlas/architecture.md) — As 6 fronteiras do sistema (Frontend, API Gateway, Agent Router, MCP, RAG, Infraestrutura).
+- [Architecture Decision Records (`8.docs/adr/`)](file:///c:/Users/rogall/source/repos/atlas/8.docs/adr/README.md) — Catálogo de 12 decisões técnicas fundamentadas (ADR-0001 a ADR-0012).
+- [Histórico de Entregas (`CHANGELOG.md`)](file:///c:/Users/rogall/source/repos/atlas/CHANGELOG.md) — Entregas incrementais dos 4 trimestres (S00 a S22).
 
 ---
 
-## 🚀 Setup Local de Desenvolvimento (S01 Toolchain)
+## 📐 Arquitetura do Sistema
+
+```mermaid
+flowchart TB
+    subgraph Client["Cliente & Interface"]
+        User["👤 Gerente Bancário"]
+        Frontend["💻 Next.js 15 / React 19<br/>(TailwindCSS · SSE Streaming)"]
+    end
+
+    subgraph Ingress["Ingresso & Segurança"]
+        Tunnel["🌐 Ngrok Static Domain Tunnel<br/>(atlas-gateway.ngrok-free.app)"]
+        Guardrails["🛡️ Dual-Layer Guardrails<br/>Input (Injection) & Output (Masking)"]
+    end
+
+    subgraph Core["Backend FastAPI & Agente"]
+        Gateway["⚡ FastAPI ASGI Gateway<br/>(OpenAPI · Correlation ID · /metrics)"]
+        Router["🧭 Semantic Intent Router<br/>(Knowledge · Simulation · Action · Clarification)"]
+        Graph["🔄 LangGraph StateGraph<br/>(Cycle Control · HITL Checkpoint)"]
+    end
+
+    subgraph Knowledge["Conhecimento Regulatório (RAG)"]
+        Chroma["📚 ChromaDB Local Vector Store<br/>(BACEN & CMN Corpora)"]
+        Embedder["🧠 nomic-embed-text<br/>(Ollama Local Daemon)"]
+    end
+
+    subgraph Tools["Ferramentas MCP (Deterministic)"]
+        MCP_Cust["👤 MCP Customer Server"]
+        MCP_Loan["💰 MCP Loan Simulator"]
+        MCP_Ins["🛡️ MCP Insurance Simulator"]
+        MCP_Cons["🤝 MCP Consortium Simulator"]
+        MCP_Tariff["🏷️ MCP Tariff Comparator"]
+        MCP_Ticket["🎫 MCP Ticket Server (HITL)"]
+    end
+
+    subgraph Foundation["Modelos Locais & Nuvem"]
+        Ollama["🦙 Ollama Local Daemon<br/>(Qwen 2.5 7B Instruct)"]
+        AWS_IaC["☁️ AWS Terraform IaC<br/>(ECS Fargate · OpenSearch · S3)"]
+    end
+
+    User --> Frontend
+    Frontend --> Tunnel
+    Tunnel --> Guardrails
+    Guardrails --> Gateway
+    Gateway --> Router
+    Router --> Graph
+    Graph --> Chroma
+    Graph --> Tools
+    Graph --> Ollama
+    Chroma --- Embedder
+```
+
+---
+
+## ⚡ Quickstart em 5 Minutos
 
 ### Pré-requisitos
 - **Python 3.11+**
-- **uv** (gerenciador de dependências e ambiente) instalado:
-  ```bash
-  # Windows (PowerShell)
-  powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-  ```
+- **uv** instalado (`curl -LsSf https://astral.sh/uv/install.sh | sh` ou via `irm https://astral.sh/uv/install.ps1 | iex`)
+- **Node.js 20+**
+- **Ollama** executando localmente (`ollama serve` com os modelos `qwen2.5:7b-instruct` e `nomic-embed-text`)
 
-### 1. Clonar e Instalar Dependências
+### 1. Clonar e Sincronizar Dependências
 ```bash
-# Sincroniza o ambiente e instala dependências de desenvolvimento
+git clone https://github.com/rogallan/atlas.git
+cd atlas
 uv sync --all-extras
 ```
 
-### 2. Ativar Hooks de Pre-commit
+### 2. Iniciar o Backend FastAPI Gateway
 ```bash
-uv run pre-commit install
+uv run uvicorn api.main:app --port 8000 --reload
+```
+- **Documentação Swagger:** http://localhost:8000/docs
+- **Métricas Prometheus:** http://localhost:8000/metrics
+
+### 3. Iniciar o Frontend Next.js
+```bash
+cd 3.frontend
+npm install
+npm run dev
+```
+- Aceda à interface em: http://localhost:3000
+
+### 4. (Opcional) Ingress Público via Ngrok
+```bash
+# Em outro terminal na raiz
+uv run python scripts/start_tunnel.py
 ```
 
-### 3. Executar Verificações de Qualidade
-```bash
-# Linter e formatação (Ruff)
-uv run ruff check
-uv run ruff format --check
+---
 
-# Checagem estrita de tipos (Mypy)
-uv run mypy
-```
+## 🧪 Qualidade, Testes e Avaliações
 
-### 4. Executar Testes Automatizados e Cobertura
+O ATLAS possui uma pirâmide de testes completa com **299 testes automatizados** e **84.6% de cobertura de código**:
+
 ```bash
+# Executar a suíte completa de testes unitários e de integração
 uv run pytest
+
+# Verificações estáticas de estilo e tipagem
+uv run ruff check .
+uv run mypy
+
+# Executar a auditoria oficial de DoD (Definition of Done)
+uv run python 6.ops/release/release_checklist.py
+
+# Executar a auditoria de segurança (zero segredos e dados sintéticos)
+uv run python 6.ops/release/security_audit.py
+
+# Executar o benchmark executivo de avaliação GenAI
+uv run python -m evals.runner --report-path 7.evals/reports/final_scorecard_v1.0.0.md
 ```
 
-### 5. Construir a Imagem Docker da Aplicação
-```bash
-docker build -t atlas-banking-copilot:latest .
-```
+---
 
-### 6. Executar o Servidor FastAPI Gateway (S03)
-```bash
-uv run uvicorn api.main:app --reload --port 8000
-```
-- **Documentação Interativa (Swagger):** http://localhost:8000/docs
-- **Documentação Alternativa (ReDoc):** http://localhost:8000/redoc
-- **Contrato OpenAPI:** http://localhost:8000/openapi.json
+## 🌟 Portfólio & Demonstração Técnica
 
-### 7. Roteador de Intenções (S05 Intent Router)
-```bash
-# Executar a suíte de testes unitários e benchmark de intenções
-uv run pytest 4.tests/unit/test_intent_router.py 4.tests/evals/test_golden_intents.py -v
-```
-
-### 8. Pipeline de Ingestão RAG (S06)
-```bash
-# Executar a ingestão e indexação das normas do BACEN no ChromaDB local
-uv run python 2.src/rag/ingestion/pipeline.py --input-dir 8.docs/knowledge
-
-# Executar os testes unitários do RAG Ingestion
-uv run pytest 4.tests/unit/test_rag_ingestion.py -v
-```
+- 🎬 [Roteiro de Demonstração Interativa (`demo_script.md`)](file:///c:/Users/rogall/source/repos/atlas/8.docs/portfolio/demo_script.md) — Roteiro de 10 minutos cobrindo RAG com citações, MCP, simulações financeiras determinísticas, aprovação HITL e defesa contra injeção de prompt.
+- 📹 [Currículo da Série de 20 Vídeos (`video_curriculum.md`)](file:///c:/Users/rogall/source/repos/atlas/8.docs/portfolio/video_curriculum.md) — Grade dos 20 episódios técnicos divididos ao longo dos 4 trimestres do PDI.
+- 📊 [Scorecard de Avaliação Executiva v1.0.0](file:///c:/Users/rogall/source/repos/atlas/7.evals/reports/final_scorecard_v1.0.0.md) — Relatório de benchmark com 96% de acurácia de intenção e 100% de conformidade com os guardrails de segurança.
+- ☁️ [Estimativa e Modelo de Custos AWS](file:///c:/Users/rogall/source/repos/atlas/docs/architecture/aws_cost_estimate.md) — Modelo de custos de infraestrutura comparando Dev ($222/mês) vs. Produção ($444/mês).
+- 📂 [Resumo do Portfólio Técnico](file:///c:/Users/rogall/source/repos/atlas/8.docs/portfolio/README.md) — Visão executiva da engenharia e arquitetura do ATLAS.
