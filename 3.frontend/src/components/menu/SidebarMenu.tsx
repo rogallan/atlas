@@ -14,12 +14,14 @@ import {
   Database,
   CreditCard,
   TrendingUp,
-  Layers
+  Layers,
+  X,
 } from 'lucide-react';
 import { CustomerSummary, MCPMenuItem } from '../../types/api';
 
 interface SidebarMenuProps {
   isOpen: boolean;
+  onClose?: () => void;
   activeCustomer: CustomerSummary | null;
   menuItems?: MCPMenuItem[];
   onSelectQuery: (prompt: string) => void;
@@ -27,6 +29,7 @@ interface SidebarMenuProps {
 
 export const SidebarMenu: React.FC<SidebarMenuProps> = ({
   isOpen,
+  onClose,
   activeCustomer,
   menuItems = [],
   onSelectQuery,
@@ -54,50 +57,57 @@ export const SidebarMenu: React.FC<SidebarMenuProps> = ({
     }
   };
 
-  if (!isOpen) return null;
-
   return (
-    <aside style={{
-      width: '340px',
-      backgroundColor: 'var(--bg-secondary)',
-      borderRight: '1px solid var(--border-color)',
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100%',
-      overflowY: 'auto',
-      zIndex: 15,
-      transition: 'width 0.25s ease',
-    }}>
-      {/* Active Customer Database Card */}
-      <div style={{
-        padding: '1.2rem',
-        borderBottom: '1px solid var(--border-color)',
-        backgroundColor: 'rgba(17, 24, 39, 0.95)',
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.6rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-            <Database size={15} color="#3b82f6" />
-            <span style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Base de Dados Sintética
-            </span>
-          </div>
-          {activeCustomer && (() => {
-            const badge = getSegmentBadgeColor(activeCustomer.segment);
-            return (
-              <span style={{
-                fontSize: '0.68rem',
-                fontWeight: 700,
-                padding: '0.15rem 0.5rem',
-                borderRadius: 'var(--radius-full)',
-                backgroundColor: badge.bg,
-                color: badge.color,
-                border: `1px solid ${badge.border}`,
-              }}>
-                {activeCustomer.segment}
+    <>
+      {isOpen && (
+        <div
+          className="sidebar-backdrop"
+          onClick={onClose}
+          aria-label="Fechar menu lateral"
+        />
+      )}
+
+      <aside className={`sidebar-aside ${isOpen ? 'open' : 'closed'}`}>
+        {/* Active Customer Database Card */}
+        <div style={{
+          padding: '1.2rem',
+          borderBottom: '1px solid var(--border-color)',
+          backgroundColor: 'rgba(17, 24, 39, 0.95)',
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.6rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+              <Database size={15} color="#3b82f6" />
+              <span style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                Base de Dados Sintética
               </span>
-            );
-          })()}
-        </div>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              {activeCustomer && (() => {
+                const badge = getSegmentBadgeColor(activeCustomer.segment);
+                return (
+                  <span style={{
+                    fontSize: '0.68rem',
+                    fontWeight: 700,
+                    padding: '0.15rem 0.5rem',
+                    borderRadius: 'var(--radius-full)',
+                    backgroundColor: badge.bg,
+                    color: badge.color,
+                    border: `1px solid ${badge.border}`,
+                  }}>
+                    {activeCustomer.segment}
+                  </span>
+                );
+              })()}
+              <button
+                className="sidebar-close-btn"
+                onClick={onClose}
+                aria-label="Fechar menu lateral"
+                title="Fechar menu"
+              >
+                <X size={16} />
+              </button>
+            </div>
+          </div>
 
         {activeCustomer ? (
           <>
@@ -279,5 +289,6 @@ export const SidebarMenu: React.FC<SidebarMenuProps> = ({
       )}
       </div>
     </aside>
-  );
+  </>
+);
 };

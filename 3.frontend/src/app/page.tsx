@@ -12,7 +12,21 @@ export default function Home() {
   const [customerList, setCustomerList] = useState<CustomerSummary[]>([]);
   const [activeCustomer, setActiveCustomer] = useState<CustomerSummary | null>(null);
   const [menuItems, setMenuItems] = useState<MCPMenuItem[]>([]);
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+
+  // Responsive sidebar: open by default on desktop, closed by default on mobile
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsSidebarOpen(true);
+      } else {
+        setIsSidebarOpen(false);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Fetch customers and MCP menus dynamically from the backend repository
   useEffect(() => {
@@ -64,6 +78,10 @@ export default function Home() {
 
   const handleSelectQueryFromMenu = (prompt: string) => {
     sendMessage(prompt);
+    // On mobile devices, close drawer after picking a query to show the chat
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setIsSidebarOpen(false);
+    }
   };
 
   return (
@@ -71,6 +89,7 @@ export default function Home() {
       {/* Sidebar with MCP Menus & Customer Database */}
       <SidebarMenu
         isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
         activeCustomer={activeCustomer}
         menuItems={menuItems}
         onSelectQuery={handleSelectQueryFromMenu}

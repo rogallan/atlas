@@ -43,11 +43,14 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   }, [input]);
 
   return (
-    <div style={{
-      padding: '0.8rem 1.4rem 1.1rem 1.4rem',
-      backgroundColor: 'var(--bg-secondary)',
-      borderTop: '1px solid var(--border-color)',
-    }}>
+    <div
+      className="chat-input-wrapper"
+      style={{
+        padding: '0.8rem 1.4rem 1.1rem 1.4rem',
+        backgroundColor: 'var(--bg-secondary)',
+        borderTop: '1px solid var(--border-color)',
+      }}
+    >
       <form onSubmit={handleSubmit} style={{ position: 'relative', display: 'flex', alignItems: 'flex-end', gap: '0.75rem' }}>
         <div style={{
           position: 'relative',
@@ -108,15 +111,18 @@ export const ChatInput: React.FC<ChatInputProps> = ({
         </button>
       </form>
 
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginTop: '0.45rem',
-        padding: '0 0.2rem',
-        fontSize: '0.7rem',
-        color: 'var(--text-muted)',
-      }}>
+      <div
+        className="chat-input-hints"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginTop: '0.45rem',
+          padding: '0 0.2rem',
+          fontSize: '0.7rem',
+          color: 'var(--text-muted)',
+        }}
+      >
         <span>Pressione <code>Enter</code> para enviar · <code>Shift + Enter</code> para nova linha</span>
         <span>ATLAS GenAI Banking Copilot · v1.0.0</span>
       </div>

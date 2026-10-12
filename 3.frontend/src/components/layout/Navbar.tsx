@@ -29,16 +29,19 @@ export const Navbar: React.FC<NavbarProps> = ({
   isSidebarOpen,
 }) => {
   return (
-    <header style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      padding: '0.75rem 1.5rem',
-      backgroundColor: 'var(--bg-secondary)',
-      borderBottom: '1px solid var(--border-color)',
-      zIndex: 20,
-    }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+    <header
+      className="navbar-header"
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '0.75rem 1.5rem',
+        backgroundColor: 'var(--bg-secondary)',
+        borderBottom: '1px solid var(--border-color)',
+        zIndex: 20,
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
         <button
           id="btn-toggle-sidebar"
           onClick={toggleSidebar}
@@ -53,12 +56,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            flexShrink: 0,
           }}
         >
           <Menu size={18} />
         </button>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <div style={{
             width: '32px',
             height: '32px',
@@ -68,42 +72,51 @@ export const Navbar: React.FC<NavbarProps> = ({
             alignItems: 'center',
             justifyContent: 'center',
             boxShadow: 'var(--shadow-glow)',
+            flexShrink: 0,
           }}>
             <Sparkles size={18} color="#ffffff" />
           </div>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span style={{ fontWeight: 700, fontSize: '1.1rem', letterSpacing: '-0.02em' }}>ATLAS</span>
-              <span style={{
-                fontSize: '0.65rem',
-                backgroundColor: 'rgba(37, 99, 235, 0.18)',
-                color: '#60a5fa',
-                padding: '0.1rem 0.45rem',
-                borderRadius: 'var(--radius-full)',
-                fontWeight: 600,
-                border: '1px solid rgba(59, 130, 246, 0.3)',
-              }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <span style={{ fontWeight: 700, fontSize: '1.05rem', letterSpacing: '-0.02em' }}>ATLAS</span>
+              <span
+                className="navbar-badge-copilot"
+                style={{
+                  fontSize: '0.65rem',
+                  backgroundColor: 'rgba(37, 99, 235, 0.18)',
+                  color: '#60a5fa',
+                  padding: '0.1rem 0.45rem',
+                  borderRadius: 'var(--radius-full)',
+                  fontWeight: 600,
+                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                }}
+              >
                 GENAI COPILOT
               </span>
             </div>
-            <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Agência Digital & Governança Bancária</p>
+            <p className="navbar-brand-subtitle" style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+              Agência Digital & Governança Bancária
+            </p>
           </div>
         </div>
       </div>
 
       {/* Center / Customer Selector */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', minWidth: 0 }}>
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '0.5rem',
+          gap: '0.4rem',
           backgroundColor: 'var(--bg-surface)',
-          padding: '0.35rem 0.8rem',
+          padding: '0.35rem 0.65rem',
           borderRadius: 'var(--radius-md)',
           border: '1px solid var(--border-color)',
+          maxWidth: '100%',
         }}>
-          <UserCheck size={16} color="#60a5fa" />
-          <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Cliente Ativo:</span>
+          <UserCheck size={16} color="#60a5fa" style={{ flexShrink: 0 }} />
+          <span className="navbar-customer-label" style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+            Cliente:
+          </span>
           <select
             id="select-active-customer"
             value={activeCustomer?.id || ''}
@@ -117,19 +130,20 @@ export const Navbar: React.FC<NavbarProps> = ({
               border: 'none',
               color: 'var(--text-primary)',
               fontWeight: 600,
-              fontSize: '0.82rem',
+              fontSize: '0.8rem',
               cursor: customers.length === 0 ? 'not-allowed' : 'pointer',
               outline: 'none',
+              maxWidth: '140px',
             }}
           >
             {customers.length === 0 ? (
               <option value="" style={{ background: '#111827', color: '#94a3b8' }}>
-                Carregando do servidor...
+                Carregando...
               </option>
             ) : (
               customers.map((c) => (
                 <option key={c.id} value={c.id} style={{ background: '#111827', color: '#f8fafc' }}>
-                  {c.id} — {c.name} ({c.segment})
+                  {c.id} — {c.name.split(' ')[0]} ({c.segment})
                 </option>
               ))
             )}
@@ -138,20 +152,23 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Right Actions & Manager Info */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          fontSize: '0.75rem',
-          color: 'var(--text-secondary)',
-          backgroundColor: 'rgba(16, 185, 129, 0.1)',
-          padding: '0.3rem 0.7rem',
-          borderRadius: 'var(--radius-full)',
-          border: '1px solid rgba(16, 185, 129, 0.3)',
-        }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
+        <div
+          className="navbar-manager-badge"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.4rem',
+            fontSize: '0.75rem',
+            color: 'var(--text-secondary)',
+            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+            padding: '0.3rem 0.65rem',
+            borderRadius: 'var(--radius-full)',
+            border: '1px solid rgba(16, 185, 129, 0.3)',
+          }}
+        >
           <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981' }} />
-          <span>MGR-001 (Agência 0101)</span>
+          <span>MGR-001</span>
         </div>
 
         <button
@@ -166,10 +183,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             border: '1px solid var(--border-color)',
             color: 'var(--text-secondary)',
             fontSize: '0.78rem',
-            padding: '0.4rem 0.75rem',
+            padding: '0.4rem 0.65rem',
             borderRadius: 'var(--radius-md)',
             cursor: 'pointer',
             transition: 'all 0.2s',
+            flexShrink: 0,
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.color = '#f8fafc';
@@ -181,7 +199,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           }}
         >
           <RotateCcw size={14} />
-          <span>Nova Conversa</span>
+          <span className="navbar-new-chat-text">Nova Conversa</span>
         </button>
       </div>
     </header>
