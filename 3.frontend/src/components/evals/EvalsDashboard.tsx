@@ -116,7 +116,7 @@ export const EvalsDashboard: React.FC = () => {
   const copyScorecardMarkdown = () => {
     if (!data) return;
     const { summary, thresholds } = data;
-    const text = `# ATLAS — Executive Evaluation Scorecard (S17)
+    const text = `# ATLAS — Executive Evaluation Scorecard
 Timestamp: ${summary.timestamp} | Quality Gate: ${summary.gate_passed ? 'PASS' : 'FAIL'} | Total: ${summary.total_tests}
 
 | Metric Domain | Actual Score | Required Target | Gate Status |
