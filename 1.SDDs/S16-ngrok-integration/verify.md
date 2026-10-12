@@ -8,10 +8,10 @@
 - [x] Local inspection dashboard configuration verified on `http://localhost:4040` via `5.infra/ngrok/ngrok.yml`.
 - [x] Verification of operational runbook (`8.docs/runbooks/ngrok_tunnel.md` and `docs/runbooks/ngrok_tunnel.md`) showing clear setup, token configuration, Vercel environment synchronization, and troubleshooting steps.
 
-### Smoke Test Execution Evidence
+### Smoke Test Execution Evidence (Live Public ngrok HTTPS URL)
 ```text
 ================================================================
-🧪 ATLAS Smoke Test — Target: http://localhost:8000
+🧪 ATLAS Smoke Test — Target: https://e96c-2804-7f0-7f80-2344-bcd4-ab43-22b1-3a0.ngrok-free.app
 ================================================================
 
 [1/3] Verificando Preflight CORS (OPTIONS /health)...
@@ -21,7 +21,7 @@
 
 [2/3] Verificando Health Check (GET /health)...
    Status: 200
-   Payload: {'status': 'ok', 'version': '0.1.0', 'uptime_seconds': 7.99}
+   Payload: {'status': 'ok', 'version': '0.1.0', 'uptime_seconds': 2309.06}
    ✅ Gateway operacional e saudável!
 
 [3/3] Verificando Streaming SSE (POST /v1/chat)...

@@ -1,5 +1,6 @@
 """Automation script to launch ngrok tunnel and extract public HTTPS URL (S16)."""
 
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -17,6 +18,15 @@ while REPO_ROOT.parent != REPO_ROOT:
     if (REPO_ROOT / "pyproject.toml").exists() or (REPO_ROOT / ".git").exists():
         break
     REPO_ROOT = REPO_ROOT.parent
+
+# Load .env if present
+_env_path = REPO_ROOT / ".env"
+if _env_path.exists():
+    for line in _env_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            k, v = line.split("=", 1)
+            os.environ.setdefault(k.strip(), v.strip().strip("'\""))
 
 LOCAL_API_URL = "http://localhost:8000/health"
 NGROK_API_URL = "http://127.0.0.1:4040/api/tunnels"
@@ -82,11 +92,16 @@ def start_tunnel() -> None:
         return
 
     # 3. Launch ngrok subprocess
+    authtoken = os.getenv("NGROK_AUTHTOKEN")
     cmd = ["ngrok", "http", "8000"]
     if CONFIG_PATH.exists():
         cmd = ["ngrok", "start", "--config", str(CONFIG_PATH), "atlas-api"]
 
-    print(f"🚀 Iniciando processo ngrok: {' '.join(cmd)}...")
+    if authtoken:
+        cmd.extend(["--authtoken", authtoken])
+
+    cmd_display = cmd[:-2] + ["--authtoken", "***"] if authtoken else cmd
+    print(f"🚀 Iniciando processo ngrok: {' '.join(cmd_display)}...")
     try:
         proc = subprocess.Popen(
             cmd,
@@ -94,6 +109,7 @@ def start_tunnel() -> None:
             stderr=subprocess.PIPE,
             text=True,
             cwd=str(REPO_ROOT),
+            env=os.environ.copy(),
         )
     except FileNotFoundError:
         print("❌ Erro: Executável 'ngrok' não encontrado no PATH do sistema.")
