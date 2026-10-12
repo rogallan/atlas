@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { SYNTHETIC_CUSTOMERS } from '../data/mcpMenus';
 import { CustomerSummary } from '../types/api';
 import { Navbar } from '../components/layout/Navbar';
 import { SidebarMenu } from '../components/menu/SidebarMenu';
@@ -10,8 +9,8 @@ import { SourceDrawer } from '../components/citations/SourceDrawer';
 import { useChat } from '../hooks/useChat';
 
 export default function Home() {
-  const [customerList, setCustomerList] = useState<CustomerSummary[]>(SYNTHETIC_CUSTOMERS);
-  const [activeCustomer, setActiveCustomer] = useState<CustomerSummary>(SYNTHETIC_CUSTOMERS[0]);
+  const [customerList, setCustomerList] = useState<CustomerSummary[]>([]);
+  const [activeCustomer, setActiveCustomer] = useState<CustomerSummary | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
 
   // Fetch customers dynamically from the backend repository
@@ -25,9 +24,11 @@ export default function Home() {
             setCustomerList(data);
             setActiveCustomer(data[0]);
           }
+        } else {
+          console.error(`Falha ao obter clientes do servidor: ${res.status}`);
         }
       } catch (err) {
-        console.warn('Fallback to bundled customer dataset:', err);
+        console.error('Erro de conexão ao buscar clientes do servidor:', err);
       }
     }
 

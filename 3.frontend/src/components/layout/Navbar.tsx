@@ -12,7 +12,7 @@ import {
 import { CustomerSummary } from '../../types/api';
 
 interface NavbarProps {
-  activeCustomer: CustomerSummary;
+  activeCustomer: CustomerSummary | null;
   onCustomerChange: (customer: CustomerSummary) => void;
   customers: CustomerSummary[];
   onResetSession: () => void;
@@ -106,26 +106,33 @@ export const Navbar: React.FC<NavbarProps> = ({
           <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Cliente Ativo:</span>
           <select
             id="select-active-customer"
-            value={activeCustomer.id}
+            value={activeCustomer?.id || ''}
             onChange={(e) => {
               const selected = customers.find((c) => c.id === e.target.value);
               if (selected) onCustomerChange(selected);
             }}
+            disabled={customers.length === 0}
             style={{
               background: 'transparent',
               border: 'none',
               color: 'var(--text-primary)',
               fontWeight: 600,
               fontSize: '0.82rem',
-              cursor: 'pointer',
+              cursor: customers.length === 0 ? 'not-allowed' : 'pointer',
               outline: 'none',
             }}
           >
-            {customers.map((c) => (
-              <option key={c.id} value={c.id} style={{ background: '#111827', color: '#f8fafc' }}>
-                {c.id} — {c.name} ({c.segment})
+            {customers.length === 0 ? (
+              <option value="" style={{ background: '#111827', color: '#94a3b8' }}>
+                Carregando do servidor...
               </option>
-            ))}
+            ) : (
+              customers.map((c) => (
+                <option key={c.id} value={c.id} style={{ background: '#111827', color: '#f8fafc' }}>
+                  {c.id} — {c.name} ({c.segment})
+                </option>
+              ))
+            )}
           </select>
         </div>
       </div>

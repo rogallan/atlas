@@ -21,7 +21,7 @@ import { MCP_MENU_ITEMS } from '../../data/mcpMenus';
 
 interface SidebarMenuProps {
   isOpen: boolean;
-  activeCustomer: CustomerSummary;
+  activeCustomer: CustomerSummary | null;
   onSelectQuery: (prompt: string) => void;
 }
 
@@ -80,7 +80,7 @@ export const SidebarMenu: React.FC<SidebarMenuProps> = ({
               Base de Dados Sintética
             </span>
           </div>
-          {(() => {
+          {activeCustomer && (() => {
             const badge = getSegmentBadgeColor(activeCustomer.segment);
             return (
               <span style={{
@@ -98,39 +98,47 @@ export const SidebarMenu: React.FC<SidebarMenuProps> = ({
           })()}
         </div>
 
-        <h3 style={{ fontSize: '0.98rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.2rem' }}>
-          {activeCustomer.name}
-        </h3>
-        <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.8rem' }}>
-          ID: <code style={{ color: '#93c5fd', backgroundColor: 'rgba(30, 41, 59, 0.6)', padding: '0.1rem 0.3rem', borderRadius: '4px' }}>{activeCustomer.id}</code> · Conta: {activeCustomer.active_account}
-        </p>
+        {activeCustomer ? (
+          <>
+            <h3 style={{ fontSize: '0.98rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.2rem' }}>
+              {activeCustomer.name}
+            </h3>
+            <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.8rem' }}>
+              ID: <code style={{ color: '#93c5fd', backgroundColor: 'rgba(30, 41, 59, 0.6)', padding: '0.1rem 0.3rem', borderRadius: '4px' }}>{activeCustomer.id}</code> · Conta: {activeCustomer.active_account}
+            </p>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '0.5rem',
-          backgroundColor: 'var(--bg-surface)',
-          padding: '0.6rem',
-          borderRadius: 'var(--radius-md)',
-          border: '1px solid var(--border-subtle)',
-        }}>
-          <div>
-            <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Renda Mensal</span>
-            <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)' }}>
-              R$ {activeCustomer.monthly_income.toLocaleString('pt-BR')}
-            </div>
-          </div>
-          <div>
-            <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Score de Crédito</span>
             <div style={{
-              fontSize: '0.85rem',
-              fontWeight: 700,
-              color: activeCustomer.credit_score >= 800 ? '#34d399' : activeCustomer.credit_score >= 650 ? '#60a5fa' : '#fbbf24',
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '0.5rem',
+              backgroundColor: 'var(--bg-surface)',
+              padding: '0.6rem',
+              borderRadius: 'var(--radius-md)',
+              border: '1px solid var(--border-subtle)',
             }}>
-              {activeCustomer.credit_score} pts
+              <div>
+                <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Renda Mensal</span>
+                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)' }}>
+                  R$ {activeCustomer.monthly_income.toLocaleString('pt-BR')}
+                </div>
+              </div>
+              <div>
+                <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Score de Crédito</span>
+                <div style={{
+                  fontSize: '0.85rem',
+                  fontWeight: 700,
+                  color: activeCustomer.credit_score >= 800 ? '#34d399' : activeCustomer.credit_score >= 650 ? '#60a5fa' : '#fbbf24',
+                }}>
+                  {activeCustomer.credit_score} pts
+                </div>
+              </div>
             </div>
+          </>
+        ) : (
+          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', padding: '0.5rem 0' }}>
+            Carregando clientes da API...
           </div>
-        </div>
+        )}
       </div>
 
       {/* MCP Navigation Menus */}
@@ -204,7 +212,8 @@ export const SidebarMenu: React.FC<SidebarMenuProps> = ({
                   </p>
 
                   {mcp.sampleQueries.map((query, idx) => {
-                    const resolvedPrompt = query.prompt.replace(/\{CUST_ID\}/g, activeCustomer.id);
+                    const custId = activeCustomer ? activeCustomer.id : '';
+                    const resolvedPrompt = query.prompt.replace(/\{CUST_ID\}/g, custId);
 
                     return (
                       <button

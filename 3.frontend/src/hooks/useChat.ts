@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { ChatMessage, Citation, SimulationPayload, ActionConfirmationPayload, CustomerSummary } from '../types/api';
 
-export function useChat(activeCustomer: CustomerSummary) {
+export function useChat(activeCustomer: CustomerSummary | null) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [toolStatus, setToolStatus] = useState<string | null>(null);
@@ -20,16 +20,21 @@ export function useChat(activeCustomer: CustomerSummary) {
     }
     setSessionId(currentSession);
 
-    // Initial greeting message
-    if (messages.length === 0) {
-      setMessages([
-        {
-          id: 'msg-welcome',
-          sender: 'assistant',
-          content: `👋 Olá, gerente! Sou o **ATLAS**, seu copiloto de inteligência artificial com governança e integrações bancárias.\n\nO cliente ativo no momento é **${activeCustomer.name}** (\`${activeCustomer.id}\`). Você pode utilizar os menus de serviços MCP à esquerda ou formular qualquer dúvida financeira diretamente no chat.`,
-          timestamp: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
-        },
-      ]);
+    // Initial greeting message when customer is available or on first load
+    if (activeCustomer) {
+      setMessages((prev) => {
+        if (prev.length === 0 || (prev.length === 1 && prev[0].id === 'msg-welcome')) {
+          return [
+            {
+              id: 'msg-welcome',
+              sender: 'assistant',
+              content: `👋 Olá, gerente! Sou o **ATLAS**, seu copiloto de inteligência artificial com governança e integrações bancárias.\n\nO cliente ativo no momento é **${activeCustomer.name}** (\`${activeCustomer.id}\`). Você pode utilizar os menus de serviços MCP à esquerda ou formular qualquer dúvida financeira diretamente no chat.`,
+              timestamp: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+            },
+          ];
+        }
+        return prev;
+      });
     }
   }, [activeCustomer]);
 
@@ -47,11 +52,14 @@ export function useChat(activeCustomer: CustomerSummary) {
     const newSession = `sess_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
     sessionStorage.setItem('atlas_session_id', newSession);
     setSessionId(newSession);
+    const greetingDetail = activeCustomer
+      ? `Contexto do cliente **${activeCustomer.name}** (\`${activeCustomer.id}\`) pronto para novas consultas, simulações ou chamados.`
+      : `Pronto para novas consultas e chamados bancários.`;
     setMessages([
       {
         id: `msg-welcome-${Date.now()}`,
         sender: 'assistant',
-        content: `🔄 **Nova sessão iniciada com sucesso.**\n\nContexto do cliente **${activeCustomer.name}** (\`${activeCustomer.id}\`) pronto para novas consultas, simulações ou chamados.`,
+        content: `🔄 **Nova sessão iniciada com sucesso.**\n\n${greetingDetail}`,
         timestamp: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
       },
     ]);
@@ -70,7 +78,7 @@ export function useChat(activeCustomer: CustomerSummary) {
     if (tokenMatch && (text.includes('Confirmação Obrigatória') || text.includes('Human-in-the-Loop') || text.includes('confirmar'))) {
       result.actionProposal = {
         confirmation_token: tokenMatch[1],
-        customer_id: activeCustomer.id,
+        customer_id: activeCustomer ? activeCustomer.id : 'N/A',
         category: 'CHAMADO_BANCARIO',
         title: 'Abertura de Chamado',
         description: 'Operação com impacto de escrita no sistema bancário.',
@@ -157,7 +165,7 @@ export function useChat(activeCustomer: CustomerSummary) {
         body: JSON.stringify({
           session_id: sessionId,
           message: text,
-          customer_id: activeCustomer.id,
+          customer_id: activeCustomer?.id,
         }),
       });
 
@@ -252,7 +260,10 @@ export function useChat(activeCustomer: CustomerSummary) {
     } catch (err) {
       // Fallback response if gateway/mock is offline or connection failed
       console.warn('Fallback to local assistant response:', err);
-      const fallbackContent = `⚠️ **Conexão Direta ao Agente:**\n\nRecebi sua solicitação referente ao cliente **${activeCustomer.name}** (\`${activeCustomer.id}\`).\n\nConsulta: *"${text}"*.\n\nPara executar de ponta a ponta com o servidor FastAPI local, certifique-se de iniciar o gateway com \`uv run uvicorn api.main:app --port 8000\`.`;
+      const custInfo = activeCustomer
+        ? `referente ao cliente **${activeCustomer.name}** (\`${activeCustomer.id}\`)`
+        : '';
+      const fallbackContent = `⚠️ **Conexão Direta ao Agente:**\n\nRecebi sua solicitação ${custInfo}.\n\nConsulta: *"${text}"*.\n\nPara executar de ponta a ponta com o servidor FastAPI local, certifique-se de iniciar o gateway com \`uv run uvicorn api.main:app --port 8000\`.`;
       const { simulation, actionProposal } = parseSpecialPayloads(fallbackContent);
 
       setMessages((prev) =>
