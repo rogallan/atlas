@@ -54,6 +54,7 @@ extend-exclude = [
     "6.ops",
     "7.evals",
     "8.docs",
+    "evals",
 ]
 
 [tool.ruff.lint]

@@ -1,7 +1,7 @@
 """Information Retrieval evaluation metrics (Recall@k, Precision@k, MRR) (S17)."""
 
 import re
-from typing import Sequence
+from collections.abc import Sequence
 
 
 def _normalize(text: str) -> str:

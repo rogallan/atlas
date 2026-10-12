@@ -1,7 +1,6 @@
 """Unit and regression tests for ATLAS Evaluation Harness and Metrics (S17)."""
 
 from pathlib import Path
-import pytest
 
 from evals.metrics.groundedness import calculate_groundedness_score
 from evals.metrics.retrieval import (
@@ -13,7 +12,6 @@ from evals.metrics.safety import calculate_safety_compliance, evaluate_action_sa
 from evals.metrics.tool_selection import evaluate_tool_call
 from evals.models import (
     EvalCategory,
-    ScorecardSummary,
     TestCase,
     ThresholdMatrix,
 )

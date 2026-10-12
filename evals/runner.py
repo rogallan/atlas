@@ -9,7 +9,11 @@ from pathlib import Path
 from typing import Any
 
 from evals.metrics.groundedness import calculate_groundedness_score
-from evals.metrics.retrieval import calculate_context_precision, calculate_context_recall, calculate_mrr
+from evals.metrics.retrieval import (
+    calculate_context_precision,
+    calculate_context_recall,
+    calculate_mrr,
+)
 from evals.metrics.safety import calculate_safety_compliance, evaluate_action_safety
 from evals.metrics.tool_selection import evaluate_tool_call
 from evals.models import (
@@ -245,11 +249,13 @@ def run_evaluations(
         latencies.append(res.latency_seconds)
 
         if not res.passed:
-            failures.append({
-                "test_id": res.test_id,
-                "category": res.category.value,
-                "reason": res.failure_reason or "Unknown failure",
-            })
+            failures.append(
+                {
+                    "test_id": res.test_id,
+                    "category": res.category.value,
+                    "reason": res.failure_reason or "Unknown failure",
+                }
+            )
 
         if case.category == EvalCategory.INTENT:
             intent_scores.append(1.0 if res.passed else 0.0)
@@ -265,9 +271,13 @@ def run_evaluations(
     overall_pass_rate = round(passed_tests / total_tests, 4) if total_tests > 0 else 0.0
 
     avg_intent = round(sum(intent_scores) / len(intent_scores), 4) if intent_scores else 1.0
-    avg_recall = round(sum(retrieval_recalls) / len(retrieval_recalls), 4) if retrieval_recalls else 1.0
+    avg_recall = (
+        round(sum(retrieval_recalls) / len(retrieval_recalls), 4) if retrieval_recalls else 1.0
+    )
     avg_groundedness = (
-        round(sum(groundedness_scores) / len(groundedness_scores), 4) if groundedness_scores else 1.0
+        round(sum(groundedness_scores) / len(groundedness_scores), 4)
+        if groundedness_scores
+        else 1.0
     )
     avg_tool = round(sum(tool_scores) / len(tool_scores), 4) if tool_scores else 1.0
     safety_compliance = calculate_safety_compliance(safety_records) if safety_records else 1.0
@@ -341,7 +351,9 @@ def main() -> int:
         print("❌ FALHA NO QUALITY GATE: Uma ou mais métricas violaram os thresholds mínimos!")
         return 1
 
-    print("🎉 QUALITY GATE APROVADO: Todos os thresholds de acurácia, groundedness e segurança foram atingidos!")
+    print(
+        "🎉 QUALITY GATE APROVADO: Todos os thresholds de acurácia, groundedness e segurança foram atingidos!"
+    )
     return 0
 
 

@@ -1,7 +1,7 @@
 """Groundedness and Hallucination Detection metrics for GenAI synthesis (S17)."""
 
 import re
-from typing import Sequence
+from collections.abc import Sequence
 
 
 def _split_into_claims(text: str) -> list[str]:
@@ -48,16 +48,59 @@ def calculate_groundedness_score(
 
     # Stopwords to filter when extracting key tokens
     stopwords = {
-        "o", "a", "os", "as", "um", "uma", "uns", "umas", "de", "do", "da", "dos",
-        "das", "em", "no", "na", "nos", "nas", "por", "pelo", "pela", "pelos", "pelas",
-        "com", "para", "que", "e", "ou", "se", "como", "ao", "aos", "à", "às", "é", "são",
-        "foi", "foram", "ser", "estar", "está", "estão", "ter", "tem", "temos", "têm",
+        "o",
+        "a",
+        "os",
+        "as",
+        "um",
+        "uma",
+        "uns",
+        "umas",
+        "de",
+        "do",
+        "da",
+        "dos",
+        "das",
+        "em",
+        "no",
+        "na",
+        "nos",
+        "nas",
+        "por",
+        "pelo",
+        "pela",
+        "pelos",
+        "pelas",
+        "com",
+        "para",
+        "que",
+        "e",
+        "ou",
+        "se",
+        "como",
+        "ao",
+        "aos",
+        "à",
+        "às",
+        "é",
+        "são",
+        "foi",
+        "foram",
+        "ser",
+        "estar",
+        "está",
+        "estão",
+        "ter",
+        "tem",
+        "temos",
+        "têm",
     }
 
     for claim in claims:
         # Extract meaningful alphanumeric tokens (length >= 3 and not stopword)
         tokens = [
-            t.lower() for t in re.findall(r"\b[A-Za-zÀ-ÿ0-9%R$]+\b", claim)
+            t.lower()
+            for t in re.findall(r"\b[A-Za-zÀ-ÿ0-9%R$]+\b", claim)
             if len(t) >= 3 and t.lower() not in stopwords
         ]
 

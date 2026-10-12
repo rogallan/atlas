@@ -1,6 +1,7 @@
 """Markdown scorecard report generator (S17)."""
 
 from pathlib import Path
+
 from evals.models import ScorecardSummary, ThresholdMatrix
 
 
@@ -29,51 +30,77 @@ def generate_markdown_scorecard(
         comp = f"{round((actual / threshold) * 100, 1)}%" if threshold > 0 else "N/A"
         lines.append(f"| {domain} | **{actual:.1%}** | >={threshold:.1%} | {status} | {comp} |")
 
-    add_metric_row("Intent Classification Accuracy (S05)", summary.intent_accuracy, thresholds.min_intent_accuracy)
-    add_metric_row("RAG Context Recall@k (S07)", summary.retrieval_recall, thresholds.min_retrieval_recall)
-    add_metric_row("Faithfulness & Groundedness (S07/S17)", summary.groundedness_score, thresholds.min_groundedness_score)
-    add_metric_row("MCP Tool Selection & Parameters (S08–S13)", summary.tool_selection_accuracy, thresholds.min_tool_selection_accuracy)
-    add_metric_row("Human-in-the-Loop Safety Compliance (S13/S14)", summary.safety_hitl_compliance, thresholds.required_safety_compliance)
+    add_metric_row(
+        "Intent Classification Accuracy (S05)",
+        summary.intent_accuracy,
+        thresholds.min_intent_accuracy,
+    )
+    add_metric_row(
+        "RAG Context Recall@k (S07)", summary.retrieval_recall, thresholds.min_retrieval_recall
+    )
+    add_metric_row(
+        "Faithfulness & Groundedness (S07/S17)",
+        summary.groundedness_score,
+        thresholds.min_groundedness_score,
+    )
+    add_metric_row(
+        "MCP Tool Selection & Parameters (S08–S13)",
+        summary.tool_selection_accuracy,
+        thresholds.min_tool_selection_accuracy,
+    )
+    add_metric_row(
+        "Human-in-the-Loop Safety Compliance (S13/S14)",
+        summary.safety_hitl_compliance,
+        thresholds.required_safety_compliance,
+    )
 
-    lines.extend([
-        "",
-        "## 2. Operational Performance",
-        "",
-        f"- **Overall Test Pass Rate:** `{summary.overall_pass_rate:.1%}` ({summary.passed_tests} of {summary.total_tests} scenarios)",
-        f"- **Average Inference Latency:** `{summary.average_latency_seconds:.3f}s` per interaction turn",
-        f"- **Quality Gate Verdict:** `{'APPROVED FOR MERGE / RELEASE' if summary.gate_passed else 'BLOCKED — METRIC REGRESSION DETECTED'}`",
-        "",
-        "## 3. Benchmark Dataset Coverage",
-        "",
-        "- `golden_intents.json`: 50 canonical banking utterances across all 5 routing intents (Knowledge, Simulation, Action, Clarification, Out-of-Domain).",
-        "- `golden_questions.json`: 20 regulatory and public knowledge factual queries tested against BACEN & CMN corpora.",
-        "- `golden_conversations.json`: 7 multi-turn interactive banking scenarios across Loans, Insurance, Consortium, Tariffs, and HITL Tickets.",
-        "",
-    ])
+    lines.extend(
+        [
+            "",
+            "## 2. Operational Performance",
+            "",
+            f"- **Overall Test Pass Rate:** `{summary.overall_pass_rate:.1%}` ({summary.passed_tests} of {summary.total_tests} scenarios)",
+            f"- **Average Inference Latency:** `{summary.average_latency_seconds:.3f}s` per interaction turn",
+            f"- **Quality Gate Verdict:** `{'APPROVED FOR MERGE / RELEASE' if summary.gate_passed else 'BLOCKED — METRIC REGRESSION DETECTED'}`",
+            "",
+            "## 3. Benchmark Dataset Coverage",
+            "",
+            "- `golden_intents.json`: 50 canonical banking utterances across all 5 routing intents (Knowledge, Simulation, Action, Clarification, Out-of-Domain).",
+            "- `golden_questions.json`: 20 regulatory and public knowledge factual queries tested against BACEN & CMN corpora.",
+            "- `golden_conversations.json`: 7 multi-turn interactive banking scenarios across Loans, Insurance, Consortium, Tariffs, and HITL Tickets.",
+            "",
+        ]
+    )
 
     if summary.failures:
-        lines.extend([
-            "## 4. Failure and Anomaly Trace",
-            "",
-            "| Test ID | Category | Reason |",
-            "| :--- | :--- | :--- |",
-        ])
+        lines.extend(
+            [
+                "## 4. Failure and Anomaly Trace",
+                "",
+                "| Test ID | Category | Reason |",
+                "| :--- | :--- | :--- |",
+            ]
+        )
         for f in summary.failures:
             lines.append(f"| `{f.get('test_id')}` | `{f.get('category')}` | {f.get('reason')} |")
         lines.append("")
     else:
-        lines.extend([
-            "## 4. Regression Analysis",
-            "",
-            "🎉 **Zero regressions detected.** 100% of benchmark test cases satisfied regulatory groundedness and safety constraints.",
-            "",
-        ])
+        lines.extend(
+            [
+                "## 4. Regression Analysis",
+                "",
+                "🎉 **Zero regressions detected.** 100% of benchmark test cases satisfied regulatory groundedness and safety constraints.",
+                "",
+            ]
+        )
 
-    lines.extend([
-        "---",
-        "*Automated report generated by ATLAS Evaluation Harness (`evals.runner`).*",
-        "",
-    ])
+    lines.extend(
+        [
+            "---",
+            "*Automated report generated by ATLAS Evaluation Harness (`evals.runner`).*",
+            "",
+        ]
+    )
 
     content = "\n".join(lines)
 

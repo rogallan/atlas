@@ -1,6 +1,7 @@
 """Console reporter with formatted tables and colorized quality gate status (S17)."""
 
 import sys
+
 from evals.models import ScorecardSummary, ThresholdMatrix
 
 # UTF-8 stdout reconfiguration for Windows terminals
@@ -27,16 +28,31 @@ def print_console_scorecard(summary: ScorecardSummary, thresholds: ThresholdMatr
     def format_row(metric_name: str, actual: float, threshold: float, strict: bool = False) -> str:
         passed = actual >= threshold
         mark = "✅" if passed else "❌"
-        return (
-            f"  {mark} {metric_name:<30} "
-            f"Atual: {actual:>6.1%}  |  Meta: >={threshold:>5.1%}"
-        )
+        return f"  {mark} {metric_name:<30} " f"Atual: {actual:>6.1%}  |  Meta: >={threshold:>5.1%}"
 
     print(f"\n{bold}Métricas e Thresholds Regulatórios:{reset}")
-    print(format_row("Acurácia de Intenção", summary.intent_accuracy, thresholds.min_intent_accuracy))
-    print(format_row("Recall de Recuperação RAG", summary.retrieval_recall, thresholds.min_retrieval_recall))
-    print(format_row("Groundedness (Sem Alucinação)", summary.groundedness_score, thresholds.min_groundedness_score))
-    print(format_row("Precisão de MCP Tools", summary.tool_selection_accuracy, thresholds.min_tool_selection_accuracy))
+    print(
+        format_row("Acurácia de Intenção", summary.intent_accuracy, thresholds.min_intent_accuracy)
+    )
+    print(
+        format_row(
+            "Recall de Recuperação RAG", summary.retrieval_recall, thresholds.min_retrieval_recall
+        )
+    )
+    print(
+        format_row(
+            "Groundedness (Sem Alucinação)",
+            summary.groundedness_score,
+            thresholds.min_groundedness_score,
+        )
+    )
+    print(
+        format_row(
+            "Precisão de MCP Tools",
+            summary.tool_selection_accuracy,
+            thresholds.min_tool_selection_accuracy,
+        )
+    )
     print(
         format_row(
             "Segurança HITL (100% Obrigatório)",
@@ -47,11 +63,15 @@ def print_console_scorecard(summary: ScorecardSummary, thresholds: ThresholdMatr
     )
 
     print(f"\n{bold}Desempenho Geral:{reset}")
-    print(f"  • Taxa Global de Sucesso: {summary.overall_pass_rate:.1%} ({summary.passed_tests}/{summary.total_tests})")
+    print(
+        f"  • Taxa Global de Sucesso: {summary.overall_pass_rate:.1%} ({summary.passed_tests}/{summary.total_tests})"
+    )
     print(f"  • Latência Média:         {summary.average_latency_seconds:.3f}s por inferência")
 
     if summary.failures:
-        print(f"\n{bold}\033[93m⚠️  Anomalias e Regressões Detectadas ({len(summary.failures)}):{reset}")
+        print(
+            f"\n{bold}\033[93m⚠️  Anomalias e Regressões Detectadas ({len(summary.failures)}):{reset}"
+        )
         for f in summary.failures[:5]:
             print(f"    - [{f.get('category')}] {f.get('test_id')}: {f.get('reason')}")
         if len(summary.failures) > 5:

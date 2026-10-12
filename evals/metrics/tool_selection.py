@@ -59,5 +59,7 @@ def evaluate_tool_call(
     if param_score >= 0.80:
         return True, composite_score, None
     else:
-        reason = f"Parameter mismatch for '{expected_tool}': {matched_params}/{total_expected} correct"
+        reason = (
+            f"Parameter mismatch for '{expected_tool}': {matched_params}/{total_expected} correct"
+        )
         return False, composite_score, reason
