@@ -4,18 +4,18 @@ from typing import Any
 
 from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.exceptions import RequestValidationError
-from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from api.config import (
-    ALLOWED_ORIGINS,
     API_DESCRIPTION,
     API_TITLE,
     API_VERSION,
 )
+from api.middleware.cors import setup_cors
 from api.routes.chat import router as chat_router
 from api.routes.customers import router as customers_router
 from api.routes.health import router as health_router
+from api.routes.menus import router as menus_router
 from api.routes.sessions import router as sessions_router
 from api.schemas import ErrorDetail, ErrorEnvelope
 
@@ -32,19 +32,7 @@ def create_app() -> FastAPI:
     )
 
     # 1. CORS & ngrok integration middleware
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=ALLOWED_ORIGINS,
-        allow_credentials=True,
-        allow_methods=["GET", "POST", "OPTIONS"],
-        allow_headers=[
-            "Content-Type",
-            "Authorization",
-            "X-Session-ID",
-            "ngrok-skip-browser-warning",
-        ],
-        expose_headers=["Content-Type"],
-    )
+    setup_cors(app)
 
     # 2. Standardized error handlers
     @app.exception_handler(HTTPException)
@@ -100,6 +88,7 @@ def create_app() -> FastAPI:
     app.include_router(sessions_router)
     app.include_router(chat_router)
     app.include_router(customers_router)
+    app.include_router(menus_router)
 
     return app
 

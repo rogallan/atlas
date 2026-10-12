@@ -54,5 +54,4 @@ async def list_customers() -> list[CustomerSummaryResponse]:
                 active_account=primary_account,
             )
         )
-        print(results)
     return results

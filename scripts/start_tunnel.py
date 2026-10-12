@@ -1,0 +1,118 @@
+"""Automation script to launch ngrok tunnel and extract public HTTPS URL (S16)."""
+
+import os
+import subprocess
+import sys
+import time
+from typing import Any
+import httpx
+
+if sys.platform == "win32":
+    sys.stdout.reconfigure(encoding="utf-8")
+
+LOCAL_API_URL = "http://localhost:8000/health"
+NGROK_API_URL = "http://127.0.0.1:4040/api/tunnels"
+CONFIG_PATH = os.path.join("5.infra", "ngrok", "ngrok.yml")
+
+
+def check_local_gateway() -> bool:
+    """Verify if the FastAPI Gateway is running locally on port 8000."""
+    try:
+        response = httpx.get(LOCAL_API_URL, timeout=2.0)
+        return response.status_code == 200
+    except Exception:
+        return False
+
+
+def get_public_url() -> str | None:
+    """Query ngrok local inspection API on port 4040 to extract public HTTPS endpoint."""
+    try:
+        response = httpx.get(NGROK_API_URL, timeout=1.5)
+        if response.status_code == 200:
+            data: dict[str, Any] = response.json()
+            tunnels = data.get("tunnels", [])
+            for tunnel in tunnels:
+                public_url: str = tunnel.get("public_url", "")
+                if public_url.startswith("https://"):
+                    return public_url
+            if tunnels:
+                return tunnels[0].get("public_url")
+    except Exception:
+        pass
+    return None
+
+
+def start_tunnel() -> None:
+    """Launch ngrok and wait for public HTTPS endpoint resolution."""
+    print("=" * 64)
+    print("🌐 ATLAS Banking Copilot — ngrok Tunnel Manager")
+    print("=" * 64)
+
+    # 1. Health check local gateway
+    if not check_local_gateway():
+        print("⚠️  Aviso: O Gateway FastAPI não respondeu em http://localhost:8000/health.")
+        print("💡 Inicie o servidor em outro terminal: uv run uvicorn api.main:app --port 8000\n")
+
+    # 2. Check if tunnel is already running on port 4040
+    existing_url = get_public_url()
+    if existing_url:
+        print(f"✅ Túnel ngrok já em execução detectado!")
+        print_banner(existing_url)
+        return
+
+    # 3. Launch ngrok subprocess
+    cmd = ["ngrok", "http", "8000"]
+    if os.path.exists(CONFIG_PATH):
+        cmd = ["ngrok", "start", "--config", CONFIG_PATH, "atlas-api"]
+
+    print(f"🚀 Iniciando processo ngrok: {' '.join(cmd)}...")
+    try:
+        proc = subprocess.Popen(
+            cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+    except FileNotFoundError:
+        print("❌ Erro: Executável 'ngrok' não encontrado no PATH do sistema.")
+        print("Instale o ngrok via: winget install ngrok.ngrok (Windows) ou brew install ngrok (macOS)")
+        sys.exit(1)
+
+    # 4. Poll ngrok local API
+    print("⏳ Aguardando atribuição de URL pública...")
+    public_url = None
+    for _ in range(25):
+        time.sleep(0.5)
+        public_url = get_public_url()
+        if public_url:
+            break
+
+    if not public_url:
+        print("❌ Falha ao obter URL pública do ngrok após 12 segundos.")
+        print("Verifique se seu NGROK_AUTHTOKEN foi configurado: ngrok config add-authtoken <TOKEN>")
+        proc.terminate()
+        sys.exit(1)
+
+    print_banner(public_url)
+
+    try:
+        print("Pressione CTRL+C para encerrar o túnel.")
+        proc.wait()
+    except KeyboardInterrupt:
+        print("\n🛑 Encerrando túnel ngrok...")
+        proc.terminate()
+        proc.wait()
+        print("✅ Túnel encerrado com sucesso.")
+
+
+def print_banner(url: str) -> None:
+    print("\n" + "=" * 64)
+    print("🚀 ATLAS ngrok tunnel ativo com sucesso!")
+    print(f"🌐 Public HTTPS URL: {url}")
+    print(f"⚙️  Configure no Vercel: NEXT_PUBLIC_API_BASE_URL={url}")
+    print("📊 Painel de Inspeção: http://localhost:4040")
+    print("=" * 64 + "\n")
+
+
+if __name__ == "__main__":
+    start_tunnel()

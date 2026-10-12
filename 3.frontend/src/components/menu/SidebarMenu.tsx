@@ -17,17 +17,18 @@ import {
   Layers
 } from 'lucide-react';
 import { CustomerSummary, MCPMenuItem } from '../../types/api';
-import { MCP_MENU_ITEMS } from '../../data/mcpMenus';
 
 interface SidebarMenuProps {
   isOpen: boolean;
   activeCustomer: CustomerSummary | null;
+  menuItems?: MCPMenuItem[];
   onSelectQuery: (prompt: string) => void;
 }
 
 export const SidebarMenu: React.FC<SidebarMenuProps> = ({
   isOpen,
   activeCustomer,
+  menuItems = [],
   onSelectQuery,
 }) => {
   const [expandedMcp, setExpandedMcp] = useState<string>('customer');
@@ -149,8 +150,21 @@ export const SidebarMenu: React.FC<SidebarMenuProps> = ({
           </span>
         </div>
 
-        {MCP_MENU_ITEMS.map((mcp) => {
-          const isExpanded = expandedMcp === mcp.id;
+        {menuItems.length === 0 ? (
+          <div style={{
+            padding: '1.2rem',
+            textAlign: 'center',
+            color: 'var(--text-muted)',
+            fontSize: '0.8rem',
+            backgroundColor: 'var(--bg-surface)',
+            borderRadius: 'var(--radius-md)',
+            border: '1px dashed var(--border-color)',
+          }}>
+            Carregando catálogo MCP do servidor...
+          </div>
+        ) : (
+          menuItems.map((mcp) => {
+            const isExpanded = expandedMcp === mcp.id;
 
           return (
             <div
@@ -261,7 +275,8 @@ export const SidebarMenu: React.FC<SidebarMenuProps> = ({
               )}
             </div>
           );
-        })}
+        })
+      )}
       </div>
     </aside>
   );
