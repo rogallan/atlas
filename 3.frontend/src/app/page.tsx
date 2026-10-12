@@ -7,10 +7,11 @@ import { SidebarMenu } from '../components/menu/SidebarMenu';
 import { ChatContainer } from '../components/chat/ChatContainer';
 import { SourceDrawer } from '../components/citations/SourceDrawer';
 import { EvalsDashboard } from '../components/evals/EvalsDashboard';
+import { MetricsDashboard } from '../components/ops/MetricsDashboard';
 import { useChat } from '../hooks/useChat';
 
 export default function Home() {
-  const [activeView, setActiveView] = useState<'chat' | 'evals'>('chat');
+  const [activeView, setActiveView] = useState<'chat' | 'evals' | 'metrics'>('chat');
   const [customerList, setCustomerList] = useState<CustomerSummary[]>([]);
   const [activeCustomer, setActiveCustomer] = useState<CustomerSummary | null>(null);
   const [menuItems, setMenuItems] = useState<MCPMenuItem[]>([]);
@@ -133,9 +134,13 @@ export default function Home() {
               onClose={() => setActiveCitation(null)}
             />
           </>
-        ) : (
+        ) : activeView === 'evals' ? (
           <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
             <EvalsDashboard />
+          </div>
+        ) : (
+          <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
+            <MetricsDashboard />
           </div>
         )}
       </div>

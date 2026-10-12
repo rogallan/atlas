@@ -26,3 +26,4 @@ htmlcov/
 # Vector database local storage
 **/storage/chroma/
 .chroma/
+*.tsbuildinfo

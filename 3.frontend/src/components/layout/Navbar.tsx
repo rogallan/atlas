@@ -18,8 +18,8 @@ interface NavbarProps {
   onResetSession: () => void;
   toggleSidebar: () => void;
   isSidebarOpen: boolean;
-  activeView?: 'chat' | 'evals';
-  onViewChange?: (view: 'chat' | 'evals') => void;
+  activeView?: 'chat' | 'evals' | 'metrics';
+  onViewChange?: (view: 'chat' | 'evals' | 'metrics') => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -171,6 +171,26 @@ export const Navbar: React.FC<NavbarProps> = ({
               }}
             >
               🛡️ Evals
+            </button>
+            <button
+              id="tab-view-metrics"
+              onClick={() => onViewChange('metrics')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                backgroundColor: activeView === 'metrics' ? 'var(--accent-primary)' : 'transparent',
+                color: activeView === 'metrics' ? '#ffffff' : 'var(--text-secondary)',
+                border: 'none',
+                borderRadius: 'var(--radius-sm)',
+                padding: '0.3rem 0.65rem',
+                fontSize: '0.76rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.15s ease',
+              }}
+            >
+              📊 Métricas
             </button>
           </div>
         )}

@@ -17,6 +17,7 @@ from api.routes.customers import router as customers_router
 from api.routes.evals import router as evals_router
 from api.routes.health import router as health_router
 from api.routes.menus import router as menus_router
+from api.routes.ops import router as ops_router
 from api.routes.sessions import router as sessions_router
 from api.schemas import ErrorDetail, ErrorEnvelope
 from ops.middleware import ObservabilityMiddleware, metrics_router
@@ -94,6 +95,7 @@ def create_app() -> FastAPI:
     app.include_router(menus_router)
     app.include_router(evals_router)
     app.include_router(metrics_router)
+    app.include_router(ops_router)
 
     return app
 
