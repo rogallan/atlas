@@ -1,8 +1,6 @@
 version: "2"
-authtoken_from_env: true
 tunnels:
   atlas-api:
     proto: http
     addr: 8000
     inspect: true
-    bind_tls: true

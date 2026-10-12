@@ -1,6 +1,5 @@
 """Automation script to launch ngrok tunnel and extract public HTTPS URL (S16)."""
 
-import os
 from pathlib import Path
 import subprocess
 import sys
@@ -101,11 +100,26 @@ def start_tunnel() -> None:
         print("Instale o ngrok via: winget install ngrok.ngrok (Windows) ou brew install ngrok (macOS)")
         sys.exit(1)
 
-    # 4. Poll ngrok local API
+    # 4. Poll ngrok local API with early exit on process crash
     print("⏳ Aguardando atribuição de URL pública...")
     public_url = None
     for _ in range(25):
         time.sleep(0.5)
+
+        # Check if ngrok died unexpectedly
+        if proc.poll() is not None:
+            _, stderr = proc.communicate()
+            print("\n❌ O processo do ngrok encerrou inesperadamente:")
+            for line in stderr.splitlines():
+                if "ERROR:" in line or "ERR_NGROK" in line or "authentication" in line.lower():
+                    print(f"   {line.strip()}")
+            if "ERR_NGROK_4018" in stderr or "not authenticated" in stderr.lower():
+                print("\n🔑 Ação Necessária: Autenticação do ngrok pendente.")
+                print("1. Acesse: https://dashboard.ngrok.com/get-started/your-authtoken")
+                print("2. Execute no terminal: ngrok config add-authtoken <SEU_TOKEN>")
+                print("   (ou defina a variável: $env:NGROK_AUTHTOKEN = '<SEU_TOKEN>')")
+            sys.exit(1)
+
         public_url = get_public_url()
         if public_url:
             break
