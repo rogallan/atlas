@@ -40,12 +40,12 @@ class OllamaSettings(BaseModel):
         description="Default model name to run",
     )
     timeout_seconds: float = Field(
-        default_factory=lambda: float(os.getenv("OLLAMA_TIMEOUT_SECONDS", "30.0")),
+        default_factory=lambda: float(os.getenv("OLLAMA_TIMEOUT_SECONDS", "5.0")),
         ge=1.0,
         description="Per-request HTTP timeout in seconds",
     )
     max_retries: int = Field(
-        default_factory=lambda: int(os.getenv("OLLAMA_MAX_RETRIES", "3")),
+        default_factory=lambda: int(os.getenv("OLLAMA_MAX_RETRIES", "1")),
         ge=0,
         description="Maximum retry attempts on network or timeout failure",
     )

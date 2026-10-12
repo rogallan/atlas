@@ -4,7 +4,7 @@ import logging
 
 from agent.graph.state import AgentState, AgentStep
 from agent.guardrails.injection import PromptInjectionDetector
-from agent.router.models import IntentType
+from agent.router.models import IntentResult, IntentType
 from agent.router.router import IntentRouter
 
 logger = logging.getLogger("atlas.agent.graph.router_node")
@@ -38,31 +38,46 @@ class RouterNode:
             state.error_message = reason
             return state
 
-        # 2. Intent Classification via S05 Intent Router
-        decision = await self.router.route(state.user_message)
+        # 2. Fast-path lexical detection for standard banking keywords (0ms response)
+        msg_low = state.user_message.lower()
+        fast_intent: IntentType | None = None
+        if any(w in msg_low for w in ["chamado", "contest", "tkn_", "confirmar", "cancelar"]):
+            fast_intent = IntentType.ACTION
+        elif any(w in msg_low for w in ["saldo", "extrato", "conta", "perfil", "transaç"]):
+            fast_intent = IntentType.QUERY
+        elif any(w in msg_low for w in ["simul", "empréstimo", "seguro", "consórcio"]):
+            fast_intent = IntentType.SIMULATION
+        elif any(w in msg_low for w in ["bacen", "cmn", "resolução", "saque"]):
+            fast_intent = IntentType.KNOWLEDGE
 
-        # Fallback to lexical heuristics if LLM was unavailable (confidence == 0.0)
-        if decision.confidence == 0.0:
-            msg_low = state.user_message.lower()
-            if any(w in msg_low for w in ["chamado", "contest", "tkn_", "confirmar", "cancelar"]):
-                decision.intent = IntentType.ACTION
-                decision.confidence = 0.85
-            elif any(w in msg_low for w in ["saldo", "extrato", "conta", "perfil", "transaç"]):
-                decision.intent = IntentType.QUERY
-                decision.confidence = 0.85
-            elif any(w in msg_low for w in ["simul", "empréstimo", "seguro", "consórcio"]):
-                decision.intent = IntentType.SIMULATION
-                decision.confidence = 0.85
-            elif any(w in msg_low for w in ["bacen", "cmn", "resolução", "saque"]):
-                decision.intent = IntentType.KNOWLEDGE
-                decision.confidence = 0.85
+        if fast_intent is not None:
+            state.intent_decision = IntentResult(
+                intent=fast_intent,
+                confidence=0.95,
+                reasoning="Classificação de alta confiança por fast-path bancário.",
+            )
+            logger.info(
+                "Router node fast-path intent='%s' for session '%s'",
+                fast_intent.value,
+                state.session_id,
+            )
+            return state
+
+        # 3. Intent Classification via LLM Router with timeout guard
+        try:
+            import asyncio
+
+            decision = await asyncio.wait_for(
+                self.router.route(state.user_message),
+                timeout=5.0,
+            )
+        except Exception as exc:
+            logger.warning("Router LLM timeout or error: %s. Using clarification.", exc)
+            decision = IntentResult(
+                intent=IntentType.CLARIFICATION,
+                confidence=0.5,
+                reasoning="Requisição ambígua ou modelo local lento.",
+            )
 
         state.intent_decision = decision
-        logger.info(
-            "Router node classified intent='%s' (conf=%.2f) for session '%s'",
-            decision.intent.value,
-            decision.confidence,
-            state.session_id,
-        )
-
         return state
