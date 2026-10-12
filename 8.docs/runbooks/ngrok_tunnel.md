@@ -1,7 +1,7 @@
 # Runbook Operacional — Túnel ngrok (S16)
 
-> **Serviço:** Integração Externa FastAPI <-> Vercel via ngrok  
-> **Classificação:** Operações / Infraestrutura Local  
+> **Serviço:** Integração Externa FastAPI <-> Vercel via ngrok
+> **Classificação:** Operações / Infraestrutura Local
 > **Objetivo:** Expor com segurança o Gateway local FastAPI (`:8000`) para o frontend React hospedado na Vercel sem expor portas de roteador ou hospedar dados em nuvem pública (princípio *Local-first*).
 
 ---
@@ -12,7 +12,7 @@
 [ Usuário / Navegador ]
            │
            ▼
-[ Frontend Vercel (Next.js) ] 
+[ Frontend Vercel (Next.js) ]
            │  (HTTPS público)
            ▼
 [ ngrok Cloud Edge (*.ngrok-free.app) ]

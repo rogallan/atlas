@@ -1,11 +1,12 @@
 """Automation script to launch ngrok tunnel and extract public HTTPS URL (S16)."""
 
 import os
-from pathlib import Path
 import subprocess
 import sys
 import time
+from pathlib import Path
 from typing import Any
+
 import httpx
 
 if sys.platform == "win32":
@@ -113,7 +114,10 @@ def start_tunnel() -> None:
         )
     except FileNotFoundError:
         print("❌ Erro: Executável 'ngrok' não encontrado no PATH do sistema.")
-        print("Instale o ngrok via: winget install ngrok.ngrok (Windows) ou brew install ngrok (macOS)")
+        print(
+            "Instale o ngrok via: winget install ngrok.ngrok (Windows) "
+            "ou brew install ngrok (macOS)"
+        )
         sys.exit(1)
 
     # 4. Poll ngrok local API with early exit on process crash
@@ -142,7 +146,9 @@ def start_tunnel() -> None:
 
     if not public_url:
         print("❌ Falha ao obter URL pública do ngrok após 12 segundos.")
-        print("Verifique se seu NGROK_AUTHTOKEN foi configurado: ngrok config add-authtoken <TOKEN>")
+        print(
+            "Verifique se seu NGROK_AUTHTOKEN foi configurado: ngrok config add-authtoken <TOKEN>"
+        )
         proc.terminate()
         sys.exit(1)
 

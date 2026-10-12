@@ -113,7 +113,10 @@ def start_tunnel() -> None:
         )
     except FileNotFoundError:
         print("❌ Erro: Executável 'ngrok' não encontrado no PATH do sistema.")
-        print("Instale o ngrok via: winget install ngrok.ngrok (Windows) ou brew install ngrok (macOS)")
+        print(
+            "Instale o ngrok via: winget install ngrok.ngrok (Windows) "
+            "ou brew install ngrok (macOS)"
+        )
         sys.exit(1)
 
     # 4. Poll ngrok local API with early exit on process crash

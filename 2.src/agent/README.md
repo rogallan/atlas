@@ -148,6 +148,7 @@ No prompt interativo, você pode testar comandos como:
 import asyncio
 from agent.graph import create_agent_graph
 
+
 async def main():
     # Cria o grafo com todas as dependências conectadas
     graph = create_agent_graph()
@@ -162,6 +163,7 @@ async def main():
     print("Status:", state.current_step.value)
     print("Nós executados:", " -> ".join(state.node_history))
     print("\nResposta do Agente:\n", state.final_response)
+
 
 if __name__ == "__main__":
     asyncio.run(main())

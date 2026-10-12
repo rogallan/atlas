@@ -1,7 +1,7 @@
 """Cross-Origin Resource Sharing (CORS) setup for Vercel, ngrok, and local clients (S16)."""
 
 import os
-from typing import Sequence
+from collections.abc import Sequence
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
