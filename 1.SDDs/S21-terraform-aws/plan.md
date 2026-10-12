@@ -32,19 +32,19 @@ docs/
 ```mermaid
 flowchart TD
     Client[💬 React Chat on Vercel] -->|HTTPS| Route53[AWS Route 53 / ALB]
-    
+
     subgraph VPC["AWS VPC (10.0.0.0/16)"]
         subgraph PublicSubnets["Public Subnets (Multi-AZ)"]
             Route53 --> ALB[Application Load Balancer]
             NAT[NAT Gateway]
         end
-        
+
         subgraph PrivateSubnets["Private Subnets (Multi-AZ)"]
             ALB -->|Forward :8000| ECS_Gateway[ECS Fargate: atlas-gateway<br/>FastAPI + Agent Graph]
             ECS_Gateway -->|Internal| ECS_MCP[ECS Fargate: atlas-mcp-servers]
             ECS_Gateway -. Outbound HTTPS .-> NAT
         end
-        
+
         subgraph DataSubnets["Data Storage (Private)"]
             ECS_Gateway -->|Query Vectors| OpenSearch[Amazon OpenSearch Serverless<br/>Vector Search Collection]
             ECS_Gateway -->|Read PDFs / Norms| S3Bucket[Amazon S3: atlas-knowledge-bucket]

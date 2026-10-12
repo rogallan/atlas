@@ -33,14 +33,14 @@ flowchart TD
     User([User Request via Gateway]) --> InputGuard[🛡️ Input Guardrail<br/>Injection & Jailbreak Detector]
     InputGuard -->|Malicious payload| BlockResponse[🚫 Refusal: Security Policy Violation]
     InputGuard -->|Safe| Orchestrator[⚡ Agent Graph]
-    
+
     RAG[(RAG Vector Store)] --> ContextIsolator[🛡️ Context Isolator<br/>XML Escaping & Meta-instruction Stripping]
     ContextIsolator --> Orchestrator
-    
+
     Orchestrator --> OutputGuard[🛡️ Output Guardrail<br/>Secret & Prompt Leakage Scanner]
     OutputGuard -->|Secret detected| RedactOutput[✂️ Redacted Safe Response]
     OutputGuard -->|Safe| GatewayResponse([Streamed Response to User])
-    
+
     Orchestrator -. Audit & Traces .-> LogSanitizer[🛡️ Log Sanitizer<br/>Masks CPFs, Accounts, Tokens]
     LogSanitizer -. Clean Logs .-> Ops[(Structured Logs)]
 ```

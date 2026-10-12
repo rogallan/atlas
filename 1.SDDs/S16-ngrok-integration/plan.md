@@ -34,7 +34,7 @@ sequenceDiagram
     participant NgrokEdge as 🌐 ngrok Public Edge (HTTPS)
     participant NgrokClient as 🖥️ ngrok Local Client (:4040)
     participant FastAPI as ⚡ FastAPI Gateway (:8000)
-    
+
     Manager->>Vercel: Envia mensagem no chat
     Vercel->>NgrokEdge: POST https://<subdomain>.ngrok-free.app/v1/chat
     NgrokEdge->>NgrokClient: Secure encrypted tunnel

@@ -1,11 +1,11 @@
 # Tasks — S05 · Intent Router
 
-- [ ] Define the taxonomy (`knowledge`, `query`, `simulation`, `action`, `clarification`) and create domain Pydantic models in `src/agent/router/models.py`.
-- [ ] Implement prompts and few-shot classification templates in `src/agent/router/prompts.py`.
-- [ ] Implement `IntentRouter` service in `src/agent/router/router.py` using `LLMProvider.generate_structured()`.
-- [ ] Implement ambiguity handling and confidence thresholding (`confidence < threshold` -> `clarification`).
-- [ ] Construct the evaluation benchmark dataset `tests/data/golden_intents.json` covering all intent categories and edge cases.
-- [ ] Build evaluation runner and unit/contract tests for `IntentRouter` in `tests/unit/test_intent_router.py` and `tests/evals/test_golden_intents.py`.
+- [x] Define the taxonomy (`knowledge`, `query`, `simulation`, `action`, `clarification`) and create domain Pydantic models in `2.src/agent/router/models.py`.
+- [x] Implement prompts and few-shot classification templates in `2.src/agent/router/prompts.py`.
+- [x] Implement `IntentRouter` service in `2.src/agent/router/router.py` using `LLMProvider.generate_structured()`.
+- [x] Implement ambiguity handling and confidence thresholding (`confidence < threshold` -> `clarification`).
+- [x] Construct the evaluation benchmark dataset `4.tests/data/golden_intents.json` covering all intent categories and edge cases.
+- [x] Build evaluation runner and unit/contract tests for `IntentRouter` in `4.tests/unit/test_intent_router.py` and `4.tests/evals/test_golden_intents.py`.
 
 ## Definition of Done
 

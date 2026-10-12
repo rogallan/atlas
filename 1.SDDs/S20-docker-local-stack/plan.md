@@ -34,7 +34,7 @@ flowchart TD
         Gateway -->|depends_on: healthy| Ollama[🧠 Ollama Container :11434]
         Gateway -->|depends_on: healthy| VectorDB[📚 Vector DB Container :6333]
         Gateway -->|depends_on: healthy| MCPServer[🛠️ MCP Servers Container]
-        
+
         Frontend -.->|API Proxy / Direct| Gateway
     end
 

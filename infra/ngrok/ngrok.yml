@@ -1,0 +1,6 @@
+version: "2"
+tunnels:
+  atlas-api:
+    proto: http
+    addr: 8000
+    inspect: true

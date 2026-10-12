@@ -1,13 +1,13 @@
 # Tasks — S10 · MCP Insurance Server
 
-- [ ] Model synthetic insurance catalog, coverage options, and limits in `src/mcp/insurance/catalog.py`.
-- [ ] Define Pydantic request and response schemas in `src/mcp/insurance/models.py`.
-- [ ] Implement deterministic premium calculation engine with IOF in `src/mcp/insurance/calculator.py`.
-- [ ] Implement synthetic customer profile risk adjustment integration with S02/S08 dataset.
-- [ ] Implement MCP tool handlers (`list_insurance_products`, `get_coverage_details`, `simulate_insurance_quote`) in `src/mcp/insurance/tools.py`.
-- [ ] Implement MCP Server bootstrap and transport registration in `src/mcp/insurance/server.py`.
-- [ ] Implement unit and contract tests in `tests/unit/test_mcp_insurance.py` verifying catalog inspection, actuarial math, boundaries, and schemas.
-- [ ] Validate presence of mandatory disclaimer and coverage breakdown in 100% of quote outputs.
+- [x] Model synthetic insurance catalog, coverage options, and limits in `src/mcp/insurance/catalog.py`.
+- [x] Define Pydantic request and response schemas in `src/mcp/insurance/models.py`.
+- [x] Implement deterministic premium calculation engine with IOF in `src/mcp/insurance/calculator.py`.
+- [x] Implement synthetic customer profile risk adjustment integration with S02/S08 dataset.
+- [x] Implement MCP tool handlers (`list_insurance_products`, `get_coverage_details`, `simulate_insurance_quote`) in `src/mcp/insurance/tools.py`.
+- [x] Implement MCP Server bootstrap and transport registration in `src/mcp/insurance/server.py` and `http_server.py`.
+- [x] Implement unit and contract tests in `tests/unit/test_mcp_insurance.py` verifying catalog inspection, actuarial math, boundaries, and schemas.
+- [x] Validate presence of mandatory disclaimer and coverage breakdown in 100% of quote outputs.
 
 ## Definition of Done
 

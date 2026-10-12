@@ -5,6 +5,8 @@ venv/
 node_modules/
 dist/
 build/
+.next/
+out/
 .env
 .env.local
 *.log
@@ -12,3 +14,15 @@ build/
 .terraform/
 *.tfstate
 *.tfstate.backup
+
+# Testing and quality tool caches
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Vector database local storage
+**/storage/chroma/
+.chroma/

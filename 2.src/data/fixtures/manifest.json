@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "seed": 42,
+  "customer_count": 25,
+  "account_count": 41,
+  "product_count": 8,
+  "contract_count": 32,
+  "event_count": 163,
+  "dataset_file": "synthetic_customers.json",
+  "sha256": "cac313f4d49688a62aef58b71794ad171060d19ba5938717e90b3eb281fa426a",
+  "disclaimer": "DISCLAIMER: 100% SYNTHETIC DATA. This dataset is entirely fictitious and simulated for testing and evaluation in the ATLAS Banking Copilot project. No real individual, account, bank, or transaction data is contained herein."
+}
