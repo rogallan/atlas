@@ -106,9 +106,9 @@ services:
       start_period: 10s
     restart: unless-stopped
 
-  # --- 5. Optional Offline Frontend (Profile: frontend-local) ---
+  # --- 5. Optional Offline Frontend (Profile: frontend-local or full) ---
   frontend:
-    profiles: ["frontend-local"]
+    profiles: ["frontend-local", "full"]
     build:
       context: 3.frontend
       dockerfile: ../infra/docker/Dockerfile.frontend
@@ -119,6 +119,26 @@ services:
       - "${FRONTEND_PORT:-5173}:3000"
     environment:
       - NEXT_PUBLIC_BACKEND_URL=http://gateway:8000
+    depends_on:
+      gateway:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # --- 6. Optional Public HTTPS Tunnel (Profile: ngrok or full) ---
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: atlas-ngrok
+    profiles: ["ngrok", "full"]
+    networks:
+      - atlas-network
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    command:
+      - "http"
+      - "gateway:8000"
+      - "--domain=${NGROK_DOMAIN:-tusk-humid-swifter.ngrok-free.dev}"
+    ports:
+      - "4040:4040"
     depends_on:
       gateway:
         condition: service_healthy

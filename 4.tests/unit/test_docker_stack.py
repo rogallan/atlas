@@ -59,6 +59,7 @@ def test_docker_compose_manifest_structure() -> None:
         assert "gateway:" in content
         assert "frontend:" in content
         assert "init-ollama:" in content
+        assert "ngrok:" in content
 
         # Bridge Network (R6)
         assert "atlas-network:" in content

@@ -61,6 +61,20 @@ Starts the core services plus the containerized Next.js frontend (offline develo
 docker compose --profile frontend-local up -d
 ```
 
+### 3.3 Core Stack with Public HTTPS Tunnel (ngrok)
+Starts the core services plus the containerized ngrok tunnel exposing the Gateway to external clients (e.g. Vercel deployment, mobile app, webhook callbacks):
+
+```bash
+docker compose --profile ngrok up -d
+```
+
+### 3.4 Everything (Full Local Stack + ngrok)
+Starts Gateway, Ollama, Vector DB, local frontend, and public ngrok tunnel simultaneously:
+
+```bash
+docker compose --profile full up -d
+```
+
 ---
 
 ## 4. Services & Port Mapping
@@ -71,6 +85,7 @@ docker compose --profile frontend-local up -d
 | **Ollama** | `atlas-ollama` | `11434` | `11434` | `CLI: ollama list` |
 | **Vector DB** | `atlas-vector-db`| `6333` | `6333` | `GET http://localhost:6333/healthz` |
 | **Frontend** | `atlas-frontend` | `5173` | `3000` | `GET http://localhost:5173/` |
+| **ngrok Tunnel**| `atlas-ngrok` | `4040` | `4040` | `GET http://localhost:4040/` (Web UI Inspector) |
 | **Init Ollama**| `atlas-init-ollama`| *None* | *None* | Runs model pre-pull once upon boot |
 
 ---
