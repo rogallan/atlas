@@ -161,6 +161,42 @@ async def test_agent_graph_action_hitl_rejection(agent_graph: AgentGraph) -> Non
     assert is_rejected
 
 
+@pytest.mark.asyncio
+async def test_agent_graph_action_hitl_rejection_token_edge_cases(
+    agent_graph: AgentGraph,
+) -> None:
+    session_id = "test_sess_hitl_edge_009"
+
+    # Stage draft
+    state1 = await agent_graph.process_turn(
+        session_id=session_id,
+        message="Abra um chamado de contestação para CUST-0001",
+    )
+    assert state1.requires_human_confirmation is True
+    real_token = state1.confirmation_payload["confirmation_token"]  # type: ignore[index]
+
+    # Verify edge cases in mcp_node helpers
+    mcp_node = agent_graph.mcp_node
+    # 1. Token containing 'sim' inside entropy does not trigger affirmative confirmation
+    fake_token_with_sim = "tkn_abcsim123xyz"
+    is_conf, approved = mcp_node._is_confirmation_message(f"cancelar {fake_token_with_sim}")
+    assert is_conf is True
+    assert approved is False
+
+    # 2. Token ending with hyphen is fully extracted without truncation
+    fake_token_with_hyphen = "tkn_abc123-"
+    extracted = mcp_node._extract_token(f"cancelar {fake_token_with_hyphen}")
+    assert extracted == fake_token_with_hyphen
+
+    # 3. Full rejection turn with real token
+    state2 = await agent_graph.process_turn(
+        session_id=session_id,
+        message=f"rejeitar {real_token}",
+    )
+    assert state2.final_response is not None
+    assert "Cancelada pelo Operador" in state2.final_response
+
+
 # ---------------------------------------------------------------------------
 # 3. Security Guardrails & Prompt Injection Tests
 # ---------------------------------------------------------------------------
