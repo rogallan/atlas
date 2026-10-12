@@ -4,3 +4,4 @@ tunnels:
     proto: http
     addr: 8000
     inspect: true
+    domain: tusk-humid-swifter.ngrok-free.dev

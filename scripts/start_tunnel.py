@@ -94,9 +94,12 @@ def start_tunnel() -> None:
 
     # 3. Launch ngrok subprocess
     authtoken = os.getenv("NGROK_AUTHTOKEN")
+    domain = os.getenv("NGROK_DOMAIN", "tusk-humid-swifter.ngrok-free.dev")
     cmd = ["ngrok", "http", "8000"]
     if CONFIG_PATH.exists():
         cmd = ["ngrok", "start", "--config", str(CONFIG_PATH), "atlas-api"]
+    elif domain:
+        cmd.extend(["--domain", domain])
 
     if authtoken:
         cmd.extend(["--authtoken", authtoken])

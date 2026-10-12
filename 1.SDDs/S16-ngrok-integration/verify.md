@@ -11,7 +11,7 @@
 ### Smoke Test Execution Evidence (Live Public ngrok HTTPS URL)
 ```text
 ================================================================
-🧪 ATLAS Smoke Test — Target: https://e96c-2804-7f0-7f80-2344-bcd4-ab43-22b1-3a0.ngrok-free.app
+🧪 ATLAS Smoke Test — Target: https://tusk-humid-swifter.ngrok-free.dev
 ================================================================
 
 [1/3] Verificando Preflight CORS (OPTIONS /health)...
@@ -21,7 +21,7 @@
 
 [2/3] Verificando Health Check (GET /health)...
    Status: 200
-   Payload: {'status': 'ok', 'version': '0.1.0', 'uptime_seconds': 2309.06}
+   Payload: {'status': 'ok', 'version': '0.1.0', 'uptime_seconds': 47.48}
    ✅ Gateway operacional e saudável!
 
 [3/3] Verificando Streaming SSE (POST /v1/chat)...
