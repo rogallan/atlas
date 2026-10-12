@@ -18,6 +18,8 @@ interface NavbarProps {
   onResetSession: () => void;
   toggleSidebar: () => void;
   isSidebarOpen: boolean;
+  activeView?: 'chat' | 'evals';
+  onViewChange?: (view: 'chat' | 'evals') => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -27,6 +29,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onResetSession,
   toggleSidebar,
   isSidebarOpen,
+  activeView = 'chat',
+  onViewChange,
 }) => {
   return (
     <header
@@ -113,8 +117,64 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Center: Customer Selector */}
-      <div className="navbar-center-group" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', minWidth: 0, flex: '1 1 auto', justifyContent: 'center' }}>
+      {/* Center: Customer Selector & View Switcher */}
+      <div className="navbar-center-group" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', minWidth: 0, flex: '1 1 auto', justifyContent: 'center', flexWrap: 'nowrap' }}>
+        {onViewChange && (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              backgroundColor: 'rgba(15, 23, 42, 0.8)',
+              borderRadius: 'var(--radius-md)',
+              border: '1px solid var(--border-color)',
+              padding: '2px',
+              gap: '2px',
+              flexShrink: 0,
+            }}
+          >
+            <button
+              id="tab-view-chat"
+              onClick={() => onViewChange('chat')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                backgroundColor: activeView === 'chat' ? 'var(--accent-primary)' : 'transparent',
+                color: activeView === 'chat' ? '#ffffff' : 'var(--text-secondary)',
+                border: 'none',
+                borderRadius: 'var(--radius-sm)',
+                padding: '0.3rem 0.65rem',
+                fontSize: '0.76rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.15s ease',
+              }}
+            >
+              💬 Copilot
+            </button>
+            <button
+              id="tab-view-evals"
+              onClick={() => onViewChange('evals')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                backgroundColor: activeView === 'evals' ? 'var(--accent-primary)' : 'transparent',
+                color: activeView === 'evals' ? '#ffffff' : 'var(--text-secondary)',
+                border: 'none',
+                borderRadius: 'var(--radius-sm)',
+                padding: '0.3rem 0.65rem',
+                fontSize: '0.76rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.15s ease',
+              }}
+            >
+              🛡️ Evals
+            </button>
+          </div>
+        )}
+
         <div style={{
           display: 'flex',
           alignItems: 'center',

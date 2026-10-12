@@ -6,9 +6,11 @@ import { Navbar } from '../components/layout/Navbar';
 import { SidebarMenu } from '../components/menu/SidebarMenu';
 import { ChatContainer } from '../components/chat/ChatContainer';
 import { SourceDrawer } from '../components/citations/SourceDrawer';
+import { EvalsDashboard } from '../components/evals/EvalsDashboard';
 import { useChat } from '../hooks/useChat';
 
 export default function Home() {
+  const [activeView, setActiveView] = useState<'chat' | 'evals'>('chat');
   const [customerList, setCustomerList] = useState<CustomerSummary[]>([]);
   const [activeCustomer, setActiveCustomer] = useState<CustomerSummary | null>(null);
   const [menuItems, setMenuItems] = useState<MCPMenuItem[]>([]);
@@ -77,6 +79,10 @@ export default function Home() {
   } = useChat(activeCustomer);
 
   const handleSelectQueryFromMenu = (prompt: string) => {
+    // If user clicked a query while in evals view, switch back to chat view
+    if (activeView !== 'chat') {
+      setActiveView('chat');
+    }
     sendMessage(prompt);
     // On mobile devices, close drawer after picking a query to show the chat
     if (typeof window !== 'undefined' && window.innerWidth < 768) {
@@ -95,7 +101,7 @@ export default function Home() {
         onSelectQuery={handleSelectQueryFromMenu}
       />
 
-      {/* Main Chat Workspace */}
+      {/* Main Workspace */}
       <div className="main-wrapper">
         <Navbar
           activeCustomer={activeCustomer}
@@ -104,24 +110,34 @@ export default function Home() {
           onResetSession={resetSession}
           toggleSidebar={() => setIsSidebarOpen((prev) => !prev)}
           isSidebarOpen={isSidebarOpen}
+          activeView={activeView}
+          onViewChange={setActiveView}
         />
 
-        <ChatContainer
-          messages={messages}
-          isLoading={isLoading}
-          toolStatus={toolStatus}
-          onSendMessage={sendMessage}
-          onCitationClick={setActiveCitation}
-          onHitlConfirm={handleHitlConfirm}
-          onHitlCancel={handleHitlCancel}
-          messagesEndRef={messagesEndRef}
-        />
+        {activeView === 'chat' ? (
+          <>
+            <ChatContainer
+              messages={messages}
+              isLoading={isLoading}
+              toolStatus={toolStatus}
+              onSendMessage={sendMessage}
+              onCitationClick={setActiveCitation}
+              onHitlConfirm={handleHitlConfirm}
+              onHitlCancel={handleHitlCancel}
+              messagesEndRef={messagesEndRef}
+            />
 
-        {/* Slide-out Source Drawer */}
-        <SourceDrawer
-          citation={activeCitation}
-          onClose={() => setActiveCitation(null)}
-        />
+            {/* Slide-out Source Drawer */}
+            <SourceDrawer
+              citation={activeCitation}
+              onClose={() => setActiveCitation(null)}
+            />
+          </>
+        ) : (
+          <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
+            <EvalsDashboard />
+          </div>
+        )}
       </div>
     </div>
   );

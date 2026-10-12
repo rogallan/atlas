@@ -1,0 +1,312 @@
+[
+  {
+    "id": "KNOW-001",
+    "utterance": "Qual é a resolução do BACEN sobre portabilidade de crédito consignado?",
+    "expected_intent": "knowledge",
+    "domain": "regulatory"
+  },
+  {
+    "id": "KNOW-002",
+    "utterance": "Como funciona o cálculo do Custo Efetivo Total (CET) segundo as normas bancárias?",
+    "expected_intent": "knowledge",
+    "domain": "regulatory"
+  },
+  {
+    "id": "KNOW-003",
+    "utterance": "Quais são as regras para cobrança de tarifa de conta corrente em pacote essencial?",
+    "expected_intent": "knowledge",
+    "domain": "tariffs"
+  },
+  {
+    "id": "KNOW-004",
+    "utterance": "O que determina a política do Banco Central sobre limites do Pix noturno?",
+    "expected_intent": "knowledge",
+    "domain": "compliance"
+  },
+  {
+    "id": "KNOW-005",
+    "utterance": "Quais documentos são exigidos pela circular de Prevenção à Lavagem de Dinheiro (PLD)?",
+    "expected_intent": "knowledge",
+    "domain": "compliance"
+  },
+  {
+    "id": "KNOW-006",
+    "utterance": "Qual a diferença regulatória entre consórcio e financiamento direto?",
+    "expected_intent": "knowledge",
+    "domain": "products"
+  },
+  {
+    "id": "KNOW-007",
+    "utterance": "O cliente pode antecipar parcelas de CDC com desconto proporcional dos juros pela lei?",
+    "expected_intent": "knowledge",
+    "domain": "regulatory"
+  },
+  {
+    "id": "KNOW-008",
+    "utterance": "Qual é o teto de juros estabelecido para o rotativo do cartão de crédito?",
+    "expected_intent": "knowledge",
+    "domain": "regulatory"
+  },
+  {
+    "id": "KNOW-009",
+    "utterance": "Como opera o Fundo Garantidor de Créditos (FGC) para depósitos a prazo?",
+    "expected_intent": "knowledge",
+    "domain": "regulatory"
+  },
+  {
+    "id": "KNOW-010",
+    "utterance": "Quais são os critérios vigentes para cancelamento unilateral de conta corrente pelo banco?",
+    "expected_intent": "knowledge",
+    "domain": "regulatory"
+  },
+  {
+    "id": "QRY-001",
+    "utterance": "Qual o saldo atual da conta corrente do cliente Dave Weckl?",
+    "expected_intent": "query",
+    "customer": "Dave Weckl",
+    "domain": "balance"
+  },
+  {
+    "id": "QRY-002",
+    "utterance": "Mostre as últimas cinco transações no extrato de Vinnie Colaiuta.",
+    "expected_intent": "query",
+    "customer": "Vinnie Colaiuta",
+    "domain": "statement"
+  },
+  {
+    "id": "QRY-003",
+    "utterance": "Verifique o limite de crédito disponível para Dennis Chambers.",
+    "expected_intent": "query",
+    "customer": "Dennis Chambers",
+    "domain": "limits"
+  },
+  {
+    "id": "QRY-004",
+    "utterance": "Qual é a classificação de risco e score de crédito do cliente Buddy Rich?",
+    "expected_intent": "query",
+    "customer": "Buddy Rich",
+    "domain": "risk"
+  },
+  {
+    "id": "QRY-005",
+    "utterance": "Consulte o endereço e os dados cadastrais atualizados de Steve Gadd.",
+    "expected_intent": "query",
+    "customer": "Steve Gadd",
+    "domain": "profile"
+  },
+  {
+    "id": "QRY-006",
+    "utterance": "Quais produtos ativos o cliente Neil Peart possui contratados conosco?",
+    "expected_intent": "query",
+    "customer": "Neil Peart",
+    "domain": "holdings"
+  },
+  {
+    "id": "QRY-007",
+    "utterance": "Verifique se a cliente Stewart Copeland possui faturas em atraso no cartão.",
+    "expected_intent": "query",
+    "customer": "Stewart Copeland",
+    "domain": "credit"
+  },
+  {
+    "id": "QRY-008",
+    "utterance": "Puxe o histórico de transferências via Pix realizadas por Mike Portnoy no último mês.",
+    "expected_intent": "query",
+    "customer": "Mike Portnoy",
+    "domain": "transfers"
+  },
+  {
+    "id": "QRY-009",
+    "utterance": "Qual é a renda mensal comprovada cadastrada para Thomas Lang?",
+    "expected_intent": "query",
+    "customer": "Thomas Lang",
+    "domain": "income"
+  },
+  {
+    "id": "QRY-010",
+    "utterance": "Mostre a lista de dependentes ou cartões adicionais vinculados à conta de Jeff Porcaro.",
+    "expected_intent": "query",
+    "customer": "Jeff Porcaro",
+    "domain": "profile"
+  },
+  {
+    "id": "SIM-001",
+    "utterance": "Simule um empréstimo pessoal de R$ 40.000 em 36 parcelas para Dave Weckl.",
+    "expected_intent": "simulation",
+    "product": "loan"
+  },
+  {
+    "id": "SIM-002",
+    "utterance": "Quanto ficaria o valor da parcela de um consórcio imobiliário de 500 mil em 180 meses?",
+    "expected_intent": "simulation",
+    "product": "consortium"
+  },
+  {
+    "id": "SIM-003",
+    "utterance": "Faça uma simulação de cotação de seguro de vida com cobertura de R$ 1.000.000.",
+    "expected_intent": "simulation",
+    "product": "insurance"
+  },
+  {
+    "id": "SIM-004",
+    "utterance": "Projete o parcelamento de uma fatura de R$ 12.000 em 10 vezes no CDC.",
+    "expected_intent": "simulation",
+    "product": "loan"
+  },
+  {
+    "id": "SIM-005",
+    "utterance": "Se o cliente Dennis Chambers amortizar R$ 20.000 do financiamento, qual o novo saldo e prazo?",
+    "expected_intent": "simulation",
+    "product": "loan"
+  },
+  {
+    "id": "SIM-006",
+    "utterance": "Simule um plano de previdência com aportes mensais de R$ 1.500 durante 20 anos.",
+    "expected_intent": "simulation",
+    "product": "investment"
+  },
+  {
+    "id": "SIM-007",
+    "utterance": "Calcule a estimativa da taxa de juros e CET para um financiamento de veículo de R$ 85.000.",
+    "expected_intent": "simulation",
+    "product": "loan"
+  },
+  {
+    "id": "SIM-008",
+    "utterance": "Simule as condições para portabilidade de um empréstimo de 60 mil reais em 48x.",
+    "expected_intent": "simulation",
+    "product": "loan"
+  },
+  {
+    "id": "SIM-009",
+    "utterance": "Quanto rende uma aplicação de R$ 100.000 em CDB a 110% do CDI em 2 anos?",
+    "expected_intent": "simulation",
+    "product": "investment"
+  },
+  {
+    "id": "SIM-010",
+    "utterance": "Faça uma cotação de seguro auto para a SUV do cliente Steve Gadd.",
+    "expected_intent": "simulation",
+    "product": "insurance"
+  },
+  {
+    "id": "ACT-001",
+    "utterance": "Abra um ticket de suporte para contestar a tarifa de renovação na conta de Dave Weckl.",
+    "expected_intent": "action",
+    "operation": "ticket"
+  },
+  {
+    "id": "ACT-002",
+    "utterance": "Bloqueie preventivamente o cartão de crédito final 4321 de Vinnie Colaiuta por perda.",
+    "expected_intent": "action",
+    "operation": "card_block"
+  },
+  {
+    "id": "ACT-003",
+    "utterance": "Agende uma reunião presencial na agência com Buddy Rich para sexta-feira às 14h.",
+    "expected_intent": "action",
+    "operation": "schedule"
+  },
+  {
+    "id": "ACT-004",
+    "utterance": "Inicie o procedimento de emissão de segunda via do token físico para Neil Peart.",
+    "expected_intent": "action",
+    "operation": "service_request"
+  },
+  {
+    "id": "ACT-005",
+    "utterance": "Abra um chamado urgente para auditoria de fraude na conta de Dennis Chambers.",
+    "expected_intent": "action",
+    "operation": "ticket"
+  },
+  {
+    "id": "ACT-006",
+    "utterance": "Cancele a autorização de débito automático da fatura de energia de Steve Gadd.",
+    "expected_intent": "action",
+    "operation": "cancellation"
+  },
+  {
+    "id": "ACT-007",
+    "utterance": "Registre um protocolo de reclamação formal de atendimento para Mike Portnoy.",
+    "expected_intent": "action",
+    "operation": "complaint"
+  },
+  {
+    "id": "ACT-008",
+    "utterance": "Envie uma notificação push para Thomas Lang solicitando comprovante de renda.",
+    "expected_intent": "action",
+    "operation": "notification"
+  },
+  {
+    "id": "ACT-009",
+    "utterance": "Crie um chamado de isenção de anuidade de cartão para o cliente Gene Krupa.",
+    "expected_intent": "action",
+    "operation": "ticket"
+  },
+  {
+    "id": "ACT-010",
+    "utterance": "Atualize o telefone de contato cadastrado do cliente John Bonham para 11988887777.",
+    "expected_intent": "action",
+    "operation": "update_profile"
+  },
+  {
+    "id": "CLA-001",
+    "utterance": "Quero ver aquilo lá.",
+    "expected_intent": "clarification",
+    "ambiguity_type": "vague"
+  },
+  {
+    "id": "CLA-002",
+    "utterance": "Faz as contas pra mim.",
+    "expected_intent": "clarification",
+    "ambiguity_type": "missing_parameters"
+  },
+  {
+    "id": "CLA-003",
+    "utterance": "Qual é a taxa?",
+    "expected_intent": "clarification",
+    "ambiguity_type": "missing_subject"
+  },
+  {
+    "id": "CLA-004",
+    "utterance": "Ajuda aí com o cliente.",
+    "expected_intent": "clarification",
+    "ambiguity_type": "vague"
+  },
+  {
+    "id": "CLA-005",
+    "utterance": "Quero contratar agora.",
+    "expected_intent": "clarification",
+    "ambiguity_type": "missing_product"
+  },
+  {
+    "id": "CLA-006",
+    "utterance": "E aquele negócio que conversamos ontem?",
+    "expected_intent": "clarification",
+    "ambiguity_type": "out_of_context"
+  },
+  {
+    "id": "CLA-007",
+    "utterance": "Simule para mim por favor.",
+    "expected_intent": "clarification",
+    "ambiguity_type": "missing_parameters"
+  },
+  {
+    "id": "CLA-008",
+    "utterance": "Verifica aí.",
+    "expected_intent": "clarification",
+    "ambiguity_type": "vague"
+  },
+  {
+    "id": "CLA-009",
+    "utterance": "Quanto custa?",
+    "expected_intent": "clarification",
+    "ambiguity_type": "missing_subject"
+  },
+  {
+    "id": "CLA-010",
+    "utterance": "Abre lá.",
+    "expected_intent": "clarification",
+    "ambiguity_type": "vague"
+  }
+]
