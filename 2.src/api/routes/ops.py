@@ -127,7 +127,7 @@ async def get_ops_summary() -> OpsSummaryResponse:
     models_used: set[str] = set()
     for metric in TOKENS_CONSUMED_TOTAL.collect():
         for sample in metric.samples:
-            if sample.labels:
+            if sample.name == "atlas_tokens_consumed_total" and sample.labels:
                 m = sample.labels.get("model", "qwen2.5:7b-instruct")
                 t_type = sample.labels.get("token_type", "prompt")
                 models_used.add(m)
@@ -151,7 +151,11 @@ async def get_ops_summary() -> OpsSummaryResponse:
     intent_distribution: dict[str, int] = {}
     for metric in INTENT_CLASSIFICATIONS_TOTAL.collect():
         for sample in metric.samples:
-            if sample.labels and "intent" in sample.labels:
+            if (
+                sample.name == "atlas_intent_classifications_total"
+                and sample.labels
+                and "intent" in sample.labels
+            ):
                 intent_distribution[sample.labels["intent"]] = int(sample.value)
 
     # 5. HITL Actions
