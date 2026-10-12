@@ -84,7 +84,7 @@ class TicketStore:
         ttl_seconds: int | None = None,
     ) -> TicketDraft:
         """Stage a pending ticket draft and issue a time-limited confirmation token."""
-        token = f"tkn_{secrets.token_urlsafe(24)}"
+        token = f"tkn_{secrets.token_hex(16)}"
         now = datetime.now(UTC)
         effective_ttl = ttl_seconds or self.default_ttl_seconds
         expires_at = now + timedelta(seconds=effective_ttl)

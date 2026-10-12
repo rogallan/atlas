@@ -13,7 +13,12 @@ from mcp.loan.models import LoanModality
 from mcp.loan.tools import LoanTools
 from mcp.tariff.models import ChannelType
 from mcp.tariff.tools import TariffTools
-from mcp.ticket.models import ActionRejectedError, TicketCategory, TicketPriority
+from mcp.ticket.models import (
+    ActionRejectedError,
+    MCPTicketError,
+    TicketCategory,
+    TicketPriority,
+)
 from mcp.ticket.tools import TicketTools
 
 logger = logging.getLogger("atlas.agent.graph.mcp_node")
@@ -59,8 +64,10 @@ class MCPNode:
 
     def _extract_token(self, text: str) -> str | None:
         """Extract confirmation token if present in user message."""
-        match = re.search(r"\b(tkn_[A-Za-z0-9_-]+)\b", text)
-        return match.group(1) if match else None
+        match = re.search(r"\b(tkn_[A-Za-z0-9_-]+)", text)
+        if match:
+            return match.group(1).rstrip(".,;:!? ")
+        return None
 
     def _is_confirmation_message(self, text: str) -> tuple[bool, bool]:
         """Check if message represents human confirmation or rejection.
@@ -68,11 +75,25 @@ class MCPNode:
         Returns:
             (is_confirmation_turn, approved)
         """
-        low = text.lower()
-        if any(w in low for w in ["confirmar", "confirmo", "aprovar", "autorizo", "sim"]):
-            return True, True
-        if any(w in low for w in ["cancelar", "rejeitar", "recusar", "não", "nao"]):
+        # Strip out confirmation token first to avoid token entropy colliding with words
+        # (e.g. 'sim' or 'nao')
+        token = self._extract_token(text)
+        cleaned_text = text.replace(token, "") if token else text
+        low = cleaned_text.lower()
+
+        rejection_pattern = re.compile(
+            r"\b(cancelar|cancela|rejeitar|rejeito|rejeitada|recusar|recuso|não|nao|abortar|declinar)\b",
+            re.IGNORECASE,
+        )
+        confirmation_pattern = re.compile(
+            r"\b(confirmar|confirmo|aprovar|aprovo|autorizo|autorizar|sim|prosseguir|efetivar)\b",
+            re.IGNORECASE,
+        )
+
+        if rejection_pattern.search(low):
             return True, False
+        if confirmation_pattern.search(low):
+            return True, True
         return False, False
 
     def __call__(self, state: AgentState) -> AgentState:
@@ -136,8 +157,13 @@ class MCPNode:
         msg_lower = state.user_message.lower()
         entities = state.intent_decision.entities if state.intent_decision else None
 
-        amount = (entities and entities.amount) or 15000.0
-        term_months = (entities and entities.term_months) or 24
+        amount: float = 15000.0
+        term_months: int = 24
+        if entities:
+            if entities.amount is not None:
+                amount = float(entities.amount)
+            if entities.term_months is not None:
+                term_months = int(entities.term_months)
 
         if any(
             k in msg_lower
@@ -230,6 +256,16 @@ class MCPNode:
                     }
                 )
             except ActionRejectedError as exc:
+                state.requires_human_confirmation = False
+                state.tool_outputs.append(
+                    {
+                        "tool": "mcp_ticket",
+                        "type": "action_rejected",
+                        "message": exc.message,
+                    }
+                )
+            except MCPTicketError as exc:
+                logger.warning("Ticket MCP error during confirmation/rejection turn: %s", exc)
                 state.requires_human_confirmation = False
                 state.tool_outputs.append(
                     {

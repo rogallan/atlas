@@ -8,6 +8,8 @@ from typing import Any, TypeVar
 import httpx
 from pydantic import BaseModel, ValidationError
 
+from ops.context import get_session_id
+from ops.metrics import token_store
 from providers.base import (
     LLMProvider,
     LLMProviderError,
@@ -80,6 +82,18 @@ class OllamaProvider(LLMProvider):
             if should_close:
                 await client.aclose()
 
+    def _record_token_usage(self, data: dict[str, Any]) -> None:
+        """Extract and record prompt and completion token counts from Ollama response."""
+        prompt_tokens = data.get("prompt_eval_count", 0)
+        completion_tokens = data.get("eval_count", 0)
+        if prompt_tokens or completion_tokens:
+            token_store.record_usage(
+                session_id=get_session_id(),
+                prompt_tokens=prompt_tokens,
+                completion_tokens=completion_tokens,
+                model=self.settings.model,
+            )
+
     async def generate(
         self,
         prompt: str,
@@ -99,6 +113,7 @@ class OllamaProvider(LLMProvider):
 
         response = await self._post_with_retry("/api/generate", payload)
         data = response.json()
+        self._record_token_usage(data)
         return str(data.get("response", ""))
 
     async def stream_generate(
@@ -131,6 +146,7 @@ class OllamaProvider(LLMProvider):
                             chunk = json.loads(line)
                             yield str(chunk.get("response", ""))
                             if chunk.get("done", False):
+                                self._record_token_usage(chunk)
                                 break
                         except json.JSONDecodeError:
                             continue
@@ -174,7 +190,9 @@ class OllamaProvider(LLMProvider):
             payload["options"] = kwargs
 
         response = await self._post_with_retry("/api/generate", payload)
-        raw_text = response.json().get("response", "")
+        res_data = response.json()
+        self._record_token_usage(res_data)
+        raw_text = res_data.get("response", "")
 
         try:
             return schema.model_validate_json(raw_text)
@@ -195,7 +213,9 @@ class OllamaProvider(LLMProvider):
                 "stream": False,
             }
             retry_response = await self._post_with_retry("/api/generate", retry_payload)
-            retry_text = retry_response.json().get("response", "")
+            retry_data = retry_response.json()
+            self._record_token_usage(retry_data)
+            retry_text = retry_data.get("response", "")
 
             try:
                 return schema.model_validate_json(retry_text)

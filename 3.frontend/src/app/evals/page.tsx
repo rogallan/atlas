@@ -61,7 +61,26 @@ export default function EvalsPage() {
           </div>
         </div>
 
-        <div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <Link
+            href="/metrics"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              backgroundColor: '#1e293b',
+              color: '#f8fafc',
+              textDecoration: 'none',
+              fontSize: '0.78rem',
+              fontWeight: 600,
+              padding: '0.4rem 0.75rem',
+              borderRadius: 'var(--radius-md)',
+              border: '1px solid #334155',
+            }}
+          >
+            <ShieldCheck size={14} color="#38bdf8" />
+            <span>📊 Métricas OTel</span>
+          </Link>
           <Link
             href="/"
             style={{
