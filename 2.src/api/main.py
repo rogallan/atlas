@@ -19,6 +19,7 @@ from api.routes.health import router as health_router
 from api.routes.menus import router as menus_router
 from api.routes.sessions import router as sessions_router
 from api.schemas import ErrorDetail, ErrorEnvelope
+from ops.middleware import ObservabilityMiddleware, metrics_router
 
 
 def create_app() -> FastAPI:
@@ -32,7 +33,8 @@ def create_app() -> FastAPI:
         openapi_url="/openapi.json",
     )
 
-    # 1. CORS & ngrok integration middleware
+    # 1. Observability and CORS middleware
+    app.add_middleware(ObservabilityMiddleware)
     setup_cors(app)
 
     # 2. Standardized error handlers
@@ -91,6 +93,7 @@ def create_app() -> FastAPI:
     app.include_router(customers_router)
     app.include_router(menus_router)
     app.include_router(evals_router)
+    app.include_router(metrics_router)
 
     return app
 

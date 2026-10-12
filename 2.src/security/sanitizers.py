@@ -17,7 +17,7 @@ REGEX_ACCOUNT = re.compile(r"\b\d{4,8}-([0-9Xx])\b")
 REGEX_CARD_PAN = re.compile(r"\b(?:\d{4}[ -]?){3}(\d{4})\b")
 
 # Bearer Token: Bearer <token> -> Bearer [REDACTED]
-REGEX_BEARER_TOKEN = re.compile(r"\bBearer\s+[A-Za-z0-9_\-\.]{15,}\b", re.IGNORECASE)
+REGEX_BEARER_TOKEN = re.compile(r"\bBearer\s+[A-Za-z0-9_\-\.]{8,}\b", re.IGNORECASE)
 
 # Confirmation tokens: CONFIRMAR_TOKEN_<id> or UUID tokens
 REGEX_CONFIRMATION_TOKEN = re.compile(

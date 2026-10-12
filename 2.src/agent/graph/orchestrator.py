@@ -2,6 +2,7 @@
 
 import inspect
 import logging
+import time
 from typing import cast
 
 from agent.graph.edges import (
@@ -20,8 +21,20 @@ from agent.graph.nodes import (
     ValidatorNode,
 )
 from agent.graph.state import AgentState, AgentStep
+from ops.metrics import record_intent_classification, record_stage_duration
+from ops.tracing import trace_span_async
 
 logger = logging.getLogger("atlas.agent.graph.orchestrator")
+
+_NODE_STAGE_MAP = {
+    "RouterNode": "router",
+    "RAGNode": "rag_search",
+    "MCPNode": "mcp_tool",
+    "ValidatorNode": "validator",
+    "SynthesizerNode": "synthesis",
+    "ClarificationNode": "clarification",
+    "FallbackNode": "fallback",
+}
 
 
 class AgentGraph:
@@ -47,13 +60,24 @@ class AgentGraph:
 
     async def _execute_node(self, node: object, state: AgentState) -> AgentState:
         """Execute a node handler supporting both synchronous and asynchronous callables."""
-        if callable(node):
+        if not callable(node):
+            raise TypeError(f"Node '{node}' is not callable.")
+
+        stage_name = _NODE_STAGE_MAP.get(node.__class__.__name__, "unknown")
+        start_time = time.perf_counter()
+
+        async with trace_span_async(
+            f"agent.{stage_name}",
+            attributes={"session_id": state.session_id, "stage": stage_name},
+        ):
             if inspect.iscoroutinefunction(node.__call__):
                 res = await node(state)
             else:
                 res = node(state)
+
+            duration = time.perf_counter() - start_time
+            record_stage_duration(stage_name, duration)
             return cast(AgentState, res)
-        raise TypeError(f"Node '{node}' is not callable.")
 
     async def process_turn(
         self,
@@ -91,6 +115,8 @@ class AgentGraph:
 
         # 1. Initial Step: Router Node
         state = await self._execute_node(self.router_node, state)
+        if state.intent_decision:
+            record_intent_classification(state.intent_decision.intent.value)
         next_step = route_from_router(state)
 
         # 2. State Machine Loop

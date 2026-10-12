@@ -14,6 +14,8 @@ dependencies = [
     "uvicorn[standard]>=0.32.0",
     "chromadb>=1.5.9",
     "pypdf>=6.19.0",
+    "structlog>=26.1.0",
+    "prometheus-client>=0.26.0",
 ]
 
 [project.optional-dependencies]
@@ -39,6 +41,7 @@ packages = [
     "2.src/providers",
     "2.src/rag",
     "2.src/security",
+    "2.src/ops",
 ]
 
 # --- Ruff Configuration ---
@@ -71,7 +74,7 @@ select = [
 ignore = []
 
 [tool.ruff.lint.isort]
-known-first-party = ["agent", "api", "data", "mcp", "providers", "rag", "security"]
+known-first-party = ["agent", "api", "data", "mcp", "ops", "providers", "rag", "security"]
 
 # --- Mypy Configuration ---
 [tool.mypy]

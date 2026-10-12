@@ -1,0 +1,181 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "description": "ATLAS Banking Copilot Operational & Latency Overview Dashboard (S19)",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 0 },
+      "id": 100,
+      "title": "Gateway HTTP Traffic & Latency",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": {
+        "defaults": { "unit": "reqps" }
+      },
+      "gridPos": { "h": 7, "w": 12, "x": 0, "y": 1 },
+      "id": 1,
+      "title": "HTTP Request Throughput (req/s)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "sum(rate(atlas_http_requests_total[1m])) by (endpoint, status_code)",
+          "legendFormat": "{{endpoint}} ({{status_code}})",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": {
+        "defaults": { "unit": "s" }
+      },
+      "gridPos": { "h": 7, "w": 12, "x": 12, "y": 1 },
+      "id": 2,
+      "title": "End-to-End Request Latency (p50 / p95 / p99)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.50, sum(rate(atlas_request_duration_seconds_bucket[5m])) by (le))",
+          "legendFormat": "p50",
+          "refId": "A"
+        },
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(atlas_request_duration_seconds_bucket[5m])) by (le))",
+          "legendFormat": "p95",
+          "refId": "B"
+        },
+        {
+          "expr": "histogram_quantile(0.99, sum(rate(atlas_request_duration_seconds_bucket[5m])) by (le))",
+          "legendFormat": "p99",
+          "refId": "C"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 8 },
+      "id": 101,
+      "title": "Agent Graph Stage Breakdown",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": {
+        "defaults": { "unit": "s" }
+      },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 9 },
+      "id": 3,
+      "title": "Stage Duration Breakdown (p95 per Node)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(atlas_stage_duration_seconds_bucket[5m])) by (stage, le))",
+          "legendFormat": "{{stage}} (p95)",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": {
+        "defaults": { "unit": "short" }
+      },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 9 },
+      "id": 4,
+      "title": "Intent Classifications Distribution",
+      "type": "piechart",
+      "targets": [
+        {
+          "expr": "sum(increase(atlas_intent_classifications_total[1h])) by (intent)",
+          "legendFormat": "{{intent}}",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 17 },
+      "id": 102,
+      "title": "Token Consumption & Financial Cost Accounting",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": {
+        "defaults": { "unit": "short" }
+      },
+      "gridPos": { "h": 7, "w": 12, "x": 0, "y": 18 },
+      "id": 5,
+      "title": "Token Consumption (Prompt vs Completion)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "sum(rate(atlas_tokens_consumed_total[5m])) by (token_type)",
+          "legendFormat": "{{token_type}} tokens/s",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": {
+        "defaults": { "unit": "currencyUSD" }
+      },
+      "gridPos": { "h": 7, "w": 12, "x": 12, "y": 18 },
+      "id": 6,
+      "title": "Cumulative Synthetic Inference Cost (USD)",
+      "type": "stat",
+      "targets": [
+        {
+          "expr": "(sum(atlas_tokens_consumed_total{token_type='prompt'}) * 0.0000005) + (sum(atlas_tokens_consumed_total{token_type='completion'}) * 0.0000015)",
+          "legendFormat": "Estimated Cost",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 25 },
+      "id": 103,
+      "title": "HITL Governance & Human Approvals",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": {
+        "defaults": { "unit": "short" }
+      },
+      "gridPos": { "h": 7, "w": 24, "x": 0, "y": 26 },
+      "id": 7,
+      "title": "HITL Sensitive Action Outcomes",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "sum(increase(atlas_hitl_action_total[1h])) by (action_type, outcome)",
+          "legendFormat": "{{action_type}} - {{outcome}}",
+          "refId": "A"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": ["atlas", "genai", "banking", "observability", "s19"],
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "title": "ATLAS — Operations & Latency Overview",
+  "uid": "atlas-observability-overview",
+  "version": 1
+}
