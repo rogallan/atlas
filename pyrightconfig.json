@@ -1,0 +1,12 @@
+{
+  "include": [
+    "2.src",
+    "4.tests"
+  ],
+  "extraPaths": [
+    "2.src",
+    "4.tests"
+  ],
+  "venvPath": ".",
+  "venv": ".venv"
+}

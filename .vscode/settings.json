@@ -1,0 +1,11 @@
+{
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/2.src",
+    "${workspaceFolder}/4.tests"
+  ],
+  "python.autoComplete.extraPaths": [
+    "${workspaceFolder}/2.src",
+    "${workspaceFolder}/4.tests"
+  ],
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe"
+}

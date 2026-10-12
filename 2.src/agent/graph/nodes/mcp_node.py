@@ -157,8 +157,13 @@ class MCPNode:
         msg_lower = state.user_message.lower()
         entities = state.intent_decision.entities if state.intent_decision else None
 
-        amount = (entities and entities.amount) or 15000.0
-        term_months = (entities and entities.term_months) or 24
+        amount: float = 15000.0
+        term_months: int = 24
+        if entities:
+            if entities.amount is not None:
+                amount = float(entities.amount)
+            if entities.term_months is not None:
+                term_months = int(entities.term_months)
 
         if any(
             k in msg_lower
