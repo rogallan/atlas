@@ -1,0 +1,145 @@
+version: "3.8"
+
+networks:
+  atlas-network:
+    name: atlas-network
+    driver: bridge
+
+volumes:
+  ollama_models:
+    name: atlas_ollama_models
+  vector_data:
+    name: atlas_vector_data
+  atlas_data:
+    name: atlas_data
+
+services:
+  # --- 1. Local LLM & Embedding Server ---
+  ollama:
+    image: ollama/ollama:latest
+    container_name: atlas-ollama
+    networks:
+      - atlas-network
+    volumes:
+      - ollama_models:/root/.ollama
+    ports:
+      - "${OLLAMA_PORT:-11434}:11434"
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+  # --- 2. Model Initialization Hook ---
+  init-ollama:
+    image: ollama/ollama:latest
+    container_name: atlas-init-ollama
+    networks:
+      - atlas-network
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-llama3.2:3b}
+      - OLLAMA_EMBED_MODEL=${OLLAMA_EMBED_MODEL:-nomic-embed-text}
+    entrypoint: ["/bin/sh", "-c"]
+    command: >
+      "echo 'Waiting for Ollama to accept connections...' &&
+       until ollama list >/dev/null 2>&1; do sleep 2; done &&
+       echo 'Verifying and pulling required local models...' &&
+       ollama pull $${OLLAMA_MODEL:-llama3.2:3b} &&
+       ollama pull $${OLLAMA_EMBED_MODEL:-nomic-embed-text} &&
+       echo 'Ollama models successfully cached.'"
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: "no"
+
+  # --- 3. Persistent Vector Database ---
+  vector-db:
+    image: qdrant/qdrant:latest
+    container_name: atlas-vector-db
+    networks:
+      - atlas-network
+    volumes:
+      - vector_data:/qdrant/storage
+    ports:
+      - "${VECTOR_DB_PORT:-6333}:6333"
+    healthcheck:
+      test: ["CMD-SHELL", "timeout 2 bash -c '</dev/tcp/localhost/6333' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  # --- 4. FastAPI Gateway (Agent Graph, MCP, Observability, Security) ---
+  gateway:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.backend
+    container_name: atlas-gateway
+    networks:
+      - atlas-network
+    ports:
+      - "${GATEWAY_PORT:-8000}:8000"
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-llama3.2:3b}
+      - OLLAMA_EMBED_MODEL=${OLLAMA_EMBED_MODEL:-nomic-embed-text}
+      - VECTOR_DB_HOST=vector-db
+      - VECTOR_DB_PORT=6333
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - ENVIRONMENT=local-docker
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,http://127.0.0.1:3000}
+    volumes:
+      - atlas_data:/app/data
+    depends_on:
+      ollama:
+        condition: service_healthy
+      vector-db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  # --- 5. Optional Offline Frontend (Profile: frontend-local or full) ---
+  frontend:
+    profiles: ["frontend-local", "full"]
+    build:
+      context: 3.frontend
+      dockerfile: ../infra/docker/Dockerfile.frontend
+    container_name: atlas-frontend
+    networks:
+      - atlas-network
+    ports:
+      - "${FRONTEND_PORT:-5173}:3000"
+    environment:
+      - NEXT_PUBLIC_BACKEND_URL=http://gateway:8000
+    depends_on:
+      gateway:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # --- 6. Optional Public HTTPS Tunnel (Profile: ngrok or full) ---
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: atlas-ngrok
+    profiles: ["ngrok", "full"]
+    networks:
+      - atlas-network
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    command:
+      - "http"
+      - "gateway:8000"
+      - "--domain=${NGROK_DOMAIN:-tusk-humid-swifter.ngrok-free.dev}"
+    ports:
+      - "4040:4040"
+    depends_on:
+      gateway:
+        condition: service_healthy
+    restart: unless-stopped
