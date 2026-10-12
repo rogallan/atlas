@@ -38,6 +38,7 @@ packages = [
     "2.src/mcp",
     "2.src/providers",
     "2.src/rag",
+    "2.src/security",
 ]
 
 # --- Ruff Configuration ---
@@ -70,7 +71,7 @@ select = [
 ignore = []
 
 [tool.ruff.lint.isort]
-known-first-party = ["agent", "api", "data", "mcp", "providers", "rag"]
+known-first-party = ["agent", "api", "data", "mcp", "providers", "rag", "security"]
 
 # --- Mypy Configuration ---
 [tool.mypy]

@@ -10,6 +10,7 @@ from fastapi.responses import StreamingResponse
 from agent.graph import AgentGraph, create_agent_graph
 from api.auth import require_manager_auth
 from api.schemas import ChatRequest
+from security.middleware import security_service
 
 router = APIRouter(prefix="/v1", tags=["Chat"])
 
@@ -27,6 +28,18 @@ async def agent_chat_stream(
     request: ChatRequest,
 ) -> AsyncGenerator[str, None]:
     """Streams real AgentGraph execution tokens, citations, and status over SSE."""
+    # 1. Input Guardrail: Inspect user message for prompt injection or jailbreak attempts
+    input_check = security_service.inspect_input(request.message)
+    if not input_check.is_safe:
+        refusal_payload = json.dumps({"token": input_check.sanitized_text}, ensure_ascii=False)
+        yield f"event: token\ndata: {refusal_payload}\n\n"
+        done_payload = json.dumps(
+            {"session_id": request.session_id, "status": "blocked_by_security"},
+            ensure_ascii=False,
+        )
+        yield f"event: done\ndata: {done_payload}\n\n"
+        return
+
     yield 'event: tool_start\ndata: {"tool": "Classificando intenção no Router..."}\n\n'
     await asyncio.sleep(0.01)
 
@@ -42,7 +55,12 @@ async def agent_chat_stream(
             operator_id="manager_001",
         )
 
-        response_text = state.final_response or "Consulta processada com sucesso."
+        raw_response = state.final_response or "Consulta processada com sucesso."
+
+        # 2. Output Guardrail: Inspect response for credentials or prompt leakage
+        output_check = security_service.inspect_output(raw_response)
+        response_text = output_check.sanitized_text
+
         words = response_text.split(" ")
         for i, word in enumerate(words):
             token_part = word + (" " if i < len(words) - 1 else "")
