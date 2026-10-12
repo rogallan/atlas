@@ -35,37 +35,49 @@ export const Navbar: React.FC<NavbarProps> = ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '0.75rem 1.5rem',
+        padding: '0 1rem',
         backgroundColor: 'var(--bg-secondary)',
         borderBottom: '1px solid var(--border-color)',
-        zIndex: 20,
+        zIndex: 40,
+        height: '56px',
+        minHeight: '56px',
+        flexShrink: 0,
+        boxSizing: 'border-box',
+        width: '100%',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+      {/* Left: Hamburger & Brand */}
+      <div className="navbar-left-group" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexShrink: 0 }}>
         <button
           id="btn-toggle-sidebar"
           onClick={toggleSidebar}
-          aria-label="Alternar menu de MCPs"
+          aria-label="Alternar menu de microserviços MCP"
+          title="Alternar menu de serviços"
+          className="navbar-toggle-btn"
           style={{
-            background: 'transparent',
-            border: '1px solid var(--border-color)',
-            color: 'var(--text-primary)',
-            borderRadius: 'var(--radius-sm)',
-            padding: '0.45rem',
+            background: 'rgba(37, 99, 235, 0.15)',
+            border: '1px solid rgba(59, 130, 246, 0.35)',
+            color: '#60a5fa',
+            borderRadius: 'var(--radius-md)',
+            width: '38px',
+            height: '38px',
+            minWidth: '38px',
+            minHeight: '38px',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             flexShrink: 0,
+            transition: 'all 0.2s ease',
           }}
         >
-          <Menu size={18} />
+          <Menu size={20} />
         </button>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
           <div style={{
-            width: '32px',
-            height: '32px',
+            width: '30px',
+            height: '30px',
             borderRadius: 'var(--radius-md)',
             background: 'var(--accent-gradient)',
             display: 'flex',
@@ -74,7 +86,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             boxShadow: 'var(--shadow-glow)',
             flexShrink: 0,
           }}>
-            <Sparkles size={18} color="#ffffff" />
+            <Sparkles size={16} color="#ffffff" />
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
@@ -101,20 +113,20 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Center / Customer Selector */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', minWidth: 0 }}>
+      {/* Center: Customer Selector */}
+      <div className="navbar-center-group" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', minWidth: 0, flex: '1 1 auto', justifyContent: 'center' }}>
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '0.4rem',
+          gap: '0.35rem',
           backgroundColor: 'var(--bg-surface)',
-          padding: '0.35rem 0.65rem',
+          padding: '0.35rem 0.6rem',
           borderRadius: 'var(--radius-md)',
           border: '1px solid var(--border-color)',
           maxWidth: '100%',
         }}>
-          <UserCheck size={16} color="#60a5fa" style={{ flexShrink: 0 }} />
-          <span className="navbar-customer-label" style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+          <UserCheck size={15} color="#60a5fa" style={{ flexShrink: 0 }} />
+          <span className="navbar-customer-label" style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
             Cliente:
           </span>
           <select
@@ -130,10 +142,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               border: 'none',
               color: 'var(--text-primary)',
               fontWeight: 600,
-              fontSize: '0.8rem',
+              fontSize: '0.78rem',
               cursor: customers.length === 0 ? 'not-allowed' : 'pointer',
               outline: 'none',
-              maxWidth: '140px',
+              maxWidth: '110px',
             }}
           >
             {customers.length === 0 ? (
@@ -143,7 +155,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             ) : (
               customers.map((c) => (
                 <option key={c.id} value={c.id} style={{ background: '#111827', color: '#f8fafc' }}>
-                  {c.id} — {c.name.split(' ')[0]} ({c.segment})
+                  {c.id} — {c.name.split(' ')[0]}
                 </option>
               ))
             )}
@@ -151,8 +163,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Right Actions & Manager Info */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
+      {/* Right: Actions & Reset */}
+      <div className="navbar-right-group" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexShrink: 0 }}>
         <div
           className="navbar-manager-badge"
           style={{
@@ -178,12 +190,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '0.4rem',
+            gap: '0.35rem',
             backgroundColor: 'var(--bg-surface)',
             border: '1px solid var(--border-color)',
             color: 'var(--text-secondary)',
             fontSize: '0.78rem',
-            padding: '0.4rem 0.65rem',
+            padding: '0.4rem 0.6rem',
             borderRadius: 'var(--radius-md)',
             cursor: 'pointer',
             transition: 'all 0.2s',
@@ -198,7 +210,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             e.currentTarget.style.borderColor = 'var(--border-color)';
           }}
         >
-          <RotateCcw size={14} />
+          <RotateCcw size={15} />
           <span className="navbar-new-chat-text">Nova Conversa</span>
         </button>
       </div>

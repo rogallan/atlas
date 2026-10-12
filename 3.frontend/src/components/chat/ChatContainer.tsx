@@ -32,7 +32,8 @@ export const ChatContainer: React.FC<ChatContainerProps> = ({
       display: 'flex',
       flexDirection: 'column',
       flex: 1,
-      height: 'calc(100vh - 58px)',
+      minHeight: 0,
+      width: '100%',
       overflow: 'hidden',
     }}>
       {/* Scrollable Message List */}
