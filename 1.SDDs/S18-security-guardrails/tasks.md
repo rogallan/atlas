@@ -1,14 +1,14 @@
 # Tasks — S18 · Security Guardrails
 
-- [ ] Write the formal GenAI Threat Model document in `docs/security/threat_model.md` based on OWASP Top 10 for LLM Applications.
-- [ ] Define security models and schemas (`SecurityCheckResult`, `ThreatCategory`, `SecurityThreatLevel`) in `src/security/models.py`.
-- [ ] Implement direct prompt injection and jailbreak detection heuristics in `src/security/input_guardrail.py`.
-- [ ] Implement XML-based context isolation and indirect prompt injection defense in `src/security/context_isolation.py`.
-- [ ] Implement output secret/system-prompt leakage detector in `src/security/output_guardrail.py`.
-- [ ] Implement structured log sanitizer masking synthetic CPFs, account numbers, and bearer tokens in `src/security/sanitizers.py`.
-- [ ] Integrate security guardrails into FastAPI request/response lifecycle in `src/security/middleware.py`.
-- [ ] Build automated adversarial red-teaming test suite in `tests/security/` covering direct injection, indirect RAG injection, secret leakage, and log masking.
-- [ ] Verify that 100% of adversarial attacks are mitigated without blocking valid banking queries.
+- [x] Write the formal GenAI Threat Model document in `docs/security/threat_model.md` based on OWASP Top 10 for LLM Applications.
+- [x] Define security models and schemas (`SecurityCheckResult`, `ThreatCategory`, `SecurityThreatLevel`) in `src/security/models.py`.
+- [x] Implement direct prompt injection and jailbreak detection heuristics in `src/security/input_guardrail.py`.
+- [x] Implement XML-based context isolation and indirect prompt injection defense in `src/security/context_isolation.py`.
+- [x] Implement output secret/system-prompt leakage detector in `src/security/output_guardrail.py`.
+- [x] Implement structured log sanitizer masking synthetic CPFs, account numbers, and bearer tokens in `src/security/sanitizers.py`.
+- [x] Integrate security guardrails into FastAPI request/response lifecycle in `src/security/middleware.py`.
+- [x] Build automated adversarial red-teaming test suite in `tests/security/` covering direct injection, indirect RAG injection, secret leakage, and log masking.
+- [x] Verify that 100% of adversarial attacks are mitigated without blocking valid banking queries.
 
 ## Definition of Done
 
