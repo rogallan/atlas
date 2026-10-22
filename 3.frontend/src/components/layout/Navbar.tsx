@@ -9,6 +9,7 @@ import {
   ChevronDown,
   ShieldCheck,
   BarChart3,
+  MessageSquare,
 } from 'lucide-react';
 import { CustomerSummary } from '../../types/api';
 
@@ -69,7 +70,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   const activeSegment = getSegmentColor(activeCustomer?.segment);
-  const isOpsActive = activeView === 'evals' || activeView === 'metrics';
 
   return (
     <header
@@ -166,209 +166,19 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Center: View Switcher (Grouped with Dropdown for Evals & Metrics) */}
+      {/* Center: Active Customer Spotlight (Prominently Centered on Desktop, Hidden on Mobile) */}
       <div
-        className="navbar-center-group"
+        className="navbar-center-group navbar-customer-center"
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          flex: '1 1 auto',
+          flex: '0 1 auto',
           minWidth: 0,
         }}
       >
-        {onViewChange && (
-          <nav
-            aria-label="Alternar Visões"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              backgroundColor: 'rgba(15, 23, 42, 0.75)',
-              borderRadius: 'var(--radius-md)',
-              border: '1px solid var(--border-color)',
-              padding: '3px',
-              gap: '4px',
-              boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.2)',
-            }}
-          >
-            {/* Primary Chat Tab */}
-            <button
-              id="tab-view-chat"
-              onClick={() => {
-                onViewChange('chat');
-                setIsOpsDropdownOpen(false);
-              }}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.45rem',
-                backgroundColor: activeView === 'chat' ? 'var(--accent-primary)' : 'transparent',
-                color: activeView === 'chat' ? '#ffffff' : 'var(--text-secondary)',
-                border: 'none',
-                borderRadius: 'var(--radius-sm)',
-                padding: '0.4rem 0.95rem',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                cursor: 'pointer',
-                transition: 'all 0.15s ease',
-                boxShadow: activeView === 'chat' ? '0 1px 3px rgba(37, 99, 235, 0.4)' : 'none',
-              }}
-            >
-              <span>💬</span>
-              <span>Copilot Chat</span>
-            </button>
-
-            {/* Dropdown for Governance & Ops (Evals + Metrics) */}
-            <div ref={opsDropdownRef} style={{ position: 'relative' }}>
-              <button
-                onClick={() => setIsOpsDropdownOpen((prev) => !prev)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.45rem',
-                  backgroundColor: isOpsActive
-                    ? 'rgba(37, 99, 235, 0.2)'
-                    : isOpsDropdownOpen
-                    ? 'rgba(255, 255, 255, 0.08)'
-                    : 'transparent',
-                  color: isOpsActive ? '#93c5fd' : 'var(--text-secondary)',
-                  border: isOpsActive ? '1px solid rgba(59, 130, 246, 0.4)' : '1px solid transparent',
-                  borderRadius: 'var(--radius-sm)',
-                  padding: '0.4rem 0.85rem',
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  transition: 'all 0.15s ease',
-                }}
-              >
-                <span>{activeView === 'evals' ? '🛡️' : activeView === 'metrics' ? '📊' : '⚙️'}</span>
-                <span>
-                  {activeView === 'evals'
-                    ? 'Evals & Harness'
-                    : activeView === 'metrics'
-                    ? 'Métricas & Custo'
-                    : 'Governança & Ops'}
-                </span>
-                <ChevronDown
-                  size={14}
-                  style={{
-                    transform: isOpsDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                    transition: 'transform 0.2s ease',
-                    opacity: 0.7,
-                  }}
-                />
-              </button>
-
-              {/* Floating Menu for Evals and Metrics */}
-              {isOpsDropdownOpen && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: 'calc(100% + 6px)',
-                    left: 0,
-                    minWidth: '220px',
-                    backgroundColor: 'rgba(15, 23, 42, 0.98)',
-                    backdropFilter: 'blur(12px)',
-                    border: '1px solid var(--border-color)',
-                    borderRadius: 'var(--radius-md)',
-                    padding: '0.35rem',
-                    boxShadow: 'var(--shadow-lg), 0 8px 24px rgba(0, 0, 0, 0.5)',
-                    zIndex: 60,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '2px',
-                    animation: 'fadeIn 0.15s ease-out',
-                  }}
-                >
-                  <button
-                    id="tab-view-evals"
-                    onClick={() => {
-                      onViewChange('evals');
-                      setIsOpsDropdownOpen(false);
-                    }}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: '0.55rem',
-                      width: '100%',
-                      padding: '0.55rem 0.75rem',
-                      borderRadius: 'var(--radius-sm)',
-                      border: 'none',
-                      backgroundColor: activeView === 'evals' ? 'rgba(37, 99, 235, 0.25)' : 'transparent',
-                      color: activeView === 'evals' ? '#ffffff' : 'var(--text-secondary)',
-                      cursor: 'pointer',
-                      textAlign: 'left',
-                      transition: 'background 0.15s',
-                    }}
-                    onMouseEnter={(e) => {
-                      if (activeView !== 'evals') e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.06)';
-                    }}
-                    onMouseLeave={(e) => {
-                      if (activeView !== 'evals') e.currentTarget.style.backgroundColor = 'transparent';
-                    }}
-                  >
-                    <ShieldCheck size={16} color="#60a5fa" style={{ marginTop: '2px', flexShrink: 0 }} />
-                    <div>
-                      <div style={{ fontWeight: 600, fontSize: '0.8rem', color: activeView === 'evals' ? '#ffffff' : 'var(--text-primary)' }}>
-                        Evals & Harness
-                      </div>
-                      <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginTop: '1px' }}>
-                        Scorecards e Golden Datasets
-                      </div>
-                    </div>
-                  </button>
-
-                  <button
-                    id="tab-view-metrics"
-                    onClick={() => {
-                      onViewChange('metrics');
-                      setIsOpsDropdownOpen(false);
-                    }}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: '0.55rem',
-                      width: '100%',
-                      padding: '0.55rem 0.75rem',
-                      borderRadius: 'var(--radius-sm)',
-                      border: 'none',
-                      backgroundColor: activeView === 'metrics' ? 'rgba(37, 99, 235, 0.25)' : 'transparent',
-                      color: activeView === 'metrics' ? '#ffffff' : 'var(--text-secondary)',
-                      cursor: 'pointer',
-                      textAlign: 'left',
-                      transition: 'background 0.15s',
-                    }}
-                    onMouseEnter={(e) => {
-                      if (activeView !== 'metrics') e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.06)';
-                    }}
-                    onMouseLeave={(e) => {
-                      if (activeView !== 'metrics') e.currentTarget.style.backgroundColor = 'transparent';
-                    }}
-                  >
-                    <BarChart3 size={16} color="#34d399" style={{ marginTop: '2px', flexShrink: 0 }} />
-                    <div>
-                      <div style={{ fontWeight: 600, fontSize: '0.8rem', color: activeView === 'metrics' ? '#ffffff' : 'var(--text-primary)' }}>
-                        Métricas & Custo
-                      </div>
-                      <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginTop: '1px' }}>
-                        Latência e contabilidade de tokens
-                      </div>
-                    </div>
-                  </button>
-                </div>
-              )}
-            </div>
-          </nav>
-        )}
-      </div>
-
-      {/* Right: Active Customer Spotlight (Increased Width & Prominence), Manager & Reset */}
-      <div
-        className="navbar-right-group"
-        style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexShrink: 0 }}
-      >
-        {/* Customer Spotlight Pill with Expanded Width (260px) */}
         <div
+          className="navbar-customer-spotlight"
           style={{
             position: 'relative',
             display: 'flex',
@@ -379,8 +189,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             padding: '0.3rem 0.65rem 0.3rem 0.45rem',
             gap: '0.6rem',
             boxShadow: 'var(--shadow-sm)',
-            minWidth: '240px',
-            maxWidth: '300px',
+            minWidth: '200px',
+            maxWidth: '280px',
             boxSizing: 'border-box',
           }}
         >
@@ -407,7 +217,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Customer Info & Dropdown */}
           <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minWidth: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '1px' }}>
-              <span style={{ fontSize: '0.65rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', fontWeight: 700 }}>
+              <span
+                className="navbar-customer-label"
+                style={{ fontSize: '0.65rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', fontWeight: 700 }}
+              >
                 Cliente em Foco
               </span>
               {activeCustomer && (
@@ -479,6 +292,223 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Right: View Switcher Dropdown (Chat + Evals + Metrics), Manager & Reset */}
+      <div
+        className="navbar-right-group"
+        style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexShrink: 0 }}
+      >
+        {onViewChange && (
+          <nav aria-label="Alternar Visões">
+            {/* Unified View Selector Dropdown */}
+            <div ref={opsDropdownRef} style={{ position: 'relative' }}>
+              <button
+                id="btn-view-dropdown-trigger"
+                className="navbar-view-trigger"
+                onClick={() => setIsOpsDropdownOpen((prev) => !prev)}
+                aria-expanded={isOpsDropdownOpen}
+                aria-haspopup="true"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                  backgroundColor: 'rgba(15, 23, 42, 0.85)',
+                  color: '#ffffff',
+                  border: isOpsDropdownOpen
+                    ? '1px solid rgba(59, 130, 246, 0.6)'
+                    : '1px solid var(--border-color)',
+                  borderRadius: 'var(--radius-md)',
+                  padding: '0.38rem 0.75rem',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease',
+                  boxShadow: '0 1px 3px rgba(0, 0, 0, 0.25)',
+                  whiteSpace: 'nowrap',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.5)';
+                  e.currentTarget.style.backgroundColor = 'rgba(30, 41, 59, 0.95)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = isOpsDropdownOpen
+                    ? 'rgba(59, 130, 246, 0.6)'
+                    : 'var(--border-color)';
+                  e.currentTarget.style.backgroundColor = 'rgba(15, 23, 42, 0.85)';
+                }}
+              >
+                {activeView === 'chat' && (
+                  <>
+                    <MessageSquare size={14} color="#60a5fa" />
+                    <span>Copilot Chat</span>
+                  </>
+                )}
+                {activeView === 'evals' && (
+                  <>
+                    <ShieldCheck size={14} color="#60a5fa" />
+                    <span>Evals & Harness</span>
+                  </>
+                )}
+                {activeView === 'metrics' && (
+                  <>
+                    <BarChart3 size={14} color="#34d399" />
+                    <span>Métricas & Custo</span>
+                  </>
+                )}
+                <ChevronDown
+                  size={13}
+                  style={{
+                    transform: isOpsDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                    transition: 'transform 0.2s ease',
+                    opacity: 0.7,
+                    marginLeft: '2px',
+                  }}
+                />
+              </button>
+
+              {/* Floating Menu containing all 3 views */}
+              {isOpsDropdownOpen && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: 'calc(100% + 6px)',
+                    right: 0,
+                    minWidth: '225px',
+                    backgroundColor: 'rgba(15, 23, 42, 0.98)',
+                    backdropFilter: 'blur(12px)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: 'var(--radius-md)',
+                    padding: '0.35rem',
+                    boxShadow: 'var(--shadow-lg), 0 8px 24px rgba(0, 0, 0, 0.6)',
+                    zIndex: 60,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '2px',
+                    animation: 'fadeIn 0.15s ease-out',
+                  }}
+                >
+                  {/* Copilot Chat option */}
+                  <button
+                    id="tab-view-chat"
+                    onClick={() => {
+                      onViewChange('chat');
+                      setIsOpsDropdownOpen(false);
+                    }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '0.6rem',
+                      width: '100%',
+                      padding: '0.55rem 0.75rem',
+                      borderRadius: 'var(--radius-sm)',
+                      border: 'none',
+                      backgroundColor: activeView === 'chat' ? 'rgba(37, 99, 235, 0.25)' : 'transparent',
+                      color: activeView === 'chat' ? '#ffffff' : 'var(--text-secondary)',
+                      cursor: 'pointer',
+                      textAlign: 'left',
+                      transition: 'background 0.15s',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (activeView !== 'chat') e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.06)';
+                    }}
+                    onMouseLeave={(e) => {
+                      if (activeView !== 'chat') e.currentTarget.style.backgroundColor = 'transparent';
+                    }}
+                  >
+                    <MessageSquare size={16} color="#60a5fa" style={{ marginTop: '2px', flexShrink: 0 }} />
+                    <div>
+                      <div style={{ fontWeight: 600, fontSize: '0.8rem', color: activeView === 'chat' ? '#ffffff' : 'var(--text-primary)' }}>
+                        Copilot Chat
+                      </div>
+                      <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginTop: '1px' }}>
+                        Atendimento bancário inteligente
+                      </div>
+                    </div>
+                  </button>
+
+                  {/* Evals & Harness option */}
+                  <button
+                    id="tab-view-evals"
+                    onClick={() => {
+                      onViewChange('evals');
+                      setIsOpsDropdownOpen(false);
+                    }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '0.6rem',
+                      width: '100%',
+                      padding: '0.55rem 0.75rem',
+                      borderRadius: 'var(--radius-sm)',
+                      border: 'none',
+                      backgroundColor: activeView === 'evals' ? 'rgba(37, 99, 235, 0.25)' : 'transparent',
+                      color: activeView === 'evals' ? '#ffffff' : 'var(--text-secondary)',
+                      cursor: 'pointer',
+                      textAlign: 'left',
+                      transition: 'background 0.15s',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (activeView !== 'evals') e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.06)';
+                    }}
+                    onMouseLeave={(e) => {
+                      if (activeView !== 'evals') e.currentTarget.style.backgroundColor = 'transparent';
+                    }}
+                  >
+                    <ShieldCheck size={16} color="#60a5fa" style={{ marginTop: '2px', flexShrink: 0 }} />
+                    <div>
+                      <div style={{ fontWeight: 600, fontSize: '0.8rem', color: activeView === 'evals' ? '#ffffff' : 'var(--text-primary)' }}>
+                        Evals & Harness
+                      </div>
+                      <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginTop: '1px' }}>
+                        Scorecards e Golden Datasets
+                      </div>
+                    </div>
+                  </button>
+
+                  {/* Métricas & Custo option */}
+                  <button
+                    id="tab-view-metrics"
+                    onClick={() => {
+                      onViewChange('metrics');
+                      setIsOpsDropdownOpen(false);
+                    }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '0.6rem',
+                      width: '100%',
+                      padding: '0.55rem 0.75rem',
+                      borderRadius: 'var(--radius-sm)',
+                      border: 'none',
+                      backgroundColor: activeView === 'metrics' ? 'rgba(37, 99, 235, 0.25)' : 'transparent',
+                      color: activeView === 'metrics' ? '#ffffff' : 'var(--text-secondary)',
+                      cursor: 'pointer',
+                      textAlign: 'left',
+                      transition: 'background 0.15s',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (activeView !== 'metrics') e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.06)';
+                    }}
+                    onMouseLeave={(e) => {
+                      if (activeView !== 'metrics') e.currentTarget.style.backgroundColor = 'transparent';
+                    }}
+                  >
+                    <BarChart3 size={16} color="#34d399" style={{ marginTop: '2px', flexShrink: 0 }} />
+                    <div>
+                      <div style={{ fontWeight: 600, fontSize: '0.8rem', color: activeView === 'metrics' ? '#ffffff' : 'var(--text-primary)' }}>
+                        Métricas & Custo
+                      </div>
+                      <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginTop: '1px' }}>
+                        Latência e contabilidade de tokens
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              )}
+            </div>
+          </nav>
+        )}
 
         {/* Manager Badge */}
         <div
