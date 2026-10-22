@@ -58,6 +58,12 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
 
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -106,9 +112,9 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-header {
   flex-shrink: 0 !important;
   width: 100% !important;
-  height: 56px !important;
-  min-height: 56px !important;
-  max-height: 56px !important;
+  height: 60px !important;
+  min-height: 60px !important;
+  max-height: 60px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -133,7 +139,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Sidebar Component Styling */
 .sidebar-aside {
-  width: 340px;
+  width: 400px;
   background-color: var(--bg-secondary);
   border-right: 1px solid var(--border-color);
   display: flex;
