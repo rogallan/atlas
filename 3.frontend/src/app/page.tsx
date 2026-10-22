@@ -98,6 +98,8 @@ export default function Home() {
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
         activeCustomer={activeCustomer}
+        customers={customerList}
+        onCustomerChange={setActiveCustomer}
         menuItems={menuItems}
         onSelectQuery={handleSelectQueryFromMenu}
       />
